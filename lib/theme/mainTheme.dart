@@ -10,7 +10,7 @@ ThemeData _buildDefaultTheme() {
 //            color: Colors.black)
 //    ),
 //    scaffoldBackgroundColor: Colors.white,
-//    primaryColor: Color.fromRGBO(46, 38, 217, 1.0),
+    primaryColor: ColorPalette().mainBlack,
 //    buttonColor: Color.fromRGBO(46, 38, 217, 1.0),
 //    fontFamily: 'SFProText',
 //    brightness: Brightness.light,
