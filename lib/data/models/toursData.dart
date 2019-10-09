@@ -12,6 +12,7 @@ class ToursData {
   String language;
   String name;
   bool mainScreen;
+  String category;
   List<String> imgUrls;
   String article;
   String duration;
@@ -22,6 +23,7 @@ class ToursData {
     this.language,
     this.name,
     this.mainScreen,
+    this.category,
     this.imgUrls,
     this.article,
     this.duration,
@@ -33,6 +35,7 @@ class ToursData {
     language: json["language"],
     name: json["name"],
     mainScreen: json["mainScreen"],
+    category: json["category"],
     imgUrls: List<String>.from(json["imgUrls"].map((x) => x)),
     article: json["article"],
     duration: json["duration"],
@@ -44,6 +47,7 @@ class ToursData {
     "language": language,
     "name": name,
     "mainScreen": mainScreen,
+    "category": category,
     "imgUrls": List<dynamic>.from(imgUrls.map((x) => x)),
     "article": article,
     "duration": duration,
