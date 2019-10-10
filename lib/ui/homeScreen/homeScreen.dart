@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_prague/data/models/toursData.dart';
 import 'package:go_prague/data/repository.dart';
 import 'package:go_prague/theme/mainTheme.dart';
+import 'package:go_prague/ui/tours/tourInfoScreen/tourInfoScreen.dart';
 import 'package:go_prague/ui/widgets/carousel/carousel.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,9 +15,11 @@ class HomeScreen extends StatelessWidget {
     List<ToursData> _listData;
     await Repository().accountTypes().then((toursList) {
       _listData = toursList;
-      toursList.forEach((slide) {
-        elements.add(carouselItem(context, slide, carouselHeight));
-      });
+      if(elements.isEmpty) {
+        toursList.forEach((slide) {
+          elements.add(carouselItem(context, slide, carouselHeight));
+        });
+      }
     });
     return _listData;
   }
@@ -71,54 +74,53 @@ Widget loadData(BuildContext context,  double carouselHeight){
 }
 
 Widget carouselItem(BuildContext context, ToursData sliderData, double carouselHeight) {
-  return GestureDetector(
-    onTap: () {},
+  return Container(
+    height: carouselHeight,
+    width: MediaQuery.of(context).size.width,
     child: Container(
-      height: carouselHeight,
-      width: MediaQuery.of(context).size.width,
+      margin: EdgeInsets.symmetric(horizontal: 20),
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: NetworkImage(
+                sliderData.imgUrls[0],
+              ),
+              fit: BoxFit.cover)),
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20),
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: NetworkImage(
-                  sliderData.imgUrls[0],
-                ),
-                fit: BoxFit.cover)),
-        child: Container(
-          color: Colors.black.withOpacity(0.1),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                sliderData.name,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 32,
-                    fontWeight: FontWeight.w700),
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              SizedBox(
-                height: 30,
-                width: 150,
-                child: FlatButton(
-                    onPressed: () {},
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    color: ColorPalette().mainGreen,
-                    child: Text(
-                      'GO',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontWeight: FontWeight.w700),
-                    )),
-              )
-            ],
-          ),
+        color: Colors.black.withOpacity(0.1),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              sliderData.name,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 32,
+                  fontWeight: FontWeight.w700),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            SizedBox(
+              height: 30,
+              width: 150,
+              child: FlatButton(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => TourInfoScreen(tourData: sliderData,)));
+                  },
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  color: ColorPalette().mainGreen,
+                  child: Text(
+                    'GO',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w700),
+                  )),
+            )
+          ],
         ),
       ),
     ),
