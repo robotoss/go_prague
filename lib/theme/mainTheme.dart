@@ -11,6 +11,7 @@ ThemeData _buildDefaultTheme() {
 //    ),
 //    scaffoldBackgroundColor: Colors.white,
     primaryColor: ColorPalette().mainBlack,
+    scaffoldBackgroundColor: const Color(0xFFEFEFEF),
 //    buttonColor: Color.fromRGBO(46, 38, 217, 1.0),
 //    fontFamily: 'SFProText',
 //    brightness: Brightness.light,
