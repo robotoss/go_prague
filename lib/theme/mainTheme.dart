@@ -4,6 +4,7 @@ final ThemeData defaultTheme = _buildDefaultTheme();
 
 ThemeData _buildDefaultTheme() {
   return ThemeData(
+    fontFamily: 'Montserrat',
 //    appBarTheme: AppBarTheme(
 //        brightness: Brightness.light,
 //        iconTheme: IconThemeData(
@@ -13,7 +14,6 @@ ThemeData _buildDefaultTheme() {
     primaryColor: ColorPalette().mainBlack,
     scaffoldBackgroundColor: const Color(0xFFEFEFEF),
 //    buttonColor: Color.fromRGBO(46, 38, 217, 1.0),
-//    fontFamily: 'SFProText',
 //    brightness: Brightness.light,
   );
 }
