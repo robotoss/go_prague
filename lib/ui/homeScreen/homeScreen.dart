@@ -89,37 +89,44 @@ Widget carouselItem(BuildContext context, ToursData sliderData, double carouselH
         color: Colors.black.withOpacity(0.1),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text(
-              sliderData.name,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 32,
-                  fontWeight: FontWeight.w700),
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Text(
+                sliderData.name,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 32,
+                    fontWeight: FontWeight.w700),
+              ),
             ),
-            SizedBox(
-              height: 40,
+//            SizedBox(
+//              height: 40,
+//            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 25),
+              child: SizedBox(
+                height: 30,
+                width: 150,
+                child: FlatButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => TourInfoScreen(tourData: sliderData,)));
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    color: ColorPalette().mainGreen,
+                    child: Text(
+                      'GO',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.w700),
+                    )),
+              ),
             ),
-            SizedBox(
-              height: 30,
-              width: 150,
-              child: FlatButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => TourInfoScreen(tourData: sliderData,)));
-                  },
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  color: ColorPalette().mainGreen,
-                  child: Text(
-                    'GO',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.w700),
-                  )),
-            )
           ],
         ),
       ),
