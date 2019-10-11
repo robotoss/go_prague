@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/models/toursData.dart';
 import 'package:go_prague/theme/mainTheme.dart';
+import 'package:go_prague/ui/widgets/buttons/addToCartButton.dart';
 import 'package:go_prague/ui/widgets/carousel/carousel.dart';
+import 'package:go_prague/ui/widgets/selectAmount/selectAmount.dart';
 
 class TourInfoScreen extends StatefulWidget {
   final ToursData tourData;
@@ -80,11 +82,12 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
                                 Text(
                                   'Number of tourists',
                                   style: TextStyle(
-                                    color: ColorPalette().textLightDark,
+                                    color: ColorPalette().textLLDark,
                                     fontSize: 18,
                                   ),
                                 ),
-
+                                SizedBox(width: 15,),
+                                SelectAmount(),
                               ],
                             ),
                           ],
@@ -96,17 +99,17 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                  '${widget.tourData.duration} h.',
+                                  '${widget.tourData.duration}',
                                 style: TextStyle(
-                                  color: ColorPalette().textLightDark,
+                                  color: ColorPalette().textLLDark,
                                   fontSize: 22,
-//                                  fontWeight: FontWeight.w700
+                                  fontWeight: FontWeight.w700
                                 ),
                               ),
                               Text(
-                                widget.tourData.price == 0 ? 'Free' : '${widget.tourData.price} Kč',
+                                widget.tourData.price == 0 ? 'FREE' : '${widget.tourData.price} Kč',
                                 style: TextStyle(
-                                    color: ColorPalette().textLightDark,
+                                    color: ColorPalette().textLLDark,
                                     fontSize: 22,
                                     fontWeight: FontWeight.w700
                                 ),
@@ -138,9 +141,48 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
                               widget.tourData.article,
                               style: TextStyle(
                                 fontSize: 18,
-                                color: ColorPalette().textLightDark,
+                                color: ColorPalette().textLLDark,
                               ),
                             ),
+                            SizedBox(height: 15),
+                            Container(
+                              child: Column(
+                                children: <Widget>[
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Text(
+                                        'Select a day',
+                                        style: TextStyle(
+                                          color: ColorPalette().textLLDark,
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w700
+                                        ),
+                                      ),
+                                      Text('TODAY'),
+                                    ],
+                                  ),
+                                  SizedBox(height: 25),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Text(
+                                        'Select a time',
+                                        style: TextStyle(
+                                            color: ColorPalette().textLLDark,
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w700
+                                        ),
+                                      ),
+                                      Text('16:10'),
+                                    ],
+                                  ),
+                                  SizedBox(height: 40),
+                                  AddToCartButton(),
+                                  SizedBox(height: 5,)
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),
