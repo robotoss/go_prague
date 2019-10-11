@@ -44,9 +44,11 @@ class _SelectAmountState extends State<SelectAmount> {
           ),
           GestureDetector(
             onTap: (){
-              setState(() {
-                _int = ++_int;
-              });
+              if(_int < 60) {
+                setState(() {
+                  _int = ++_int;
+                });
+              }
             },
             child: Container(
               width: 40,
