@@ -17,7 +17,9 @@ class HomeScreen extends StatelessWidget {
       _listData = toursList;
       if(elements.isEmpty) {
         toursList.forEach((slide) {
-          elements.add(carouselItem(context, slide, carouselHeight));
+          if(slide.mainScreen) {
+            elements.add(carouselItem(context, slide, carouselHeight));
+          }
         });
       }
     });
