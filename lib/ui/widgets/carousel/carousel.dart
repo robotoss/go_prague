@@ -128,7 +128,7 @@ class _InfoCarouselState extends State<InfoCarousel> {
         Positioned(
           left: 0,
           right: 0,
-          bottom: 0,
+          bottom: 50,
           child: Padding(
             padding: const EdgeInsets.all(1.0),
             child: Row(
@@ -137,8 +137,8 @@ class _InfoCarouselState extends State<InfoCarousel> {
                 widget.elements,
                     (index, url) {
                   return Container(
-                    width: 8.0,
-                    height: 8.0,
+                    width: 10.0,
+                    height: 10.0,
                     margin: EdgeInsets.symmetric(
                         vertical: 10.0, horizontal: 2.0),
                     decoration: BoxDecoration(
