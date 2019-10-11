@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/models/toursData.dart';
 import 'package:go_prague/theme/mainTheme.dart';
+import 'package:go_prague/ui/widgets/carousel/carousel.dart';
 
 class TourInfoScreen extends StatefulWidget {
   final ToursData tourData;
@@ -14,11 +15,35 @@ class TourInfoScreen extends StatefulWidget {
 }
 
 class _TourInfoScreenState extends State<TourInfoScreen> {
+
+  static List<Widget> elements = List();
+
+  @override
+  void initState() {
+    super.initState();
+
+    widget.tourData.imgUrls.forEach((image){
+      elements.add(carouselItem(image));
+    });
+  }
+
+
+  @override
+  void dispose() {
+    elements.clear();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: <Widget>[
+          Container(
+            height: 300,
+            color: ColorPalette().mainBlack,
+            child: InfoCarousel(height: 300, elements: elements,),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
@@ -50,12 +75,17 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
                                 fontWeight: FontWeight.w700
                               ),
                             ),
-                            Text(
-                             'Number of tourists',
-                              style: TextStyle(
-                                color: ColorPalette().textLightDark,
-                                fontSize: 18,
-                              ),
+                            Row(
+                              children: <Widget>[
+                                Text(
+                                  'Number of tourists',
+                                  style: TextStyle(
+                                    color: ColorPalette().textLightDark,
+                                    fontSize: 18,
+                                  ),
+                                ),
+
+                              ],
                             ),
                           ],
                         ),
@@ -125,3 +155,12 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
     );
   }
 }
+
+Widget carouselItem(String image) {
+  return Container(
+    height: 300,
+    width: double.infinity,
+    child: Image.network(image, fit: BoxFit.cover,),
+  );
+}
+
