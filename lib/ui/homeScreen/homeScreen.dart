@@ -8,6 +8,7 @@ import 'package:go_prague/ui/widgets/carousel/carousel.dart';
 class HomeScreen extends StatelessWidget {
   static List<Widget> elements = List();
   static double carouselHeight = 160;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   Future<List<ToursData>> getSlides(
     BuildContext context,
@@ -29,13 +30,24 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: customDrawer(context),
       appBar: AppBar(
         elevation: 0.0,
         centerTitle: true,
+        leading: new IconButton(icon: new Icon(Icons.menu),
+            onPressed: () => _scaffoldKey.currentState.openDrawer()),
         title: Text(
           'Welcome in Go.Prague',
           style: TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.shopping_cart),
+            onPressed: () {
+            },
+          ),
+        ],
       ),
       body: Stack(
         children: <Widget>[
@@ -71,6 +83,188 @@ Widget loadData(BuildContext context,  double carouselHeight){
     width: MediaQuery.of(context).size.width,
     child: Center(
       child: CircularProgressIndicator(),
+    ),
+  );
+}
+
+Widget customDrawer(BuildContext context) {
+  return Container(
+    width: MediaQuery.of(context).size.width * 0.7,
+    child: Drawer(
+      child: Column(
+        children: <Widget>[
+          Container(
+            height: 300,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('assets/images/demo_dawer_bg.jpg'),
+              )
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: ListView(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      height: 30,
+                      width: 200,
+                      color: Colors.green,
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.notification_important, color: Colors.white,),
+                          Text(
+                            'You have: ',
+                            style: TextStyle(
+                              color: Colors.white
+                            ),
+                          ),
+                          Text(
+                            '0 notification',
+                            style: TextStyle(
+                                color: Colors.white,
+                              fontWeight: FontWeight.w700
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Text(
+                    'Hello,',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 38,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.green
+                        ),
+                        child: Center(
+                          child: Text(
+                            'NS',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 38
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 20),
+                      Text(
+                        'mr. Novikov \nSergey',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 38,
+
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'Language',
+                  style: TextStyle(
+                    color: ColorPalette().textLightDark,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w700
+                  ),
+                ),
+                Text(
+                  'English',
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700
+                  ),
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'Currency',
+                  style: TextStyle(
+                      color: ColorPalette().textLightDark,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700
+                  ),
+                ),
+                Text(
+                  'Kč',
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700
+                  ),
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'About',
+                  style: TextStyle(
+                      color: ColorPalette().textLightDark,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700
+                  ),
+                ),
+                SizedBox(width: 10)
+              ],
+            ),
+          ),
+          Expanded(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: SizedBox(
+                width: 230,
+                height: 60,
+                child: FlatButton(
+                  onPressed: (){},
+                  color: ColorPalette().mainRed,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: Text(
+                    'Emergency Call',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 25,)
+        ],
+      ),
     ),
   );
 }
