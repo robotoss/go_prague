@@ -22,6 +22,7 @@ class ColorPalette {
   var mainBlack = const Color(0xFF22252F); //Основной Тёмный цвет
   var mainGreen = const Color(0xFF14D2B8); //Основной Зелёный цвет
   var mainBlue = const Color(0xFF409CDE); //Основной Синий цвет
+  var mainRed = const Color(0xFFEB5757); //Основной Красный цвет
 
   var textDark = const Color(0xFF535353); //Тёмный цвет текста
   var textLLDark = const Color(0xFF9B9B9B); //Светло цвет текста
