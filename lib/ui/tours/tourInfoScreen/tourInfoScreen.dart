@@ -46,12 +46,34 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
             color: ColorPalette().mainBlack,
             child: InfoCarousel(height: 300, elements: elements,),
           ),
+          Column(
+            children: <Widget>[
+              SizedBox(height: 25),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.arrow_back_ios, color: Colors.white,),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.shopping_cart, color: Colors.white,),
+                    onPressed: () {
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
 //              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                SizedBox(height: 255,),
+
+                SizedBox(height: 255),
                 Container(
                   height: 135,
                   width: double.infinity,
