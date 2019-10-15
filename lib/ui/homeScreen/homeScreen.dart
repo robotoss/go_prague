@@ -3,6 +3,7 @@ import 'package:go_prague/data/models/toursData.dart';
 import 'package:go_prague/data/repository.dart';
 import 'package:go_prague/theme/mainTheme.dart';
 import 'package:go_prague/ui/tours/tourInfoScreen/tourInfoScreen.dart';
+import 'package:go_prague/ui/widgets/buttons/mainCategoryTile.dart';
 import 'package:go_prague/ui/widgets/carousel/carousel.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -57,7 +58,8 @@ class HomeScreen extends StatelessWidget {
             color: ColorPalette().mainBlack,
           ),
           Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+//            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               FutureBuilder(
                   future: getSlides(context),
@@ -69,6 +71,33 @@ class HomeScreen extends StatelessWidget {
                           )
                         : loadData(context, carouselHeight);
                   }),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+                child: Text(
+                  'Services',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 27
+                  ),
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                margin: EdgeInsets.only(left: 0),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: <Widget>[
+                      SizedBox(width: 15,),
+                      MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'Eat', icon: 'assets/icons/icon_main_eat.svg',),
+                      MainCategoryTile(titleColor: ColorPalette().mainBlue, name: 'Drink', icon: 'assets/icons/icon_main_drink.svg',),
+                      MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'To Go', icon: 'assets/icons/icon_main_go.svg',),
+                      MainCategoryTile(titleColor: ColorPalette().mainBlue, name: 'Hotel Service', icon: 'assets/icons/icon_main_hotel_service.svg',),
+                      MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'City Service', icon: 'assets/icons/icon_main_city_service.svg',),
+                    ],
+                  ),
+                ),
+              )
             ],
           )
         ],
