@@ -88,55 +88,66 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              widget.tourData.name,
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700
-                              ),
-                            ),
-                            Row(
-                              children: <Widget>[
-                                Text(
-                                  'Number of tourists',
-                                  style: TextStyle(
-                                    color: ColorPalette().textLLDark,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                                SizedBox(width: 15,),
-                                SelectAmount(),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Container(
-                          height: 72,
+                        Expanded(
+                          flex: 8,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                  '${widget.tourData.duration}',
+                                widget.tourData.name,
+                                softWrap: true,
+                                maxLines: 2,
                                 style: TextStyle(
-                                  color: ColorPalette().textLLDark,
-                                  fontSize: 22,
+                                  fontSize: 24,
                                   fontWeight: FontWeight.w700
                                 ),
                               ),
-                              Text(
-                                widget.tourData.price == 0 ? 'FREE' : '${widget.tourData.price} Kč',
-                                style: TextStyle(
-                                    color: ColorPalette().textLLDark,
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.w700
-                                ),
+                              Row(
+                                children: <Widget>[
+                                  Text(
+                                    'Number of tourists',
+                                    style: TextStyle(
+                                      color: ColorPalette().textLLDark,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  SizedBox(width: 15,),
+                                  SelectAmount(),
+                                ],
                               ),
                             ],
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Container(
+                              height: 72,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                      '${widget.tourData.duration}',
+                                    style: TextStyle(
+                                      color: ColorPalette().textLLDark,
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w700
+                                    ),
+                                  ),
+                                  Text(
+                                    widget.tourData.price == 0 ? 'FREE' : '${widget.tourData.price} Kč',
+                                    style: TextStyle(
+                                        color: ColorPalette().textLLDark,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w700
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         )
                       ],
@@ -155,57 +166,64 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
                       child:
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              widget.tourData.article,
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: ColorPalette().textLLDark,
-                              ),
-                            ),
-                            SizedBox(height: 15),
-                            Container(
-                              child: Column(
-                                children: <Widget>[
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Text(
-                                        'Select a day',
-                                        style: TextStyle(
-                                          color: ColorPalette().textLLDark,
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.w700
-                                        ),
-                                      ),
-                                      Text('TODAY'),
-                                    ],
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              ConstrainedBox(
+                                constraints: BoxConstraints(
+                                  minHeight: 250
+                                ),
+                                child: Text(
+                                  widget.tourData.article,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: ColorPalette().textLLDark,
                                   ),
-                                  SizedBox(height: 25),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Text(
-                                        'Select a time',
-                                        style: TextStyle(
+                                ),
+                              ),
+                              SizedBox(height: 15),
+                              Container(
+                                child: Column(
+                                  children: <Widget>[
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Text(
+                                          'Select a day',
+                                          style: TextStyle(
                                             color: ColorPalette().textLLDark,
                                             fontSize: 22,
                                             fontWeight: FontWeight.w700
+                                          ),
                                         ),
-                                      ),
-                                      Text('16:10'),
-                                    ],
-                                  ),
-                                  SizedBox(height: 40),
-                                  AddToCartButton(),
-                                  SizedBox(height: 5,)
-                                ],
-                              ),
-                            )
-                          ],
+                                        Text('TODAY'),
+                                      ],
+                                    ),
+                                    SizedBox(height: 25),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Text(
+                                          'Select a time',
+                                          style: TextStyle(
+                                              color: ColorPalette().textLLDark,
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.w700
+                                          ),
+                                        ),
+                                        Text('16:10'),
+                                      ],
+                                    ),
+                                    SizedBox(height: 40),
+                                    AddToCartButton(),
+                                    SizedBox(height: 5,)
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
