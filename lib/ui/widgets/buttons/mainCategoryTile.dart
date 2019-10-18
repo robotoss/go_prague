@@ -6,11 +6,13 @@ class MainCategoryTile extends StatefulWidget {
   final Color titleColor;
   final String name;
   final String icon;
+  final bool secondSide;
 
   MainCategoryTile({
     this.titleColor,
     this.name,
     this.icon,
+    this.secondSide,
 
 });
 
@@ -60,27 +62,28 @@ class _MainCategoryTileState extends State<MainCategoryTile> with SingleTickerPr
         alignment: FractionalOffset.center,
         child: GestureDetector(
           onTap: (){
-            print('Start animation');
-           if(isAnimated) {
-             isAnimated = false;
-             controller.forward();
-             Future.delayed(const Duration(milliseconds: 500), () {
-               setState(() {
-                 _statusButton = 1;
-               });
-
-             });
-
-             Future.delayed(const Duration(seconds: 5), () {
-               controller.reverse();
-               isAnimated = true;
+           if(widget.secondSide){
+             if(isAnimated) {
+               isAnimated = false;
+               controller.forward();
                Future.delayed(const Duration(milliseconds: 500), () {
                  setState(() {
-                   _statusButton = 0;
+                   _statusButton = 1;
                  });
 
                });
-             });
+
+               Future.delayed(const Duration(seconds: 5), () {
+                 controller.reverse();
+                 isAnimated = true;
+                 Future.delayed(const Duration(milliseconds: 500), () {
+                   setState(() {
+                     _statusButton = 0;
+                   });
+
+                 });
+               });
+             }
            }
           },
           child: Container(
