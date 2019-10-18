@@ -7,12 +7,14 @@ class MainCategoryTile extends StatefulWidget {
   final String name;
   final String icon;
   final bool secondSide;
+  final Widget navigateScreen;
 
   MainCategoryTile({
     this.titleColor,
     this.name,
     this.icon,
     this.secondSide,
+    this.navigateScreen,
 
 });
 
@@ -114,7 +116,9 @@ class _MainCategoryTileState extends State<MainCategoryTile> with SingleTickerPr
             ) : Column(
               children: <Widget>[
                 GestureDetector(
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => widget.navigateScreen));
+                  },
                   child: Container(
                     height: 70,
                     width: 120,
