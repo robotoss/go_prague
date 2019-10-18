@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/models/toursData.dart';
 import 'package:go_prague/data/repository.dart';
@@ -59,7 +60,7 @@ class HomeScreen extends StatelessWidget {
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-//            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               FutureBuilder(
                   future: getSlides(context),
@@ -71,33 +72,154 @@ class HomeScreen extends StatelessWidget {
                           )
                         : loadData(context, carouselHeight);
                   }),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
-                child: Text(
-                  'Services',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 27
-                  ),
-                ),
-              ),
+
               Container(
                 width: double.infinity,
                 margin: EdgeInsets.only(left: 0),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: <Widget>[
-                      SizedBox(width: 15,),
-                      MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'Eat', icon: 'assets/icons/icon_main_eat.svg',),
-                      MainCategoryTile(titleColor: ColorPalette().mainBlue, name: 'Drink', icon: 'assets/icons/icon_main_drink.svg',),
-                      MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'To Go', icon: 'assets/icons/icon_main_go.svg',),
-                      MainCategoryTile(titleColor: ColorPalette().mainBlue, name: 'Hotel Service', icon: 'assets/icons/icon_main_hotel_service.svg',),
-                      MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'City Service', icon: 'assets/icons/icon_main_city_service.svg',),
-                    ],
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 15, left: 20),
+                      child: Text(
+                        'Services',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 27
+                        ),
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: <Widget>[
+                          SizedBox(width: 15,),
+                          MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'Eat', icon: 'assets/icons/icon_main_eat.svg',),
+                          MainCategoryTile(titleColor: ColorPalette().mainBlue, name: 'Drink', icon: 'assets/icons/icon_main_drink.svg',),
+                          MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'To Go', icon: 'assets/icons/icon_main_go.svg',),
+                          MainCategoryTile(titleColor: ColorPalette().mainBlue, name: 'Hotel Service', icon: 'assets/icons/icon_main_hotel_service.svg',),
+                          MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'City Service', icon: 'assets/icons/icon_main_city_service.svg',),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
-              )
+              ),
+              Container(
+                height: 205,
+                width: double.infinity,
+               decoration: BoxDecoration(
+                 image: DecorationImage(
+                   image: AssetImage('assets/images/special_background.jpg'),
+                   fit: BoxFit.cover
+                 )
+               ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'Find special for you?',
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white
+                      ),
+                    ),
+                    SizedBox(height: 45),
+                    SizedBox(
+                      height: 30,
+                      width: 150,
+                      child: FlatButton(
+                          onPressed: () {
+
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          color: ColorPalette().mainGreen,
+                          child: Text(
+                            'FIND',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 22,
+                                fontWeight: FontWeight.w700),
+                          )),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 5),
+                child: Container(
+                  height: 170,
+                  width: double.infinity,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Text(
+                              'Upcoming Events',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 18,
+
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 5),
+                            child: Text(
+                              'Show more...',
+                              style: TextStyle(
+                                color: ColorPalette().textLightDark,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: Container(
+                          height: 115,
+                          width: double.infinity,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: 3,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  width: 345,
+                                  height: 120,
+                                  child: Row(
+                                    children: <Widget>[
+                                      Container(
+                                        height: 115,
+                                        width: 115,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(Radius.circular(6)),
+                                          color: ColorPalette().mainBlack,
+                                        ),
+                                      ),
+                                      Text(
+                                          '$index'
+                                      )
+                                    ],
+                                  ),
+                                );
+                              }
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ),
+              ),
             ],
           )
         ],
@@ -299,60 +421,65 @@ Widget customDrawer(BuildContext context) {
 }
 
 Widget carouselItem(BuildContext context, ToursData sliderData, double carouselHeight) {
-  return Container(
-    height: carouselHeight,
-    width: MediaQuery.of(context).size.width,
+  return GestureDetector(
+    onTap: (){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => TourInfoScreen(tourData: sliderData,)));
+    },
     child: Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: NetworkImage(
-                sliderData.imgUrls[0],
-              ),
-              fit: BoxFit.cover)),
+      height: carouselHeight,
+      width: MediaQuery.of(context).size.width,
       child: Container(
-        color: Colors.black.withOpacity(0.1),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: Text(
-                sliderData.name,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 32,
-                    fontWeight: FontWeight.w700),
+        margin: EdgeInsets.symmetric(horizontal: 20),
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: NetworkImage(
+                  sliderData.imgUrls[0],
+                ),
+                fit: BoxFit.cover)),
+        child: Container(
+          color: Colors.black.withOpacity(0.1),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Text(
+                  sliderData.name,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 32,
+                      fontWeight: FontWeight.w700),
+                ),
               ),
-            ),
 //            SizedBox(
 //              height: 40,
 //            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 25),
-              child: SizedBox(
-                height: 30,
-                width: 150,
-                child: FlatButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => TourInfoScreen(tourData: sliderData,)));
-                    },
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    color: ColorPalette().mainGreen,
-                    child: Text(
-                      'GO',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontWeight: FontWeight.w700),
-                    )),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 25),
+                child: SizedBox(
+                  height: 30,
+                  width: 150,
+                  child: FlatButton(
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => TourInfoScreen(tourData: sliderData,)));
+                      },
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      color: ColorPalette().mainGreen,
+                      child: Text(
+                        'GO',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w700),
+                      )),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     ),
