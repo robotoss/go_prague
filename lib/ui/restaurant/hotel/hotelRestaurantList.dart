@@ -37,7 +37,12 @@ class HotelRestaurantList extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   TabBar(
+                    labelPadding: EdgeInsets.only(left: 10,right: 10),
                     isScrollable: true,
+                    indicatorColor: ColorPalette().mainGreen,
+                    labelStyle: TextStyle(
+                      fontSize: 28,
+                    ),
                     labelColor: ColorPalette().mainBlack,
                     tabs: List<Widget>.generate(_hotelRestaurantItems.length, (int index){
                       return Tab(text: _hotelRestaurantItems[index].categoryName);
