@@ -53,6 +53,9 @@ class MoreButton extends StatelessWidget {
 }
 
 class MoreBlueButton extends StatelessWidget {
+  final Widget function;
+
+  MoreBlueButton({this.function});
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -60,6 +63,7 @@ class MoreBlueButton extends StatelessWidget {
       width: 82,
       child: FlatButton(
           onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => function));
           },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
