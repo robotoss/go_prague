@@ -22,12 +22,25 @@ class HotelRestaurantList extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.white,),
+          icon: Icon(Icons.arrow_back_ios, color: Colors.black,),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
+        title: Text(
+          'Hotel Restaurant',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700, color: Colors.black,),
+        ),
+        centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.shopping_cart, color: Colors.black,),
+            onPressed: () {
+            },
+          ),
+        ],
       ),
       body: FutureBuilder(
         future: getRestaurantData(),
