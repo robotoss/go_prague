@@ -51,3 +51,51 @@ class MoreButton extends StatelessWidget {
     );
   }
 }
+
+class MoreBlueButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 35,
+      width: 82,
+      child: FlatButton(
+          onPressed: () {
+          },
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          color: ColorPalette().mainBlue,
+          child: Text(
+            'More',
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.w700),
+          )),
+    );
+  }
+}
+
+class AddToCartItemButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 35,
+      width: 143,
+      child: FlatButton(
+          onPressed: () {
+          },
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          color: ColorPalette().mainGreen,
+          child: Text(
+            'Add to Cart',
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.w700),
+          )),
+    );
+  }
+}
