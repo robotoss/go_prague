@@ -27,3 +27,27 @@ class AddToCartButton extends StatelessWidget {
     );
   }
 }
+
+class MoreButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 30,
+      width: 105,
+      child: FlatButton(
+          onPressed: () {
+          },
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          color: ColorPalette().mainGreen,
+          child: Text(
+            'More',
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.w700),
+          )),
+    );
+  }
+}
