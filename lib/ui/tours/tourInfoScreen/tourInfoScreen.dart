@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/models/toursData.dart';
 import 'package:go_prague/theme/mainTheme.dart';
-import 'package:go_prague/ui/widgets/buttons/addToCartButton.dart';
+import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 import 'package:go_prague/ui/widgets/carousel/carousel.dart';
 import 'package:go_prague/ui/widgets/selectAmount/selectAmount.dart';
 
