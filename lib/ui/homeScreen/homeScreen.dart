@@ -1,16 +1,20 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/models/toursData.dart';
+import 'package:go_prague/data/models/upcomingEvents.dart';
 import 'package:go_prague/data/repository.dart';
 import 'package:go_prague/theme/mainTheme.dart';
 import 'package:go_prague/ui/restaurant/hotel/hotelRestaurantList.dart';
 import 'package:go_prague/ui/tours/tourInfoScreen/tourInfoScreen.dart';
 import 'package:go_prague/ui/widgets/buttons/mainCategoryTile.dart';
+import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 import 'package:go_prague/ui/widgets/carousel/carousel.dart';
 
 class HomeScreen extends StatelessWidget {
   static List<Widget> elements = List();
   static double carouselHeight = 160;
+  static List<UpcomingEvents> _events = List();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   Future<List<ToursData>> getSlides(
@@ -28,6 +32,32 @@ class HomeScreen extends StatelessWidget {
       }
     });
     return _listData;
+  }
+
+  Future<List<UpcomingEvents>> getEvents(
+      BuildContext context,
+      ) async {
+    List<UpcomingEvents> _listData;
+    List<UpcomingEvents> _listMainData = List();
+
+    await Repository().upcomingEventsList().then((toursList) {
+      print(1);
+      _listData = toursList;
+      _listData.forEach((f){
+        if(f.mainScreen) {
+          _listMainData.add(f);
+        }
+      });
+      print(2);
+    }).catchError((error) {
+      if (error is DioError) {
+        print(error.message);
+      } else {
+        print(error.toString());
+      }
+    });
+
+    return _listMainData;
   }
 
   @override
@@ -186,35 +216,85 @@ class HomeScreen extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10),
-                        child: Container(
-                          height: 115,
-                          width: double.infinity,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 3,
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  width: 345,
-                                  height: 120,
-                                  child: Row(
-                                    children: <Widget>[
-                                      Container(
-                                        height: 115,
-                                        width: 115,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.all(Radius.circular(6)),
-                                          color: ColorPalette().mainBlack,
+                        child: FutureBuilder(
+                          future: getEvents(context),
+                            builder: (context, snapshot) {
+                            _events = snapshot.data;
+                            return snapshot.data == null ? loadData(context, 115) :
+                            Container(
+                              height: 115,
+                              width: double.infinity,
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: _events.length,
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Container(
+                                        width: 345,
+                                        height: 120,
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            Container(
+                                              height: 115,
+                                              width: 115,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.all(Radius.circular(6)),
+                                                color: ColorPalette().mainBlack,
+                                                image: DecorationImage(
+                                                  image: NetworkImage(_events[index].imgUrls[0]),
+                                                  fit: BoxFit.cover
+                                                )
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 215,
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: <Widget>[
+                                                  Text(
+                                                    _events[index].name,
+                                                    maxLines: 1,
+                                                    style: TextStyle(
+                                                      fontSize: 24
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                      _events[index].article,
+                                                    softWrap: true,
+                                                    maxLines: 2,
+                                                    style: TextStyle(
+                                                      fontSize: 18,
+                                                      color: ColorPalette().textLightDark
+                                                    ),
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: <Widget>[
+                                                      Text(
+                                                          '${_events[index].price} Kč',
+                                                        style: TextStyle(
+                                                          fontSize: 18,
+                                                          fontWeight: FontWeight.w700
+                                                        ),
+                                                      ),
+                                                      MoreButton(),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            )
+                                          ],
                                         ),
                                       ),
-                                      Text(
-                                          '$index'
-                                      )
-                                    ],
-                                  ),
-                                );
-                              }
-                          ),
+                                    );
+                                  }
+                              ),
+                            );
+                            }
                         ),
                       ),
                     ],
@@ -229,9 +309,9 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-Widget loadData(BuildContext context,  double carouselHeight){
+Widget loadData(BuildContext context,  double itemHeight){
   return Container(
-    height: carouselHeight,
+    height: itemHeight,
     width: MediaQuery.of(context).size.width,
     child: Center(
       child: CircularProgressIndicator(),
