@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/models/hotelRestaurantItems.dart';
 import 'package:go_prague/theme/mainTheme.dart';
+import 'package:go_prague/ui/restaurant/hotel/productScreen/ProductRestaurantScreen.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 import 'package:go_prague/ui/widgets/selectAmount/selectAmount.dart';
 
@@ -89,7 +90,7 @@ class _HotelProductCardScreenState extends State<HotelProductCardScreen> {
                         SizedBox(width: 10,),
                         AddToCartItemButton(),
                         SizedBox(width: 10,),
-                        MoreBlueButton(),
+                        MoreBlueButton(function: ProductRestaurantScreen(categoryItem: widget.categoryItem,),),
                       ],
                     )
                   ],
