@@ -103,3 +103,32 @@ class AddToCartItemButton extends StatelessWidget {
     );
   }
 }
+
+class MeatButton extends StatelessWidget {
+  final bool active;
+  final String name;
+
+  MeatButton({this.active, this.name});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 30,
+//      width: 116,
+      child: FlatButton(
+          onPressed: () {
+          },
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          color: active ? ColorPalette().mainGreen : ColorPalette().textLightDark,
+          child: Text(
+            name,
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.w700),
+          )),
+    );
+  }
+}
