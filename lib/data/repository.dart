@@ -1,5 +1,6 @@
 
 
+import 'models/hotelBarItems.dart';
 import 'models/hotelRestaurantItems.dart';
 import 'models/toursData.dart';
 import 'models/upcomingEvents.dart';
@@ -17,6 +18,11 @@ class Repository {
   ///Список блюд в Рестаране отеля
   Future<List<HotelRestaurantItems>> hotelRestaurantList() async {
     return api.hotelRestaurantList();
+  }
+
+  ///Список напитков в Рестаране отеля
+  Future<List<HotelBartItems>> hotelBarList() async {
+    return api.hotelBarList();
   }
 
   ///Список ближайших событий
