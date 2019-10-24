@@ -7,7 +7,7 @@ import 'productCard/hotelProductCardScreen.dart';
 
 class HotelRestaurantList extends StatelessWidget {
 
-  List<HotelRestaurantItems> _hotelRestaurantItems = List();
+  static List<HotelRestaurantItems> _hotelRestaurantItems = List();
 
   Future<List<HotelRestaurantItems>> getRestaurantData() async{
     await Repository().hotelRestaurantList().then((response){
