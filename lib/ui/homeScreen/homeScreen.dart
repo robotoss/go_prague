@@ -5,6 +5,7 @@ import 'package:go_prague/data/models/toursData.dart';
 import 'package:go_prague/data/models/upcomingEvents.dart';
 import 'package:go_prague/data/repository.dart';
 import 'package:go_prague/theme/mainTheme.dart';
+import 'package:go_prague/ui/events/eventsList.dart';
 import 'package:go_prague/ui/restaurant/hotel/hotelRestaurantList.dart';
 import 'package:go_prague/ui/tours/tourInfoScreen/tourInfoScreen.dart';
 import 'package:go_prague/ui/widgets/buttons/mainCategoryTile.dart';
@@ -203,12 +204,17 @@ class HomeScreen extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(right: 5),
-                            child: Text(
-                              'Show more...',
-                              style: TextStyle(
-                                color: ColorPalette().textLightDark,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700
+                            child: GestureDetector(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => EventsList()));
+                              },
+                              child: Text(
+                                'Show more...',
+                                style: TextStyle(
+                                  color: ColorPalette().textLightDark,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700
+                                ),
                               ),
                             ),
                           )
