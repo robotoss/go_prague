@@ -24,7 +24,7 @@ class RestDataSource {
 
   ///Список напитков в Рестаране отеля
   Future<List<HotelBartItems>> hotelBarList() async {
-    Response<String> response = await dio.get("$serverUrl/5d6b17ac532c586cd4b9");
+    Response<String> response = await dio.get("$serverUrl/f4f36ff24ecfa73c29bd");
     return hotelBartItemsFromJson(response.data);
   }
 
