@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/models/hotelBarItems.dart';
 import 'package:go_prague/data/repository.dart';
@@ -12,6 +13,12 @@ class HotelBarList extends StatelessWidget {
   Future<List<HotelBartItems>> getBarData() async{
     await Repository().hotelBarList().then((response){
       _hotelBarItems = response;
+    }).catchError((error){
+      if (error is DioError) {
+        print(error.message);
+      } else {
+        print(error.toString());
+      }
     });
 
     return _hotelBarItems;
@@ -45,7 +52,7 @@ class HotelBarList extends StatelessWidget {
         body: FutureBuilder(
           future: getBarData(),
           builder: (context, snapshot) {
-            return snapshot.data ==null ? Center(child: CircularProgressIndicator(),) : DefaultTabController(
+            return snapshot.data == null ? Center(child: CircularProgressIndicator(),) : DefaultTabController(
                 length: _hotelBarItems.length,
                 child: Column(
                   children: <Widget>[
@@ -59,7 +66,6 @@ class HotelBarList extends StatelessWidget {
                         labelColor: ColorPalette().mainBlack,
                         tabs: List<Widget>.generate(_hotelBarItems.length, (int index){
                           return Tab(text: _hotelBarItems[index].categoryName);
-
                         })
                     ),
                     Expanded(
@@ -78,17 +84,29 @@ class HotelBarList extends StatelessWidget {
     );
   }
 
+//  Widget listCards(List<CategoryItem> itemsData) {
+//    print('Count ${itemsData.length}');
+//    return ListView.builder(
+//        shrinkWrap: true,
+//        scrollDirection: Axis.vertical,
+//        itemCount: itemsData.length,
+//        itemBuilder: (context, index){
+//          return HotelBarProductCardScreen(
+//            categoryItem: itemsData[index],
+//          );
+//        }
+//    );
+//  }
+
   Widget listCards(List<CategoryItem> itemsData) {
     print('Count ${itemsData.length}');
-    return ListView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        itemCount: itemsData.length,
-        itemBuilder: (context, index){
-          return HotelBarProductCardScreen(
-            categoryItem: itemsData[index],
-          );
-        }
+    return GridView.count(
+      crossAxisCount: 2,
+      children: List.generate(itemsData.length, (index) {
+      return HotelBarProductCardScreen(
+            categoryItem: itemsData[index]);
+    },
+    ),
     );
   }
 }

@@ -25,8 +25,8 @@ class _HotelBarProductCardScreenState extends State<HotelBarProductCardScreen> {
       padding: const EdgeInsets.all(8.0),
       child: Card(
         child: Container(
-          height: 250,
-          width: double.infinity,
+          height: 300,
+          width: MediaQuery.of(context).size.width / 2 - 10,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
