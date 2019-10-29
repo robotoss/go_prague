@@ -5,6 +5,8 @@ import 'package:go_prague/theme/mainTheme.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 import 'package:go_prague/ui/widgets/carousel/carousel.dart';
 import 'package:go_prague/ui/widgets/selectAmount/selectAmount.dart';
+import 'package:intl/intl.dart';
+
 
 class TourInfoScreen extends StatefulWidget {
   final ToursData tourData;
@@ -20,6 +22,37 @@ class TourInfoScreen extends StatefulWidget {
 class _TourInfoScreenState extends State<TourInfoScreen> {
 
   static List<Widget> elements = List();
+  String _date = 'Select day';
+  String _time = 'Select time';
+
+  DateTime selectedDate = DateTime.now();
+  TimeOfDay selectedTime = TimeOfDay.now();
+
+  Future<Null> _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+        _date = DateFormat.yMMMd().format(selectedDate);
+      });
+  }
+
+  Future<Null> _selectTime(BuildContext context) async {
+    final TimeOfDay response = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+    );
+    if (response != null && response != selectedTime) {
+      setState(() {
+        selectedTime = response;
+        _time = selectedTime.toString();
+      });
+    }
+  }
 
   @override
   void initState() {
@@ -199,7 +232,18 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
                                             fontWeight: FontWeight.w700
                                           ),
                                         ),
-                                        Text('TODAY'),
+                                        GestureDetector(
+                                          onTap: (){
+                                            _selectDate(context);
+                                          },
+                                          child: Text(
+                                              _date,
+                                            style: TextStyle(
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.w700
+                                            ),
+                                          ),
+                                        ),
                                       ],
                                     ),
                                     SizedBox(height: 25),
@@ -214,7 +258,18 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
                                               fontWeight: FontWeight.w700
                                           ),
                                         ),
-                                        Text('16:10'),
+                                GestureDetector(
+                                  onTap: (){
+                                    _selectTime(context);
+                                  },
+                                  child: Text(
+                                    _time,
+                                    style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w700
+                                    ),
+                                  ),
+                                ),
                                       ],
                                     ),
                                     SizedBox(height: 40),
