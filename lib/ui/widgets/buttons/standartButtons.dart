@@ -104,6 +104,31 @@ class AddToCartItemButton extends StatelessWidget {
   }
 }
 
+class AddToCartItemButtonMini extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 30,
+      width: 104,
+      child: FlatButton(
+        padding: EdgeInsets.all(1),
+          onPressed: () {
+          },
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          color: ColorPalette().mainGreen,
+          child: Text(
+            'Add to Cart',
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 13,
+                fontWeight: FontWeight.w700),
+          )),
+    );
+  }
+}
+
 class MeatButton extends StatelessWidget {
   final bool active;
   final String name;
