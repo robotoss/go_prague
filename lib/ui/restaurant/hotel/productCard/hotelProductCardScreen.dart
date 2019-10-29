@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/models/hotelRestaurantItems.dart';
@@ -34,7 +35,11 @@ class _HotelProductCardScreenState extends State<HotelProductCardScreen> {
               Container(
                 height: 125,
                 width: double.infinity,
-                child: Image.network(widget.categoryItem.imageUrl, fit: BoxFit.cover,),
+                child: CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  imageUrl: widget.categoryItem.imageUrl,
+                  placeholder: (context, url) => Image.asset('assets/images/special_background.png', fit: BoxFit.cover,),
+                ),
               ),
              Padding(
                padding: const EdgeInsets.only(top: 8, left: 15, right: 15),
