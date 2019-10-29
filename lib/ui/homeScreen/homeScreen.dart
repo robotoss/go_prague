@@ -276,7 +276,7 @@ class HomeScreen extends StatelessWidget {
                                                 borderRadius: BorderRadius.all(Radius.circular(6)),
                                                 color: ColorPalette().mainBlack,
                                                 image: DecorationImage(
-                                                  image: NetworkImage(_events[index].imgUrls[0]),
+                                                  image: CachedNetworkImageProvider(_events[index].imgUrls[0]),
                                                   fit: BoxFit.cover
                                                 )
                                               ),
