@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/models/toursData.dart';
 import 'package:go_prague/theme/mainTheme.dart';
@@ -242,7 +243,12 @@ Widget carouselItem(String image) {
   return Container(
     height: 300,
     width: double.infinity,
-    child: Image.network(image, fit: BoxFit.cover,),
+    child: CachedNetworkImage(
+      fit: BoxFit.cover,
+      imageUrl: image,
+      placeholder: (context, url) => Image.asset('assets/images/special_background.png', fit: BoxFit.cover,),
+    ),
+//    child: Image.network(image, fit: BoxFit.cover,),
   );
 }
 
