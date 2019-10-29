@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:go_prague/data/models/toursData.dart';
 import 'package:go_prague/data/models/upcomingEvents.dart';
 import 'package:go_prague/data/repository.dart';
 import 'package:go_prague/theme/mainTheme.dart';
+import 'package:go_prague/ui/bar/hotel/hotelBarList.dart';
 import 'package:go_prague/ui/events/eventsList.dart';
 import 'package:go_prague/ui/restaurant/hotel/hotelRestaurantList.dart';
 import 'package:go_prague/ui/tours/tourInfoScreen/tourInfoScreen.dart';
@@ -66,34 +68,58 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       key: _scaffoldKey,
       drawer: customDrawer(context),
-      appBar: AppBar(
-        elevation: 0.0,
-        centerTitle: true,
-        leading: new IconButton(icon: new Icon(Icons.menu),
-            onPressed: () => _scaffoldKey.currentState.openDrawer()),
-        title: Text(
-          'Welcome in Go.Prague',
-          style: TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.shopping_cart),
-            onPressed: () {
-            },
-          ),
-        ],
-      ),
+//      appBar: AppBar(
+//        elevation: 0.0,
+//        centerTitle: true,
+//        leading: new IconButton(icon: new Icon(Icons.menu),
+//            onPressed: () => _scaffoldKey.currentState.openDrawer()),
+//        title: Text(
+//          'Welcome in Go.Prague',
+//          style: TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
+//        ),
+//        actions: <Widget>[
+//          IconButton(
+//            icon: Icon(Icons.shopping_cart),
+//            onPressed: () {
+//            },
+//          ),
+//        ],
+//      ),
       body: Stack(
         children: <Widget>[
           Container(
             width: double.infinity,
-            height: 130,
+            height: 190,
             color: ColorPalette().mainBlack,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
+              Column(
+                children: <Widget>[
+                  SizedBox(height: 15,),
+                  Container(
+                    height: 60,
+                    width: double.infinity,
+                    child:  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        IconButton(icon: new Icon(Icons.menu, color: Colors.white,),
+                            onPressed: () => _scaffoldKey.currentState.openDrawer()),
+                        Text(
+                            'Welcome in Go.Prague',
+                            style: TextStyle(fontSize: 32, fontWeight: FontWeight.w700,color: Colors.white,)),
+                        IconButton(
+                          icon: Icon(Icons.shopping_cart, color: Colors.white,),
+                          onPressed: () {
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
               FutureBuilder(
                   future: getSlides(context),
                   builder: (context, snapshot) {
@@ -127,7 +153,7 @@ class HomeScreen extends StatelessWidget {
                         children: <Widget>[
                           SizedBox(width: 15,),
                           MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'Eat', icon: 'assets/icons/icon_main_eat.svg', secondSide: true, navigateScreen: HotelRestaurantList(),),
-                          MainCategoryTile(titleColor: ColorPalette().mainBlue, name: 'Drink', icon: 'assets/icons/icon_main_drink.svg', secondSide: true, navigateScreen: HotelRestaurantList(),),
+                          MainCategoryTile(titleColor: ColorPalette().mainBlue, name: 'Drink', icon: 'assets/icons/icon_main_drink.svg', secondSide: true, navigateScreen: HotelBarList(),),
                           MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'To Go', icon: 'assets/icons/icon_main_go.svg', secondSide: false,),
                           MainCategoryTile(titleColor: ColorPalette().mainBlue, name: 'Hotel Service', icon: 'assets/icons/icon_main_hotel_service.svg', secondSide: false,),
                           MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'City Service', icon: 'assets/icons/icon_main_city_service.svg', secondSide: false,),
@@ -519,7 +545,7 @@ Widget carouselItem(BuildContext context, ToursData sliderData, double carouselH
         margin: EdgeInsets.symmetric(horizontal: 20),
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage(
+                image: CachedNetworkImageProvider(
                   sliderData.imgUrls[0],
                 ),
                 fit: BoxFit.cover)),
