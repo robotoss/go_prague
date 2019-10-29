@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/models/hotelRestaurantItems.dart';
@@ -38,7 +39,11 @@ class _ProductRestaurantScreenState extends State<ProductRestaurantScreen> {
             height: 300,
             width: double.infinity,
             color: ColorPalette().mainBlack,
-            child:Image.network(widget.categoryItem.imageUrl, fit: BoxFit.cover, ),
+            child: CachedNetworkImage(
+              fit: BoxFit.cover,
+              imageUrl: widget.categoryItem.imageUrl,
+              placeholder: (context, url) => Image.asset('assets/images/special_background.png', fit: BoxFit.cover,),
+            ),
           ),
           Column(
             children: <Widget>[
