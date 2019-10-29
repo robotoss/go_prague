@@ -24,7 +24,7 @@ class HotelRestaurantList extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black,),
+          icon: Icon(Icons.arrow_back_ios, color: Colors.black, size: 30,),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -36,7 +36,7 @@ class HotelRestaurantList extends StatelessWidget {
         centerTitle: true,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.shopping_cart, color: Colors.black,),
+            icon: Icon(Icons.shopping_cart, color: Colors.black, size: 30,),
             onPressed: () {
             },
           ),

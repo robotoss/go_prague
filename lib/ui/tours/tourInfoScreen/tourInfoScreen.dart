@@ -54,13 +54,13 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   IconButton(
-                    icon: Icon(Icons.arrow_back_ios, color: Colors.white,),
+                    icon: Icon(Icons.arrow_back_ios, color: Colors.white, size: 30,),
                     onPressed: () {
                       Navigator.pop(context);
                     },
                   ),
                   IconButton(
-                    icon: Icon(Icons.shopping_cart, color: Colors.white,),
+                    icon: Icon(Icons.shopping_cart, color: Colors.white, size: 30,),
                     onPressed: () {
                     },
                   ),

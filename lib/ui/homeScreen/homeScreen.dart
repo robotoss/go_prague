@@ -105,13 +105,13 @@ class HomeScreen extends StatelessWidget {
                     child:  Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        IconButton(icon: new Icon(Icons.menu, color: Colors.white,),
+                        IconButton(icon: new Icon(Icons.menu, color: Colors.white, size: 30,),
                             onPressed: () => _scaffoldKey.currentState.openDrawer()),
                         Text(
                             'Welcome in Go.Prague',
                             style: TextStyle(fontSize: 32, fontWeight: FontWeight.w700,color: Colors.white,)),
                         IconButton(
-                          icon: Icon(Icons.shopping_cart, color: Colors.white,),
+                          icon: Icon(Icons.shopping_cart, color: Colors.white, size: 30,),
                           onPressed: () {
                           },
                         ),

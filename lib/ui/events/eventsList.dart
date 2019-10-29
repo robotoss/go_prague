@@ -20,7 +20,7 @@ class EventsList extends StatelessWidget {
         elevation: 0.0,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios,),
+          icon: Icon(Icons.arrow_back_ios, size: 30,),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -31,7 +31,7 @@ class EventsList extends StatelessWidget {
         ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.shopping_cart),
+            icon: Icon(Icons.shopping_cart, size: 30,),
             onPressed: () {
             },
           ),
