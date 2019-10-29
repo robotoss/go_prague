@@ -40,7 +40,7 @@ class EventsList extends StatelessWidget {
       body: FutureBuilder(
         future: getRestaurantData(),
         builder: (context, snapshot) {
-          return snapshot.data == null ? CircularProgressIndicator() : ListView.builder(
+          return snapshot.data == null ? Center(child: CircularProgressIndicator(),) : ListView.builder(
             itemCount: _hotelRestaurantItems.length,
               itemBuilder: (context, index){
                 return EventCard(event: _hotelRestaurantItems[index],);
