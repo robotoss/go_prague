@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/models/upcomingEvents.dart';
 import 'package:go_prague/theme/mainTheme.dart';
@@ -23,7 +24,11 @@ class EventCard extends StatelessWidget {
               Container(
                 height: 125,
                 width: double.infinity,
-                child: Image.network(event.imgUrls[0], fit: BoxFit.cover,),
+                child: CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  imageUrl: event.imgUrls[0],
+                  placeholder: (context, url) => Image.asset('assets/images/special_background.png', fit: BoxFit.cover,),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 8, left: 15, right: 15),
