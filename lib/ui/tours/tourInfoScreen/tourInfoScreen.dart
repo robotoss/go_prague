@@ -248,7 +248,6 @@ Widget carouselItem(String image) {
       imageUrl: image,
       placeholder: (context, url) => Image.asset('assets/images/special_background.png', fit: BoxFit.cover,),
     ),
-//    child: Image.network(image, fit: BoxFit.cover,),
   );
 }
 
