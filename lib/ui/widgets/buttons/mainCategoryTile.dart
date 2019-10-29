@@ -96,8 +96,9 @@ class _MainCategoryTileState extends State<MainCategoryTile> with SingleTickerPr
               color: widget.titleColor
             ),
             child: _statusButton == 0 ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(height: 30,),
+                SizedBox(height: 25,),
                 SvgPicture.asset(widget.icon),
                 SizedBox(height: 10,),
                 Padding(
@@ -111,7 +112,8 @@ class _MainCategoryTileState extends State<MainCategoryTile> with SingleTickerPr
                       color: Colors.white
                     ),
                   ),
-                )
+                ),
+                SizedBox(height: 10,),
               ],
             ) : Column(
               children: <Widget>[
