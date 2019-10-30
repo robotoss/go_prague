@@ -86,6 +86,10 @@ class _MainCategoryTileState extends State<MainCategoryTile> with SingleTickerPr
                  });
                });
              }
+           } else {
+            if(widget.navigateScreen != null){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => widget.navigateScreen));
+            }
            }
           },
           child: Container(
