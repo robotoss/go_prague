@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/theme/mainTheme.dart';
+import 'package:provider/provider.dart';
 
 class AddToCartButton extends StatelessWidget {
   @override
@@ -81,13 +83,20 @@ class MoreBlueButton extends StatelessWidget {
 }
 
 class AddToCartItemButton extends StatelessWidget {
+  final RestaurantItems item;
+
+  AddToCartItemButton({this.item});
+
   @override
   Widget build(BuildContext context) {
+
+  var bloc = Provider.of<CartBloc>(context);
     return SizedBox(
       height: 35,
       width: 143,
       child: FlatButton(
           onPressed: () {
+            bloc.addToCart(item);
           },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),

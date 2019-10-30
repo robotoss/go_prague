@@ -131,39 +131,37 @@ class _ProductRestaurantScreenState extends State<ProductRestaurantScreen> {
                             ),
                           ),
                           Divider(height: 1, color: ColorPalette().textLightDark,),
-                          ListView.builder(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: widget.categoryItem.parametrs.length,
-                              itemBuilder: (context, index){
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 10),
-                                child: Row(
-                                  children: <Widget>[
-                                    Text(
-                                        widget.categoryItem.parametrs[index].parametrName,
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        color: ColorPalette().textLightDark
+                          widget.categoryItem.parametrs.length != 0 ? Column(
+                              children: List<Widget>.generate(widget.categoryItem.parametrs.length, (int index){
+                                return Padding(
+                                  padding:
+                                  const EdgeInsets.symmetric(vertical: 10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Text(
+                                        widget.categoryItem.parametrs[index]
+                                            .parametrName,
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            color:
+                                            ColorPalette().textLightDark),
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: Container(
-                                        height: 30,
-                                        child: ListView.builder(
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.horizontal,
-                                            itemCount: widget.categoryItem.parametrs[index].parametrsItems.length,
-                                            itemBuilder: (context,i) {
-                                              return MeatButton(active: false, name: widget.categoryItem.parametrs[index].parametrsItems[i],);
-                                            }
-                                        ),
+                                      Wrap(
+                                        direction: Axis.vertical,
+                                        alignment: WrapAlignment.end,
+                                        crossAxisAlignment: WrapCrossAlignment.end,
+                                        spacing: 5.0, // gap between adjacent chips
+                                        runSpacing: 5.0, // gap between lines
+                                        children: List<Widget>.generate(widget.categoryItem.parametrs[index].parametrsItems.length, (int i){
+                                          return MeatButton(active: false, name: widget.categoryItem.parametrs[index].parametrsItems[i],);
+                                        }),
                                       ),
-                                    )
-                                  ],
-                                ),
-                              );
-                              }),
+                                    ],
+                                  ),
+                                );
+                              })
+                          ) : Container(),
                           Divider(height: 1, color: ColorPalette().textLightDark,),
                           Expanded(
                             child: Column(
