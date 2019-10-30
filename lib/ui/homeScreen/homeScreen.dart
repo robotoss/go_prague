@@ -2,11 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/data/models/toursData.dart';
 import 'package:go_prague/data/models/upcomingEvents.dart';
 import 'package:go_prague/data/repository.dart';
 import 'package:go_prague/theme/mainTheme.dart';
 import 'package:go_prague/ui/bar/hotel/hotelBarList.dart';
+import 'package:go_prague/ui/cart/cartScreens/cartScreenStep1.dart';
 import 'package:go_prague/ui/events/eventsList.dart';
 import 'package:go_prague/ui/restaurant/hotel/hotelRestaurantList.dart';
 import 'package:go_prague/ui/tours/tourInfoScreen/tourInfoScreen.dart';
@@ -14,6 +16,7 @@ import 'package:go_prague/ui/tours/toursList/toursListScreen.dart';
 import 'package:go_prague/ui/widgets/buttons/mainCategoryTile.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 import 'package:go_prague/ui/widgets/carousel/carousel.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   static List<Widget> elements = List();
@@ -63,9 +66,17 @@ class HomeScreen extends StatelessWidget {
 
     return _listMainData;
   }
+  int _totalCount = 0;
 
   @override
   Widget build(BuildContext context) {
+    var bloc = Provider.of<CartBloc>(context);
+
+    print(bloc.restaurantItems.length);
+    if (bloc.restaurantItems.length > 0) {
+      _totalCount = bloc.restaurantItems.length;
+    }
+
     return Scaffold(
       key: _scaffoldKey,
       drawer: customDrawer(context),
@@ -111,11 +122,28 @@ class HomeScreen extends StatelessWidget {
                         Text(
                             'Welcome in Go.Prague',
                             style: TextStyle(fontSize: 32, fontWeight: FontWeight.w700,color: Colors.white,)),
-                        IconButton(
-                          icon: Icon(Icons.shopping_cart, color: Colors.white, size: 30,),
-                          onPressed: () {
-                          },
-                        ),
+                       Stack(
+                         children: <Widget>[
+                           IconButton(
+                             icon: Icon(Icons.shopping_cart, color: Colors.white, size: 30,),
+                             onPressed: () {
+                               Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreenStep1()));
+                             },
+                           ),
+                           Positioned(
+                               top: 3.0,
+                               right: 7,
+                               child: new Center(
+                                 child: new Text(
+                                   '$_totalCount',
+                                   style: new TextStyle(
+                                       color: Colors.red,
+                                       fontSize: 12.0,
+                                       fontWeight: FontWeight.w700),
+                                 ),
+                               )),
+                         ],
+                       )
                       ],
                     ),
                   ),
