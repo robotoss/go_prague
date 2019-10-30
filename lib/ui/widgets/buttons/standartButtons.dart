@@ -4,6 +4,10 @@ import 'package:go_prague/theme/mainTheme.dart';
 import 'package:provider/provider.dart';
 
 class AddToCartButton extends StatelessWidget {
+  final RestaurantItems item;
+
+  AddToCartButton({this.item});
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -13,6 +17,7 @@ class AddToCartButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 55),
         child: FlatButton(
             onPressed: () {
+              Provider.of<CartBloc>(context).addToCart(item);
             },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
