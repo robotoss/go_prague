@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/data/models/hotelRestaurantItems.dart';
 import 'package:go_prague/theme/mainTheme.dart';
+import 'package:go_prague/ui/cart/cartScreens/cartScreenStep1.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 import 'package:go_prague/ui/widgets/selectAmount/selectAmount.dart';
+import 'package:provider/provider.dart';
 
 class ProductRestaurantScreen extends StatefulWidget {
   final CategoryItem categoryItem;
@@ -32,6 +35,13 @@ class _ProductRestaurantScreenState extends State<ProductRestaurantScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var bloc = Provider.of<CartBloc>(context);
+    int _totalCount = 0;
+    print(bloc.restaurantItems.length);
+    if (bloc.restaurantItems.length > 0) {
+      _totalCount = bloc.restaurantItems.length;
+    }
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -57,11 +67,28 @@ class _ProductRestaurantScreenState extends State<ProductRestaurantScreen> {
                       Navigator.pop(context);
                     },
                   ),
-                  IconButton(
-                    icon: Icon(Icons.shopping_cart, color: Colors.white, size: 30,),
-                    onPressed: () {
-                    },
-                  ),
+                  Stack(
+                    children: <Widget>[
+                      IconButton(
+                        icon: Icon(Icons.shopping_cart, color: Colors.white, size: 30,),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreenStep1()));
+                        },
+                      ),
+                      Positioned(
+                          top: 3.0,
+                          right: 7,
+                          child: new Center(
+                            child: new Text(
+                              '$_totalCount',
+                              style: new TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 12.0,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          )),
+                    ],
+                  )
                 ],
               ),
             ],
@@ -207,7 +234,7 @@ class _ProductRestaurantScreenState extends State<ProductRestaurantScreen> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 35),
-                                  child: AddToCartButton(),
+                                  child: AddToCartButton(item: RestaurantItem('Hotel Restaurant', widget.categoryItem.itemName, widget.categoryItem.price),),
                                 )
                               ],
                             ),
