@@ -119,14 +119,21 @@ class AddToCartItemButton extends StatelessWidget {
 }
 
 class AddToCartItemButtonMini extends StatelessWidget {
+  final BarItem item;
+
+  AddToCartItemButtonMini({this.item});
+
   @override
   Widget build(BuildContext context) {
+    var bloc = Provider.of<CartBloc>(context);
+
     return SizedBox(
       height: 30,
       width: 104,
       child: FlatButton(
         padding: EdgeInsets.all(1),
           onPressed: () {
+            bloc.addToCartBar(item);
           },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),

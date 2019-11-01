@@ -51,13 +51,13 @@ class HotelBarList extends StatelessWidget {
           ),
           centerTitle: true,
           actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.shopping_cart, color: Colors.black, size: 30,),
-              onPressed: () {
-              },
-            ),
             Stack(
               children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.shopping_cart, color: Colors.black, size: 30,),
+                  onPressed: () {
+                  },
+                ),
                 Positioned(
                     top: 3.0,
                     right: 7,
