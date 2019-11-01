@@ -74,7 +74,7 @@ class HomeScreen extends StatelessWidget {
 
     print(bloc.restaurantItems.length);
     if (bloc.restaurantItems.length > 0) {
-      _totalCount = bloc.restaurantItems.length;
+      _totalCount = bloc.restaurantItems.length + bloc.barItems.length + bloc.tourItems.length;
     }
 
     return Scaffold(
