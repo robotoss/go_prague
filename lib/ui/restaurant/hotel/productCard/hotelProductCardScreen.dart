@@ -7,6 +7,7 @@ import 'package:go_prague/theme/mainTheme.dart';
 import 'package:go_prague/ui/restaurant/hotel/productScreen/ProductRestaurantScreen.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 import 'package:go_prague/ui/widgets/selectAmount/selectAmount.dart';
+import 'package:provider/provider.dart';
 
 class HotelProductCardScreen extends StatefulWidget {
   final CategoryItem categoryItem;
@@ -94,7 +95,7 @@ class _HotelProductCardScreenState extends State<HotelProductCardScreen> {
                       children: <Widget>[
                         SelectAmount(),
                         SizedBox(width: 10,),
-                        AddToCartItemButton(item: RestaurantItem('Hotel Restaurant', widget.categoryItem.itemName, widget.categoryItem.price, 'Restaurant'),),
+                        AddToCartItemButton(addToCart:  (){Provider.of<CartBloc>(context).addToCartRestaurant(RestaurantItem('Hotel Restaurant', widget.categoryItem.itemName, widget.categoryItem.price, 'Restaurant'));},),
                         SizedBox(width: 10,),
                         MoreBlueButton(function: ProductRestaurantScreen(categoryItem: widget.categoryItem,),),
                       ],

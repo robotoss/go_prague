@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/data/models/toursData.dart';
 import 'package:go_prague/theme/mainTheme.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 import 'package:go_prague/ui/widgets/carousel/carousel.dart';
 import 'package:go_prague/ui/widgets/selectAmount/selectAmount.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 
 class TourInfoScreen extends StatefulWidget {
@@ -273,7 +275,7 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
                                       ],
                                     ),
                                     SizedBox(height: 40),
-                                    AddToCartButton(),
+                                    AddToCartButton(addToCart: (){Provider.of<CartBloc>(context).addToCartTour(TourItem(widget.tourData.name, widget.tourData.price, 'Tour'));},),
                                     SizedBox(height: 5,)
                                   ],
                                 ),

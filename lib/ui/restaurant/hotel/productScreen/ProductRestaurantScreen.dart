@@ -234,7 +234,7 @@ class _ProductRestaurantScreenState extends State<ProductRestaurantScreen> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 35),
-                                  child: AddToCartButton(item: RestaurantItem('Hotel Restaurant', widget.categoryItem.itemName, widget.categoryItem.price, 'Restaurant'),),
+                                  child: AddToCartButton(addToCart:  (){Provider.of<CartBloc>(context).addToCartRestaurant(RestaurantItem('Hotel Restaurant', widget.categoryItem.itemName, widget.categoryItem.price, 'Restaurant'));},),
                                 )
                               ],
                             ),

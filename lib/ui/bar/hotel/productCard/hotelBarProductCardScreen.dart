@@ -99,7 +99,7 @@ class _HotelBarProductCardScreenState extends State<HotelBarProductCardScreen> {
                       SizedBox(
                         width: 5,
                       ),
-                      AddToCartItemButtonMini(item: BarItem('Hotel Bar', widget.categoryItem.itemName, widget.categoryItem.price, 'Bar'),),
+                      AddToCartItemButtonMini(item: BarItem('Hotel Bar', widget.categoryItem.itemName, widget.categoryItem.price, 'Bar'), ),
                     ],
                   )
                 ],

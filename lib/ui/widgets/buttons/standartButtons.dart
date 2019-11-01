@@ -4,9 +4,9 @@ import 'package:go_prague/theme/mainTheme.dart';
 import 'package:provider/provider.dart';
 
 class AddToCartButton extends StatelessWidget {
-  final RestaurantItems item;
+  final Function addToCart;
 
-  AddToCartButton({this.item});
+  AddToCartButton({this.addToCart});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class AddToCartButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 55),
         child: FlatButton(
             onPressed: () {
-              Provider.of<CartBloc>(context).addToCartRestaurant(item);
+              addToCart();
             },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
@@ -88,9 +88,10 @@ class MoreBlueButton extends StatelessWidget {
 }
 
 class AddToCartItemButton extends StatelessWidget {
+  final Function addToCart;
   final RestaurantItems item;
 
-  AddToCartItemButton({this.item});
+  AddToCartItemButton({this.item, this.addToCart});
 
   @override
   Widget build(BuildContext context) {
@@ -102,6 +103,7 @@ class AddToCartItemButton extends StatelessWidget {
       child: FlatButton(
           onPressed: () {
             bloc.addToCartRestaurant(item);
+            addToCart();
           },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
