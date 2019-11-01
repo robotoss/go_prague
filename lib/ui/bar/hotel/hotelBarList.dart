@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/data/models/hotelBarItems.dart';
 import 'package:go_prague/data/repository.dart';
 import 'package:go_prague/theme/mainTheme.dart';
+import 'package:provider/provider.dart';
 
 import 'productCard/hotelBarProductCardScreen.dart';
 
@@ -27,6 +29,13 @@ class HotelBarList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    var bloc = Provider.of<CartBloc>(context);
+    int _totalCount = 0;
+    print(bloc.restaurantItems.length);
+    if (bloc.restaurantItems.length > 0) {
+      _totalCount = bloc.restaurantItems.length + bloc.barItems.length + bloc.tourItems.length;
+    }
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -47,6 +56,23 @@ class HotelBarList extends StatelessWidget {
               onPressed: () {
               },
             ),
+            Stack(
+              children: <Widget>[
+                Positioned(
+                    top: 3.0,
+                    right: 7,
+                    child: new Center(
+                      child: new Text(
+                        '$_totalCount',
+                        style: new TextStyle(
+                            color: Colors.red,
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.w700),
+                      ),
+                    )),
+              ],
+            )
+
           ],
         ),
         body: FutureBuilder(
