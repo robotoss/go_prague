@@ -25,7 +25,7 @@ class _TourCardScreenState extends State<TourCardScreen> {
       padding: const EdgeInsets.all(8.0),
       child: Card(
         child: Container(
-          height: 250,
+//          height: 250,
           width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
