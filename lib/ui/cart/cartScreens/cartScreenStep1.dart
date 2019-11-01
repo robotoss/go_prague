@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/theme/mainTheme.dart';
+import 'package:provider/provider.dart';
 
 class CartScreenStep1 extends StatefulWidget {
   @override
@@ -26,30 +28,143 @@ class _CartScreenStep1State extends State<CartScreenStep1> {
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Column(
-                children: <Widget>[
-                  SizedBox(height: 15,),
-                  Container(
-                    height: 60,
-                    width: double.infinity,
-                    child:  Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+              SizedBox(height: 15,),
+              Container(
+                height: 60,
+                width: double.infinity,
+                child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.arrow_back_ios, color: Colors.white, size: 30,),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    Text(
+                        'Virtual Check-Out',
+                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700,color: Colors.white,)),
+
+                  ],
+                ),
+              ),
+              SizedBox(height: 30,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  children: <Widget>[
+                    Row(
                       children: <Widget>[
-                        IconButton(
-                          icon: Icon(Icons.arrow_back_ios, color: Colors.black, size: 30,),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
+                        Text(
+                          'Step 1:',
+                          style: TextStyle(
+                              fontSize: 24,
+                              color: Colors.white.withOpacity(0.7)
+                          ),
                         ),
                         Text(
-                            'Virtual Check-Out',
-                            style: TextStyle(fontSize: 32, fontWeight: FontWeight.w700,color: Colors.white,)),
+                          'Summary',
+                          style: TextStyle(
+                              fontSize: 24,
+                              color: Colors.white
+                          ),
+                        ),
                       ],
                     ),
+                    SizedBox(height: 5,),
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          height: 5,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(22)),
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(width: 15,),
+                        Container(
+                          height: 5,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(22)),
+                            color: Colors.white.withOpacity(0.4),
+                          ),
+                        ),
+                        SizedBox(width: 15,),
+                        Container(
+                          height: 5,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(22)),
+                            color: Colors.white.withOpacity(0.4),
+                          ),
+                        ),
+
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(height: 20,),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width - 32,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: new BorderRadius.all(const Radius.circular(10.0))
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 16, right: 16,),
+                      child: ListView.builder(
+                          itemCount: _totalCount,
+                          itemBuilder: (context,index){
+                            RestaurantItem _restaurantItem = bloc.restaurantItems[index];
+                            return Row(
+                              children: <Widget>[
+                                Expanded(
+                                  flex: 7,
+                                  child: Text(
+                                    _restaurantItem.name,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w700
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    '${_restaurantItem.price} Kč',
+                                    textAlign: TextAlign.right,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: IconButton(
+                                      icon: Icon(Icons.delete_outline),
+                                      onPressed: (){
+                                       setState(() {
+                                         bloc.clear(_restaurantItem.type, index,);
+                                       });
+                                      }),
+                                )
+                              ],
+                            );
+                          }
+                      ),
+                    ),
+
                   ),
-                ],
+                ),
               ),
             ],
           )

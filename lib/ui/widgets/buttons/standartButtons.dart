@@ -17,7 +17,7 @@ class AddToCartButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 55),
         child: FlatButton(
             onPressed: () {
-              Provider.of<CartBloc>(context).addToCart(item);
+              Provider.of<CartBloc>(context).addToCartRestaurant(item);
             },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
@@ -101,7 +101,7 @@ class AddToCartItemButton extends StatelessWidget {
       width: 143,
       child: FlatButton(
           onPressed: () {
-            bloc.addToCart(item);
+            bloc.addToCartRestaurant(item);
           },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
