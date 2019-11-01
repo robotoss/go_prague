@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 
 
 class TourInfoScreen extends StatefulWidget {
-  final ToursData tourData;
+  final ItemTourData tourData;
 
   TourInfoScreen({
     this.tourData,

@@ -7,7 +7,7 @@ import 'package:go_prague/ui/tours/tourInfoScreen/tourInfoScreen.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 
 class TourCardScreen extends StatefulWidget {
-  final ToursData tourItem;
+  final ItemTourData tourItem;
 
   TourCardScreen({
     this.tourItem

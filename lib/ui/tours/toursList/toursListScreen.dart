@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/data/models/toursData.dart';
 import 'package:go_prague/data/repository.dart';
+import 'package:go_prague/theme/mainTheme.dart';
 import 'package:go_prague/ui/cart/cartScreens/cartScreenStep1.dart';
 import 'package:go_prague/ui/tours/toursCard/toursCard.dart';
 import 'package:provider/provider.dart';
@@ -71,21 +72,53 @@ class ToursListScreen extends StatelessWidget {
         body: FutureBuilder(
           future: getToursData(),
           builder: (context, snapshot) {
-            return snapshot.data ==null ? Center(child: CircularProgressIndicator(),) : ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                itemCount: _toursItems.length,
-                itemBuilder: (context, index){
-                  return TourCardScreen(
-                    tourItem: _toursItems[index],
-                  );;
-                }
-            );
+            return snapshot.data ==null ? Center(child: CircularProgressIndicator(),) : DefaultTabController(
+              length: _toursItems.length,
+              child: Column(
+                children: <Widget>[
+                  TabBar(
+                      labelPadding: EdgeInsets.only(left: 10,right: 10),
+                      isScrollable: true,
+                      indicatorColor: ColorPalette().mainGreen,
+                      labelStyle: TextStyle(
+                        fontSize: 28,
+                      ),
+                      labelColor: ColorPalette().mainBlack,
+                      tabs: List<Widget>.generate(_toursItems.length, (int index){
+                        return Tab(text: _toursItems[index].categoryName);
+
+                      })
+                  ),
+                  Expanded(
+                    child: TabBarView(
+                      children: List<Widget>.generate(_toursItems.length, (int index){
+                        return Container(
+                          child: listCards(_toursItems[index].items),
+                        );
+                      }),
+                    ),
+                  )
+                ],
+              ));
           },
         )
     );
   }
-
 }
+
+Widget listCards(List<ItemTourData> itemsData) {
+  print('Count ${itemsData.length}');
+  return ListView.builder(
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      itemCount: itemsData.length,
+      itemBuilder: (context, index){
+        return TourCardScreen(
+          tourItem: itemsData[index],
+        );
+      }
+  );
+}
+
 
 

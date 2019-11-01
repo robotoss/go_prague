@@ -29,13 +29,22 @@ class HomeScreen extends StatelessWidget {
   ) async {
     List<ToursData> _listData;
     await Repository().accountTypes().then((toursList) {
+      print('Количество туров - ${toursList.length}');
       _listData = toursList;
       if(elements.isEmpty) {
         toursList.forEach((slide) {
-          if(slide.mainScreen) {
-            elements.add(carouselItem(context, slide, carouselHeight));
-          }
+          slide.items.forEach((response){
+            if(response.mainScreen) {
+              elements.add(carouselItem(context, response, carouselHeight));
+            }
+          });
         });
+      }
+    }).catchError((error) {
+      if (error is DioError) {
+        print(error.message);
+      } else {
+        print(error.toString());
       }
     });
     return _listData;
@@ -562,7 +571,7 @@ Widget customDrawer(BuildContext context) {
   );
 }
 
-Widget carouselItem(BuildContext context, ToursData sliderData, double carouselHeight) {
+Widget carouselItem(BuildContext context, ItemTourData sliderData, double carouselHeight) {
   return GestureDetector(
     onTap: (){
       Navigator.push(context, MaterialPageRoute(builder: (context) => TourInfoScreen(tourData: sliderData,)));
