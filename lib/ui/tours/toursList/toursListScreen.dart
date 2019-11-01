@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/data/models/toursData.dart';
 import 'package:go_prague/data/repository.dart';
+import 'package:go_prague/ui/cart/cartScreens/cartScreenStep1.dart';
 import 'package:go_prague/ui/tours/toursCard/toursCard.dart';
 import 'package:provider/provider.dart';
 
@@ -48,6 +49,7 @@ class ToursListScreen extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.shopping_cart, color: Colors.black, size: 30,),
                   onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreenStep1()));
                   },
                 ),
                 Positioned(

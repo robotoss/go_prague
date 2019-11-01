@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/data/models/toursData.dart';
 import 'package:go_prague/theme/mainTheme.dart';
+import 'package:go_prague/ui/cart/cartScreens/cartScreenStep1.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 import 'package:go_prague/ui/widgets/carousel/carousel.dart';
 import 'package:go_prague/ui/widgets/selectAmount/selectAmount.dart';
@@ -74,6 +75,13 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var bloc = Provider.of<CartBloc>(context);
+    int _totalCount = 0;
+    print(bloc.restaurantItems.length);
+    if (bloc.restaurantItems.length > 0) {
+      _totalCount = bloc.restaurantItems.length + bloc.barItems.length + bloc.tourItems.length;
+    }
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -94,11 +102,28 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
                       Navigator.pop(context);
                     },
                   ),
-                  IconButton(
-                    icon: Icon(Icons.shopping_cart, color: Colors.white, size: 30,),
-                    onPressed: () {
-                    },
-                  ),
+                  Stack(
+                    children: <Widget>[
+                      IconButton(
+                        icon: Icon(Icons.shopping_cart, color: Colors.white, size: 30,),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreenStep1()));
+                        },
+                      ),
+                      Positioned(
+                          top: 3.0,
+                          right: 7,
+                          child: new Center(
+                            child: new Text(
+                              '$_totalCount',
+                              style: new TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 12.0,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          )),
+                    ],
+                  )
                 ],
               ),
             ],

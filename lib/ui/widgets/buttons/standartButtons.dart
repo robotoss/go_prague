@@ -89,9 +89,8 @@ class MoreBlueButton extends StatelessWidget {
 
 class AddToCartItemButton extends StatelessWidget {
   final Function addToCart;
-  final RestaurantItems item;
 
-  AddToCartItemButton({this.item, this.addToCart});
+  AddToCartItemButton({this.addToCart});
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +101,6 @@ class AddToCartItemButton extends StatelessWidget {
       width: 143,
       child: FlatButton(
           onPressed: () {
-            bloc.addToCartRestaurant(item);
             addToCart();
           },
           shape: RoundedRectangleBorder(

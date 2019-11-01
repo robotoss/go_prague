@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/models/upcomingEvents.dart';
 import 'package:go_prague/data/repository.dart';
+import 'package:go_prague/ui/cart/cartScreens/cartScreenStep1.dart';
 import 'package:go_prague/ui/events/eventCard/eventCard.dart';
 
 class EventsList extends StatelessWidget {
@@ -33,6 +34,7 @@ class EventsList extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.shopping_cart, size: 30,),
             onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreenStep1()));
             },
           ),
         ],

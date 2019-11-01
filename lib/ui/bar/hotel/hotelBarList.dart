@@ -4,6 +4,7 @@ import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/data/models/hotelBarItems.dart';
 import 'package:go_prague/data/repository.dart';
 import 'package:go_prague/theme/mainTheme.dart';
+import 'package:go_prague/ui/cart/cartScreens/cartScreenStep1.dart';
 import 'package:provider/provider.dart';
 
 import 'productCard/hotelBarProductCardScreen.dart';
@@ -56,6 +57,7 @@ class HotelBarList extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.shopping_cart, color: Colors.black, size: 30,),
                   onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreenStep1()));
                   },
                 ),
                 Positioned(
