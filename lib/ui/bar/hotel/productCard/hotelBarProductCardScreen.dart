@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/data/models/hotelBarItems.dart';
 import 'package:go_prague/theme/mainTheme.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
@@ -98,7 +99,7 @@ class _HotelBarProductCardScreenState extends State<HotelBarProductCardScreen> {
                       SizedBox(
                         width: 5,
                       ),
-                      AddToCartItemButtonMini(),
+                      AddToCartItemButtonMini(item: BarItem('Hotel Bar', widget.categoryItem.itemName, widget.categoryItem.price, 'Bar'),),
                     ],
                   )
                 ],

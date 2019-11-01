@@ -55,7 +55,10 @@ class CartBloc with ChangeNotifier {
     print('Remove from cart');
     if(type == 'Restaurant'){
       _restaurantItems.removeAt(index);
+    } else if (type == 'Bar') {
+      barItems.removeAt(index);
     }
+
     notifyListeners();
     print('Cart count - ${_restaurantItems.length}');
 //    if (_cart.containsKey(index)) {
