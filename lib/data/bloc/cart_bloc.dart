@@ -5,8 +5,7 @@ class CartBloc with ChangeNotifier {
   List<CartItem> _cartItems = [];
   List<CartItem> get cartItems => _cartItems;
 
-  List<TourItems> _tourItems = [];
-  List<TourItems> get tourItems => _tourItems;
+
 
   Map<int, int> _cart = {};
 
@@ -24,16 +23,6 @@ class CartBloc with ChangeNotifier {
   }
 
 
-  void addToCartTour(TourItem item) {
-    _tourItems.add(item);
-//    if (_cart.containsKey(index)) {
-//      _cart[index] += 1;
-//    } else {
-//      _cart[index] = 1;
-//    }
-    notifyListeners();
-  }
-
   void clear(String type, index) {
     _cartItems.removeAt(index);
 
@@ -46,19 +35,9 @@ class CartBloc with ChangeNotifier {
   }
 }
 
-abstract class TourItems {}
-
-class TourItem implements TourItems {
-  final String nameTour;
-  final int price;
-  final String type;
-
-  TourItem(this.nameTour, this.price, this.type);
-}
-
 abstract class CartItems {}
 
-class CartItem implements TourItems {
+class CartItem implements CartItems {
   final String type;
   final String placeName;
   final String name;

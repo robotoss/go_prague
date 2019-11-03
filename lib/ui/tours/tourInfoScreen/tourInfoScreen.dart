@@ -300,7 +300,7 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
                                       ],
                                     ),
                                     SizedBox(height: 40),
-                                    AddToCartButton(addToCart: (){Provider.of<CartBloc>(context).addToCartTour(TourItem(widget.tourData.name, widget.tourData.price, 'Tour'));},),
+                                    AddToCartButton(addToCart: (){Provider.of<CartBloc>(context).addToCart(CartItem('tour', '', widget.tourData.name, [], widget.tourData.price,));},),
                                     SizedBox(height: 5,)
                                   ],
                                 ),
