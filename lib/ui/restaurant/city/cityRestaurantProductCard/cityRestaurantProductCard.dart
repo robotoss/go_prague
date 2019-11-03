@@ -10,9 +10,11 @@ import 'package:go_prague/ui/widgets/selectAmount/selectAmount.dart';
 import 'package:provider/provider.dart';
 
 class CityRestaurantProductCard extends StatefulWidget {
+  final String restaurantName;
   final CategoryItem categoryItem;
 
   CityRestaurantProductCard({
+    this.restaurantName,
     this.categoryItem
   });
 
@@ -95,7 +97,7 @@ class _CityRestaurantProductCardState extends State<CityRestaurantProductCard> {
                       children: <Widget>[
                         SelectAmount(),
                         SizedBox(width: 10,),
-                        AddToCartItemButton(addToCart:  (){Provider.of<CartBloc>(context).addToCartRestaurant(RestaurantItem('Hotel Restaurant', widget.categoryItem.itemName, widget.categoryItem.price, 'Restaurant'));},),
+                        AddToCartItemButton(addToCart:  (){Provider.of<CartBloc>(context).addToCartRestaurant(RestaurantItem('${widget.restaurantName}', widget.categoryItem.itemName, widget.categoryItem.price, 'Restaurant'));},),
                         SizedBox(width: 10,),
                         MoreBlueButton(function: CityProductInfoScreen(categoryItem: widget.categoryItem,),),
                       ],

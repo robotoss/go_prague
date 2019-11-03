@@ -104,6 +104,7 @@ class CityRestaurantListScreen extends StatelessWidget {
         itemBuilder: (context, index){
           return CityRestaurantProductCard(
             categoryItem: itemsData[index],
+            restaurantName: restaurantName,
           );
         }
     );

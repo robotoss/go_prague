@@ -9,8 +9,9 @@ import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 class CityRestaurantCardScreen extends StatefulWidget {
   final CityRestaurantItems categoryItem;
 
+
   CityRestaurantCardScreen({
-    this.categoryItem
+    this.categoryItem,
   });
 
 
