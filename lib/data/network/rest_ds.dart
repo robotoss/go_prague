@@ -1,5 +1,7 @@
 
 import 'package:dio/dio.dart';
+import 'package:go_prague/data/models/cityBarItems.dart';
+import 'package:go_prague/data/models/cityRestaurantItems.dart';
 import 'package:go_prague/data/models/hotelBarItems.dart';
 import 'package:go_prague/data/models/hotelRestaurantItems.dart';
 import 'package:go_prague/data/models/toursData.dart';
@@ -22,10 +24,22 @@ class RestDataSource {
     return hotelRestaurantItemsFromJson(response.data);
   }
 
+  ///Список блюд в Городе
+  Future<List<CityRestaurantItems>> cityRestaurantList() async {
+    Response<String> response = await dio.get("$serverUrl/0afbf673183087005479");
+    return cityRestaurantItemsFromJson(response.data);
+  }
+
   ///Список напитков в Рестаране отеля
   Future<List<HotelBartItems>> hotelBarList() async {
     Response<String> response = await dio.get("$serverUrl/f4f36ff24ecfa73c29bd");
     return hotelBartItemsFromJson(response.data);
+  }
+
+  ///Список напитков в Городе
+  Future<List<CityBarItems>> cityBarList() async {
+    Response<String> response = await dio.get("$serverUrl/e48ae894af694a338b22");
+    return cityBarItemsFromJson(response.data);
   }
 
   ///Список ближайших событий

@@ -1,5 +1,7 @@
 
 
+import 'models/cityBarItems.dart';
+import 'models/cityRestaurantItems.dart';
 import 'models/hotelBarItems.dart';
 import 'models/hotelRestaurantItems.dart';
 import 'models/toursData.dart';
@@ -20,9 +22,19 @@ class Repository {
     return api.hotelRestaurantList();
   }
 
+  ///Список блюд в Городе
+  Future<List<CityRestaurantItems>> cityRestaurantList() async {
+    return api.cityRestaurantList();
+  }
+
   ///Список напитков в Рестаране отеля
   Future<List<HotelBartItems>> hotelBarList() async {
     return api.hotelBarList();
+  }
+
+  ///Список напитков в Городе
+  Future<List<CityBarItems>> cityBarList() async {
+    return api.cityBarList();
   }
 
   ///Список ближайших событий
