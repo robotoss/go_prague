@@ -1,27 +1,24 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:go_prague/data/bloc/cart_bloc.dart';
-import 'package:go_prague/data/models/cityRestaurantItems.dart';
+import 'package:go_prague/data/models/cityBarItems.dart';
 import 'package:go_prague/theme/mainTheme.dart';
-import 'package:go_prague/ui/restaurant/city/cityProductInfo/cityProductInfoScreen.dart';
+import 'package:go_prague/ui/bar/city/cityBarItemsList/cityBarItemsListScreen.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
-import 'package:go_prague/ui/widgets/selectAmount/selectAmount.dart';
-import 'package:provider/provider.dart';
 
-class CityRestaurantProductCard extends StatefulWidget {
-  final CategoryItem categoryItem;
+class CityBarCard extends StatefulWidget {
+  final CityBarItems categoryItem;
 
-  CityRestaurantProductCard({
+  CityBarCard({
     this.categoryItem
   });
 
 
   @override
-  _CityRestaurantProductCardState createState() => _CityRestaurantProductCardState();
+  _CityBarCardState createState() => _CityBarCardState();
 }
 
-class _CityRestaurantProductCardState extends State<CityRestaurantProductCard> {
+class _CityBarCardState extends State<CityBarCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,7 +36,7 @@ class _CityRestaurantProductCardState extends State<CityRestaurantProductCard> {
                 width: double.infinity,
                 child: CachedNetworkImage(
                   fit: BoxFit.cover,
-                  imageUrl: widget.categoryItem.imageUrl,
+                  imageUrl: widget.categoryItem.barImage,
                   placeholder: (context, url) => Image.asset('assets/images/special_background.png', fit: BoxFit.cover,),
                 ),
               ),
@@ -49,14 +46,14 @@ class _CityRestaurantProductCardState extends State<CityRestaurantProductCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      widget.categoryItem.itemName,
+                      widget.categoryItem.barName,
                       style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w700
                       ),
                     ),
                     Text(
-                      widget.categoryItem.description,
+                      widget.categoryItem.barArticle,
                       softWrap: true,
                       maxLines: 2,
                       style: TextStyle(
@@ -75,15 +72,16 @@ class _CityRestaurantProductCardState extends State<CityRestaurantProductCard> {
                     Row(
                       children: <Widget>[
                         Text(
-                          '~${ widget.categoryItem.cookTime} min',
+                          widget.categoryItem.restaurantDistance,
                           style: TextStyle(
                               fontSize: 20,
-                              color: ColorPalette().textLightDark
+                              color: ColorPalette().textLightDark,
+                              fontWeight: FontWeight.w700
                           ),
                         ),
                         SizedBox(width: 15),
                         Text(
-                          '${widget.categoryItem.price} Kč',
+                          'kilometers from you',
                           style: TextStyle(
                               fontSize: 20,
                               color: ColorPalette().textLightDark
@@ -93,11 +91,7 @@ class _CityRestaurantProductCardState extends State<CityRestaurantProductCard> {
                     ),
                     Row(
                       children: <Widget>[
-                        SelectAmount(),
-                        SizedBox(width: 10,),
-                        AddToCartItemButton(addToCart:  (){Provider.of<CartBloc>(context).addToCartRestaurant(RestaurantItem('Hotel Restaurant', widget.categoryItem.itemName, widget.categoryItem.price, 'Restaurant'));},),
-                        SizedBox(width: 10,),
-                        MoreBlueButton(function: CityProductInfoScreen(categoryItem: widget.categoryItem,),),
+                        MoreBlueButton(function: CityBarListScreen(hotelBarItems:  widget.categoryItem.cityBarItems, barName: widget.categoryItem.barName,),),
                       ],
                     )
                   ],

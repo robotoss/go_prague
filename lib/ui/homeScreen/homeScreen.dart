@@ -7,11 +7,11 @@ import 'package:go_prague/data/models/toursData.dart';
 import 'package:go_prague/data/models/upcomingEvents.dart';
 import 'package:go_prague/data/repository.dart';
 import 'package:go_prague/theme/mainTheme.dart';
+import 'package:go_prague/ui/bar/city/cityBarList.dart';
 import 'package:go_prague/ui/bar/hotel/hotelBarList.dart';
 import 'package:go_prague/ui/cart/cartScreens/cartScreenStep1.dart';
 import 'package:go_prague/ui/events/eventsList.dart';
 import 'package:go_prague/ui/restaurant/city/cityRestaurantList.dart';
-import 'package:go_prague/ui/restaurant/city/restaurantCard/cityRestaurantCard.dart';
 import 'package:go_prague/ui/restaurant/hotel/hotelRestaurantList.dart';
 import 'package:go_prague/ui/tours/tourInfoScreen/tourInfoScreen.dart';
 import 'package:go_prague/ui/tours/toursList/toursListScreen.dart';
@@ -193,7 +193,7 @@ class HomeScreen extends StatelessWidget {
                         children: <Widget>[
                           SizedBox(width: 15,),
                           MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'Eat', icon: 'assets/icons/icon_main_eat.svg', secondSide: true, navigateScreen: HotelRestaurantList(), secondNavigateScreen: CityRestaurantList(),),
-                          MainCategoryTile(titleColor: ColorPalette().mainBlue, name: 'Drink', icon: 'assets/icons/icon_main_drink.svg', secondSide: true, navigateScreen: HotelBarList(), secondNavigateScreen: CityRestaurantList(),),
+                          MainCategoryTile(titleColor: ColorPalette().mainBlue, name: 'Drink', icon: 'assets/icons/icon_main_drink.svg', secondSide: true, navigateScreen: HotelBarList(), secondNavigateScreen: CityBarList(),),
                           MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'To Go', icon: 'assets/icons/icon_main_go.svg', secondSide: false, navigateScreen: ToursListScreen(),),
                           MainCategoryTile(titleColor: ColorPalette().mainBlue, name: 'Hotel Service', icon: 'assets/icons/icon_main_hotel_service.svg', secondSide: false,),
                           MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'City Service', icon: 'assets/icons/icon_main_city_service.svg', secondSide: false,),
