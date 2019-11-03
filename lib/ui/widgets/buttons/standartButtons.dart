@@ -146,7 +146,7 @@ class AddToCartItemButton extends StatelessWidget {
 }
 
 class AddToCartItemButtonMini extends StatelessWidget {
-  final BarItem item;
+  final CartItem item;
 
   AddToCartItemButtonMini({this.item});
 
@@ -160,7 +160,7 @@ class AddToCartItemButtonMini extends StatelessWidget {
       child: FlatButton(
         padding: EdgeInsets.all(1),
           onPressed: () {
-            bloc.addToCartBar(item);
+            bloc.addToCart(item);
           },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),

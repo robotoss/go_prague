@@ -39,7 +39,7 @@ class _ProductRestaurantScreenState extends State<ProductRestaurantScreen> {
     int _totalCount = 0;
     print(bloc.cart.length);
     if (bloc.cart.length > 0) {
-      _totalCount = bloc.cart.length + bloc.barItems.length + bloc.tourItems.length;
+      _totalCount = bloc.cart.length;
     }
 
     return Scaffold(

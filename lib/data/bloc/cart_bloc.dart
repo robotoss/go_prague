@@ -5,9 +5,6 @@ class CartBloc with ChangeNotifier {
   List<CartItem> _cartItems = [];
   List<CartItem> get cartItems => _cartItems;
 
-  List<BarItems> _barItems = [];
-  List<BarItems> get barItems => _barItems;
-
   List<TourItems> _tourItems = [];
   List<TourItems> get tourItems => _tourItems;
 
@@ -26,16 +23,6 @@ class CartBloc with ChangeNotifier {
     notifyListeners();
   }
 
-
-  void addToCartBar(BarItem item) {
-    _barItems.add(item);
-//    if (_cart.containsKey(index)) {
-//      _cart[index] += 1;
-//    } else {
-//      _cart[index] = 1;
-//    }
-    notifyListeners();
-  }
 
   void addToCartTour(TourItem item) {
     _tourItems.add(item);
@@ -62,18 +49,6 @@ class CartBloc with ChangeNotifier {
 //      notifyListeners();
 //    }
   }
-}
-
-
-abstract class BarItems {}
-
-class BarItem implements BarItems {
-  final String nameBar;
-  final String name;
-  final int price;
-  final String type;
-
-  BarItem(this.nameBar, this.name, this.price, this.type);
 }
 
 abstract class TourItems {}
