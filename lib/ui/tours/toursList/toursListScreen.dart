@@ -25,9 +25,9 @@ class ToursListScreen extends StatelessWidget {
 
     var bloc = Provider.of<CartBloc>(context);
     int _totalCount = 0;
-    print(bloc.restaurantItems.length);
-    if (bloc.restaurantItems.length > 0) {
-      _totalCount = bloc.restaurantItems.length + bloc.barItems.length + bloc.tourItems.length;
+    print(bloc.cart.length);
+    if (bloc.cart.length > 0) {
+      _totalCount = bloc.cart.length;
     }
 
     return Scaffold(

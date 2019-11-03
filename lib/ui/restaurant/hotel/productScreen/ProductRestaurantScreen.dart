@@ -37,9 +37,9 @@ class _ProductRestaurantScreenState extends State<ProductRestaurantScreen> {
   Widget build(BuildContext context) {
     var bloc = Provider.of<CartBloc>(context);
     int _totalCount = 0;
-    print(bloc.restaurantItems.length);
-    if (bloc.restaurantItems.length > 0) {
-      _totalCount = bloc.restaurantItems.length + bloc.barItems.length + bloc.tourItems.length;
+    print(bloc.cart.length);
+    if (bloc.cart.length > 0) {
+      _totalCount = bloc.cart.length + bloc.barItems.length + bloc.tourItems.length;
     }
 
     return Scaffold(
@@ -234,7 +234,7 @@ class _ProductRestaurantScreenState extends State<ProductRestaurantScreen> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 35),
-                                  child: AddToCartButton(addToCart:  (){Provider.of<CartBloc>(context).addToCartRestaurant(RestaurantItem('Hotel Restaurant', widget.categoryItem.itemName, widget.categoryItem.price, 'Restaurant'));},),
+                                  child: AddToCartButton(addToCart:  (){Provider.of<CartBloc>(context).addToCart(CartItem('eat', '${widget.categoryItem.itemName}', [], widget.categoryItem.price,));},),
                                 )
                               ],
                             ),
