@@ -37,11 +37,6 @@ class CartBloc with ChangeNotifier {
   void clear(String type, index) {
     _cartItems.removeAt(index);
 
-    print('Remove from cart');
-    if (type == 'Bar') {
-      barItems.removeAt(index);
-    }
-
     notifyListeners();
 
 //    if (_cart.containsKey(index)) {
