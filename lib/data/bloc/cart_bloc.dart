@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class CartBloc with ChangeNotifier {
 
-  List<RestaurantItems> _restaurantItems = [];
-  List<RestaurantItems> get restaurantItems => _restaurantItems;
+  List<CartItem> _cartItems = [];
+  List<CartItem> get cartItems => _cartItems;
 
   List<BarItems> _barItems = [];
   List<BarItems> get barItems => _barItems;
@@ -15,10 +15,9 @@ class CartBloc with ChangeNotifier {
 
   Map<int, int> get cart => _cart;
 
-  void addToCartRestaurant(RestaurantItem item) {
-    _restaurantItems.add(item);
-    print('Add to cart');
-    print(_restaurantItems.length);
+  void addToCart(CartItem item) {
+    _cartItems.add(item);
+
 //    if (_cart.containsKey(index)) {
 //      _cart[index] += 1;
 //    } else {
@@ -27,10 +26,9 @@ class CartBloc with ChangeNotifier {
     notifyListeners();
   }
 
+
   void addToCartBar(BarItem item) {
     _barItems.add(item);
-    print('Add to cart');
-    print(_restaurantItems.length);
 //    if (_cart.containsKey(index)) {
 //      _cart[index] += 1;
 //    } else {
@@ -41,8 +39,6 @@ class CartBloc with ChangeNotifier {
 
   void addToCartTour(TourItem item) {
     _tourItems.add(item);
-    print('Add to cart');
-    print(_restaurantItems.length);
 //    if (_cart.containsKey(index)) {
 //      _cart[index] += 1;
 //    } else {
@@ -52,31 +48,20 @@ class CartBloc with ChangeNotifier {
   }
 
   void clear(String type, index) {
+    _cartItems.removeAt(index);
+
     print('Remove from cart');
-    if(type == 'Restaurant'){
-      _restaurantItems.removeAt(index);
-    } else if (type == 'Bar') {
+    if (type == 'Bar') {
       barItems.removeAt(index);
     }
 
     notifyListeners();
-    print('Cart count - ${_restaurantItems.length}');
+
 //    if (_cart.containsKey(index)) {
 //      _cart.remove(index);
 //      notifyListeners();
 //    }
   }
-}
-
-abstract class RestaurantItems {}
-
-class RestaurantItem implements RestaurantItems {
-  final String nameRestaurant;
-  final String name;
-  final int price;
-  final String type;
-
-  RestaurantItem(this.nameRestaurant, this.name, this.price, this.type);
 }
 
 
@@ -99,4 +84,15 @@ class TourItem implements TourItems {
   final String type;
 
   TourItem(this.nameTour, this.price, this.type);
+}
+
+abstract class CartItems {}
+
+class CartItem implements TourItems {
+  final String type;
+  final String name;
+  List<String> parameters;
+  final int price;
+
+  CartItem(this.type, this.name,  this.parameters, this.price, );
 }

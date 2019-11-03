@@ -123,8 +123,6 @@ class AddToCartItemButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-  var bloc = Provider.of<CartBloc>(context);
     return SizedBox(
       height: 35,
       width: 143,
