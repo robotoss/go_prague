@@ -95,7 +95,7 @@ class _HotelProductCardScreenState extends State<HotelProductCardScreen> {
                       children: <Widget>[
                         SelectAmount(),
                         SizedBox(width: 10,),
-                        AddToCartItemButton(addToCart:  (){Provider.of<CartBloc>(context).addToCart(CartItem('eat', '${widget.categoryItem.itemName}', [], widget.categoryItem.price,));},),
+                        AddToCartItemButton(addToCart:  (){Provider.of<CartBloc>(context).addToCart(CartItem('eat', 'Hotel Restaurant', '${widget.categoryItem.itemName}', [], widget.categoryItem.price,));},),
                         SizedBox(width: 10,),
                         MoreBlueButton(function: ProductRestaurantScreen(categoryItem: widget.categoryItem,),),
                       ],

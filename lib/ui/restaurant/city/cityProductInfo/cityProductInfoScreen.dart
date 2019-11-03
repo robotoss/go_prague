@@ -11,9 +11,11 @@ import 'package:provider/provider.dart';
 
 class CityProductInfoScreen extends StatefulWidget {
   final CategoryItem categoryItem;
+  final String restaurantName;
 
   CityProductInfoScreen({
     this.categoryItem,
+    this.restaurantName,
   });
 
   @override
@@ -234,7 +236,7 @@ class _CityProductInfoScreenState extends State<CityProductInfoScreen> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 35),
-                                  child: AddToCartButton(addToCart:  (){Provider.of<CartBloc>(context).addToCart(CartItem('eat', '${widget.categoryItem.itemName}', [], widget.categoryItem.price,));},),
+                                  child: AddToCartButton(addToCart:  (){Provider.of<CartBloc>(context).addToCart(CartItem('eat', widget.restaurantName, '${widget.categoryItem.itemName}', [], widget.categoryItem.price,));},),
                                 )
                               ],
                             ),

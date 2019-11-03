@@ -90,9 +90,10 @@ abstract class CartItems {}
 
 class CartItem implements TourItems {
   final String type;
+  final String placeName;
   final String name;
-  List<String> parameters;
+  final List<String> parameters;
   final int price;
 
-  CartItem(this.type, this.name,  this.parameters, this.price, );
+  CartItem(this.type, this.name, this.placeName, this.parameters, this.price,);
 }
