@@ -83,8 +83,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var bloc = Provider.of<CartBloc>(context);
 
-    if (bloc.cart.length > 0) {
-      _totalCount = bloc.cart.length;
+    if (bloc.cartItems.length > 0) {
+      _totalCount = bloc.cartItems.length;
     }
 
     return Scaffold(

@@ -7,9 +7,9 @@ class CartBloc with ChangeNotifier {
 
 
 
-  Map<int, int> _cart = {};
-
-  Map<int, int> get cart => _cart;
+//  Map<int, int> _cart = {};
+//
+//  Map<int, int> get cart => _cart;
 
   void addToCart(CartItem item) {
     _cartItems.add(item);

@@ -77,9 +77,9 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
   Widget build(BuildContext context) {
     var bloc = Provider.of<CartBloc>(context);
     int _totalCount = 0;
-    print(bloc.cart.length);
-    if (bloc.cart.length > 0) {
-      _totalCount = bloc.cart.length;
+    print(bloc.cartItems.length);
+    if (bloc.cartItems.length > 0) {
+      _totalCount = bloc.cartItems.length;
     }
 
     return Scaffold(
@@ -300,7 +300,7 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
                                       ],
                                     ),
                                     SizedBox(height: 40),
-                                    AddToCartButton(addToCart: (){Provider.of<CartBloc>(context).addToCart(CartItem('tour', '', widget.tourData.name, [], widget.tourData.price,));},),
+                                    AddToCartButton(addToCart: (){Provider.of<CartBloc>(context).addToCart(CartItem('ToGo', '', widget.tourData.name, [], widget.tourData.price,));},),
                                     SizedBox(height: 5,)
                                   ],
                                 ),

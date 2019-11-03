@@ -25,9 +25,9 @@ class HotelRestaurantList extends StatelessWidget {
 
     var bloc = Provider.of<CartBloc>(context);
     int _totalCount = 0;
-    print(bloc.cart.length);
-    if (bloc.cart.length > 0) {
-      _totalCount = bloc.cart.length;
+    print(bloc.cartItems.length);
+    if (bloc.cartItems.length > 0) {
+      _totalCount = bloc.cartItems.length;
     }
 
     return Scaffold(
