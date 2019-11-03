@@ -63,6 +63,7 @@ class MoreBlueButton extends StatelessWidget {
   final Widget function;
 
   MoreBlueButton({this.function});
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
