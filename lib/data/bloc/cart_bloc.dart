@@ -23,7 +23,7 @@ class CartBloc with ChangeNotifier {
   }
 
 
-  void clear(String type, index) {
+  void clear(int index) {
     _cartItems.removeAt(index);
 
     notifyListeners();
