@@ -4,6 +4,7 @@ import 'models/cityBarItems.dart';
 import 'models/cityRestaurantItems.dart';
 import 'models/hotelBarItems.dart';
 import 'models/hotelRestaurantItems.dart';
+import 'models/hotelServices.dart';
 import 'models/toursData.dart';
 import 'models/upcomingEvents.dart';
 import 'network/rest_ds.dart';
@@ -40,5 +41,10 @@ class Repository {
   ///Список ближайших событий
   Future<List<UpcomingEvents>> upcomingEventsList() async {
     return api.upcomingEventsList();
+  }
+
+  ///Список услуг Отеля
+  Future<List<HotelServices>> hotelService() async {
+    return api.hotelService();
   }
 }
