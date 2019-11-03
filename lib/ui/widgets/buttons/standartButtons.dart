@@ -87,6 +87,34 @@ class MoreBlueButton extends StatelessWidget {
   }
 }
 
+class OpenMenuBlueButton extends StatelessWidget {
+  final Widget function;
+
+  OpenMenuBlueButton({this.function});
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 35,
+      width: 82,
+      child: FlatButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => function));
+          },
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          color: ColorPalette().mainBlue,
+          child: Text(
+            'Open Menu',
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.w700),
+          )),
+    );
+  }
+}
+
 class AddToCartItemButton extends StatelessWidget {
   final Function addToCart;
 

@@ -8,6 +8,7 @@ class MainCategoryTile extends StatefulWidget {
   final String icon;
   final bool secondSide;
   final Widget navigateScreen;
+  final Widget secondNavigateScreen;
 
   MainCategoryTile({
     this.titleColor,
@@ -15,6 +16,7 @@ class MainCategoryTile extends StatefulWidget {
     this.icon,
     this.secondSide,
     this.navigateScreen,
+    this.secondNavigateScreen
 
 });
 
@@ -152,7 +154,9 @@ class _MainCategoryTileState extends State<MainCategoryTile> with SingleTickerPr
                   color: widget.titleColor == ColorPalette().mainBlue ? ColorPalette().mainGreen : ColorPalette().mainBlue,
                 ),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => widget.secondNavigateScreen));
+                  },
                   child: Container(
                     height: 70,
                     width: 120,
