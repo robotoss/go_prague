@@ -92,7 +92,7 @@ class _CityRestaurantCardScreenState extends State<CityRestaurantCardScreen> {
                     ),
                     Row(
                       children: <Widget>[
-                        MoreBlueButton(function: CityRestaurantListScreen(hotelRestaurantItems:  widget.categoryItem.cityRestaurantItems, restaurantName: widget.categoryItem.restaurantName,),),
+                        MoreBlueButton(widget: CityRestaurantListScreen(hotelRestaurantItems:  widget.categoryItem.cityRestaurantItems, restaurantName: widget.categoryItem.restaurantName,),),
                       ],
                     )
                   ],

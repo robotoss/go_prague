@@ -90,7 +90,7 @@ class _TourCardScreenState extends State<TourCardScreen> {
                     ),
                     Row(
                       children: <Widget>[
-                        MoreBlueButton(function: TourInfoScreen(tourData: widget.tourItem,),),
+                        MoreBlueButton(widget: TourInfoScreen(tourData: widget.tourItem,),),
                       ],
                     )
                   ],

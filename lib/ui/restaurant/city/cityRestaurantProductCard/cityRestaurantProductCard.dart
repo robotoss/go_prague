@@ -99,7 +99,7 @@ class _CityRestaurantProductCardState extends State<CityRestaurantProductCard> {
                         SizedBox(width: 10,),
                         AddToCartItemButton(addToCart:  (){Provider.of<CartBloc>(context).addToCart(CartItem('eat', widget.restaurantName, widget.categoryItem.itemName, [], widget.categoryItem.price,));},),
                         SizedBox(width: 10,),
-                        MoreBlueButton(function: CityProductInfoScreen(categoryItem: widget.categoryItem, restaurantName: widget.restaurantName),),
+                        MoreBlueButton(widget: CityProductInfoScreen(categoryItem: widget.categoryItem, restaurantName: widget.restaurantName),),
                       ],
                     )
                   ],
