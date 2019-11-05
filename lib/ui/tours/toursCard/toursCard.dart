@@ -5,12 +5,15 @@ import 'package:go_prague/data/models/toursData.dart';
 import 'package:go_prague/theme/mainTheme.dart';
 import 'package:go_prague/ui/tours/tourInfoScreen/tourInfoScreen.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
+import 'dart:math' as math;
 
 class TourCardScreen extends StatefulWidget {
   final ItemTourData tourItem;
+  final String catName;
 
   TourCardScreen({
-    this.tourItem
+    this.tourItem,
+    this.catName,
   });
 
 
@@ -38,11 +41,36 @@ class _TourCardScreenState extends State<TourCardScreen> {
                 Container(
                   height: 125,
                   width: double.infinity,
-                  child: CachedNetworkImage(
-                    fit: BoxFit.cover,
-                    imageUrl: widget.tourItem.imgUrls[0],
-                    placeholder: (context, url) => Image.asset('assets/images/special_background.png', fit: BoxFit.cover,),
-                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        child: CachedNetworkImage(
+                          height: 125,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                          imageUrl: widget.tourItem.imgUrls[0],
+                          placeholder: (context, url) => Image.asset('assets/images/special_background.png', fit: BoxFit.cover,),
+                        ),
+                      ),
+//                      Positioned(
+//                        top: 5,
+//                        right: 10,
+//                        child: Container(
+//                          decoration: BoxDecoration(
+//                            borderRadius: BorderRadius.all(Radius.circular(8)),
+//                            color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt() << 0).withOpacity(1.0)
+//                          ),
+//                          child: Text(
+//                              widget.catName,
+//                            style: TextStyle(
+//                              fontSize: 16,
+//                              color: Colors.white,
+//                            ),
+//                          ),
+//                        ),
+//                      )
+                    ],
+                  )
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8, left: 15, right: 15),
@@ -69,7 +97,7 @@ class _TourCardScreenState extends State<TourCardScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 7),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -78,18 +106,18 @@ class _TourCardScreenState extends State<TourCardScreen> {
                           Text(
                             '~${ widget.tourItem.duration}',
                             style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 16,
                                 color: ColorPalette().textLightDark
                             ),
                           ),
-                          SizedBox(width: 15),
-                          Text(
-                            '${widget.tourItem.price} Kč',
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: ColorPalette().textLightDark
-                            ),
-                          ),
+//                          SizedBox(width: 15),
+//                          Text(
+//                            '${widget.tourItem.price} Kč',
+//                            style: TextStyle(
+//                                fontSize: 20,
+//                                color: ColorPalette().textLightDark
+//                            ),
+//                          ),
                         ],
                       ),
                       Row(

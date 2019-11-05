@@ -93,7 +93,7 @@ class ToursListScreen extends StatelessWidget {
                     child: TabBarView(
                       children: List<Widget>.generate(_toursItems.length, (int index){
                         return Container(
-                          child: listCards(_toursItems[index].items),
+                          child: listCards(_toursItems[index].items, _toursItems[index].categoryName),
                         );
                       }),
                     ),
@@ -106,7 +106,7 @@ class ToursListScreen extends StatelessWidget {
   }
 }
 
-Widget listCards(List<ItemTourData> itemsData) {
+Widget listCards(List<ItemTourData> itemsData, String catName) {
   print('Count ${itemsData.length}');
   return ListView.builder(
       shrinkWrap: true,
@@ -115,6 +115,7 @@ Widget listCards(List<ItemTourData> itemsData) {
       itemBuilder: (context, index){
         return TourCardScreen(
           tourItem: itemsData[index],
+          catName: catName,
         );
       }
   );
