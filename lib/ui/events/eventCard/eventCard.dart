@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/models/upcomingEvents.dart';
 import 'package:go_prague/theme/mainTheme.dart';
+import 'package:go_prague/ui/events/EventInfoScreen/EventInfoScreen.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 
 class EventCard extends StatelessWidget {
@@ -80,7 +81,7 @@ class EventCard extends StatelessWidget {
                     ),
                     Row(
                       children: <Widget>[
-                        MoreBlueButton(),
+                        MoreBlueButton(widget:  EventInfoScreen(event: event,),),
                       ],
                     )
                   ],
