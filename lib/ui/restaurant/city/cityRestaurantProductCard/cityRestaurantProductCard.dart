@@ -28,84 +28,89 @@ class _CityRestaurantProductCardState extends State<CityRestaurantProductCard> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Card(
-        child: Container(
-          height: 250,
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                height: 125,
-                width: double.infinity,
-                child: CachedNetworkImage(
-                  fit: BoxFit.cover,
-                  imageUrl: widget.categoryItem.imageUrl,
-                  placeholder: (context, url) => Image.asset('assets/images/special_background.png', fit: BoxFit.cover,),
+      child: GestureDetector(
+        onTap: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => CityProductInfoScreen(categoryItem: widget.categoryItem, restaurantName: widget.restaurantName)));
+        },
+        child: Card(
+          child: Container(
+            height: 250,
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                  height: 125,
+                  width: double.infinity,
+                  child: CachedNetworkImage(
+                    fit: BoxFit.cover,
+                    imageUrl: widget.categoryItem.imageUrl,
+                    placeholder: (context, url) => Image.asset('assets/images/special_background.png', fit: BoxFit.cover,),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8, left: 15, right: 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      widget.categoryItem.itemName,
-                      style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w700
-                      ),
-                    ),
-                    Text(
-                      widget.categoryItem.description,
-                      softWrap: true,
-                      maxLines: 2,
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: ColorPalette().textLightDark
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          '~${ widget.categoryItem.cookTime} min',
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: ColorPalette().textLightDark
-                          ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8, left: 15, right: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        widget.categoryItem.itemName,
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w700
                         ),
-                        SizedBox(width: 15),
-                        Text(
-                          '${widget.categoryItem.price} Kč',
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: ColorPalette().textLightDark
-                          ),
+                      ),
+                      Text(
+                        widget.categoryItem.description,
+                        softWrap: true,
+                        maxLines: 2,
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: ColorPalette().textLightDark
                         ),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        SelectAmount(),
-                        SizedBox(width: 10,),
-                        AddToCartItemButton(addToCart:  (){Provider.of<CartBloc>(context).addToCart(CartItem('eat', widget.restaurantName, widget.categoryItem.itemName, [], widget.categoryItem.price,));},),
-                        SizedBox(width: 10,),
-                        MoreBlueButton(widget: CityProductInfoScreen(categoryItem: widget.categoryItem, restaurantName: widget.restaurantName),),
-                      ],
-                    )
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Text(
+                            '~${ widget.categoryItem.cookTime} min',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: ColorPalette().textLightDark
+                            ),
+                          ),
+                          SizedBox(width: 15),
+                          Text(
+                            '${widget.categoryItem.price} Kč',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: ColorPalette().textLightDark
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          SelectAmount(),
+                          SizedBox(width: 10,),
+                          AddToCartItemButton(addToCart:  (){Provider.of<CartBloc>(context).addToCart(CartItem('eat', widget.restaurantName, widget.categoryItem.itemName, [], widget.categoryItem.price,));},),
+                          SizedBox(width: 10,),
+                          MoreBlueButton(widget: CityProductInfoScreen(categoryItem: widget.categoryItem, restaurantName: widget.restaurantName),),
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -32,7 +32,6 @@ class HomeScreen extends StatelessWidget {
   ) async {
     List<ToursData> _listData;
     await Repository().accountTypes().then((toursList) {
-      print('Количество туров - ${toursList.length}');
       _listData = toursList;
       if(elements.isEmpty) {
         toursList.forEach((slide) {
