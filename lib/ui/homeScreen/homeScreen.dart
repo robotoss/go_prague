@@ -10,6 +10,7 @@ import 'package:go_prague/theme/mainTheme.dart';
 import 'package:go_prague/ui/bar/city/cityBarList.dart';
 import 'package:go_prague/ui/bar/hotel/hotelBarList.dart';
 import 'package:go_prague/ui/cart/cartScreens/cartScreenStep1.dart';
+import 'package:go_prague/ui/events/EventInfoScreen/EventInfoScreen.dart';
 import 'package:go_prague/ui/events/eventsList.dart';
 import 'package:go_prague/ui/restaurant/city/cityRestaurantList.dart';
 import 'package:go_prague/ui/restaurant/hotel/hotelRestaurantList.dart';
@@ -302,63 +303,69 @@ class HomeScreen extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     return Padding(
                                       padding: const EdgeInsets.only(left: 10),
-                                      child: Container(
-                                        width: 345,
-                                        height: 120,
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: <Widget>[
-                                            Container(
-                                              height: 115,
-                                              width: 115,
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.all(Radius.circular(6)),
-                                                color: ColorPalette().mainBlack,
-                                                image: DecorationImage(
-                                                  image: CachedNetworkImageProvider(_events[index].imgUrls[0]),
-                                                  fit: BoxFit.cover
-                                                )
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 215,
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: <Widget>[
-                                                  Text(
-                                                    _events[index].name,
-                                                    maxLines: 1,
-                                                    style: TextStyle(
-                                                      fontSize: 24
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                      _events[index].article,
-                                                    softWrap: true,
-                                                    maxLines: 2,
-                                                    style: TextStyle(
-                                                      fontSize: 18,
-                                                      color: ColorPalette().textLightDark
-                                                    ),
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                    children: <Widget>[
-                                                      Text(
-                                                          '${_events[index].price} Kč',
-                                                        style: TextStyle(
-                                                          fontSize: 18,
-                                                          fontWeight: FontWeight.w700
-                                                        ),
-                                                      ),
-                                                      MoreButton(),
-                                                    ],
+                                      child: GestureDetector(
+                                        onTap: (){
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => EventInfoScreen(event: _events[index],)));
+                                        },
+                                        child: Container(
+                                          width: 345,
+                                          height: 120,
+                                          color: Colors.transparent,
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: <Widget>[
+                                              Container(
+                                                height: 115,
+                                                width: 115,
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.all(Radius.circular(6)),
+                                                  color: ColorPalette().mainBlack,
+                                                  image: DecorationImage(
+                                                    image: CachedNetworkImageProvider(_events[index].imgUrls[0]),
+                                                    fit: BoxFit.cover
                                                   )
-                                                ],
+                                                ),
                                               ),
-                                            )
-                                          ],
+                                              SizedBox(
+                                                width: 215,
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: <Widget>[
+                                                    Text(
+                                                      _events[index].name,
+                                                      maxLines: 1,
+                                                      style: TextStyle(
+                                                        fontSize: 24
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                        _events[index].article,
+                                                      softWrap: true,
+                                                      maxLines: 2,
+                                                      style: TextStyle(
+                                                        fontSize: 18,
+                                                        color: ColorPalette().textLightDark
+                                                      ),
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      children: <Widget>[
+                                                        Text(
+                                                            '${_events[index].price} Kč',
+                                                          style: TextStyle(
+                                                            fontSize: 18,
+                                                            fontWeight: FontWeight.w700
+                                                          ),
+                                                        ),
+                                                        MoreButton(),
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     );
