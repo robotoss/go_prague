@@ -105,7 +105,7 @@ class MoreBlueButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 35,
-      width: 82,
+      width: 170,
       child: FlatButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
@@ -119,7 +119,7 @@ class MoreBlueButton extends StatelessWidget {
             'More',
             style: TextStyle(
                 color: Colors.white,
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: FontWeight.w700),
           )),
     );
@@ -216,23 +216,29 @@ class AddToCartItemButtonMini extends StatelessWidget {
 }
 
 class MeatButton extends StatelessWidget {
-  final bool active;
+  final int index;
   final String name;
+  final String activeItem;
+  final Function changeActiveFunc;
 
-  MeatButton({this.active, this.name});
+  MeatButton({this.index, this.name, this.activeItem, this.changeActiveFunc});
+
 
   @override
   Widget build(BuildContext context) {
+
+
     return SizedBox(
       height: 30,
 //      width: 116,
       child: FlatButton(
           onPressed: () {
+            changeActiveFunc(index, name);
           },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
-          color: active ? ColorPalette().mainGreen : ColorPalette().textLightDark,
+          color: name == activeItem ? ColorPalette().mainGreen : ColorPalette().textLightDark,
           child: Text(
             name,
             style: TextStyle(

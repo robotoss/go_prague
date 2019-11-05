@@ -22,9 +22,23 @@ class ProductRestaurantScreen extends StatefulWidget {
 
 class _ProductRestaurantScreenState extends State<ProductRestaurantScreen> {
 
+  Map<int, String> activeOption = Map();
+
+  void optionsChose(int numberItem, String activeOptions) {
+    print('Кнопка сработала');
+    setState(() {
+      activeOption.update(numberItem, (value) => activeOptions);
+    });
+  }
+
   @override
-  void initState() {
+  void initState(){
     super.initState();
+    if(activeOption != null) {
+      widget.categoryItem.parametrs.forEach((f){
+        activeOption[f.parametrId] = f.parametrsItems[0];
+      });
+    }
   }
 
 
@@ -181,7 +195,28 @@ class _ProductRestaurantScreenState extends State<ProductRestaurantScreen> {
                                         spacing: 5.0, // gap between adjacent chips
                                         runSpacing: 5.0, // gap between lines
                                         children: List<Widget>.generate(widget.categoryItem.parametrs[index].parametrsItems.length, (int i){
-                                          return MeatButton(active: false, name: widget.categoryItem.parametrs[index].parametrsItems[i],);
+//                                          return MeatButton(index: index, name: widget.categoryItem.parametrs[index].parametrsItems[i], activeItem: activeOption[index], changeActiveFunc: optionsChose,);
+                                        return SizedBox(
+                                          height: 30,
+//      width: 116,
+                                          child: FlatButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  activeOption.update(index, (value) => widget.categoryItem.parametrs[index].parametrsItems[i]);
+                                                });
+                                              },
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(8.0),
+                                              ),
+                                              color: widget.categoryItem.parametrs[index].parametrsItems[i] == activeOption[index] ? ColorPalette().mainGreen : ColorPalette().textLightDark,
+                                              child: Text(
+                                                widget.categoryItem.parametrs[index].parametrsItems[i],
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w700),
+                                              )),
+                                        );
                                         }),
                                       ),
                                     ],
