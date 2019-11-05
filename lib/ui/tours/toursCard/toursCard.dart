@@ -76,7 +76,7 @@ class _TourCardScreenState extends State<TourCardScreen> {
                       Row(
                         children: <Widget>[
                           Text(
-                            '~${ widget.tourItem.duration} h.',
+                            '~${ widget.tourItem.duration}',
                             style: TextStyle(
                                 fontSize: 20,
                                 color: ColorPalette().textLightDark
