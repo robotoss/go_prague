@@ -27,5 +27,6 @@ class ColorPalette {
   var textDark = const Color(0xFF535353); //Тёмный цвет текста
   var textLLDark = const Color(0xFF9B9B9B); //Светло цвет текста
   var textLightDark = const Color(0xFF828282); //Светло/Тёмный цвет текста
+  var darkAddress = const Color(0xFF4F4F4F); //Светло/Тёмный цвет текста
 
 }
