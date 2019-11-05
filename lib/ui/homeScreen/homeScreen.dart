@@ -89,7 +89,7 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       key: _scaffoldKey,
-      drawer: customDrawer(context),
+      drawer: CustomDrawer(),
 //      appBar: AppBar(
 //        elevation: 0.0,
 //        centerTitle: true,
@@ -396,187 +396,317 @@ Widget loadData(BuildContext context,  double itemHeight){
   );
 }
 
-Widget customDrawer(BuildContext context) {
-  return Container(
-    width: MediaQuery.of(context).size.width * 0.7,
-    child: Drawer(
-      child: Column(
-        children: <Widget>[
-          Container(
-            height: 300,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage('assets/images/demo_dawer_bg.jpg'),
-              )
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: ListView(
-                children: <Widget>[
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                      height: 30,
-                      width: 200,
-                      color: Colors.green,
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.notification_important, color: Colors.white,),
-                          Text(
-                            'You have: ',
-                            style: TextStyle(
-                              color: Colors.white
-                            ),
-                          ),
-                          Text(
-                            '0 notification',
-                            style: TextStyle(
-                                color: Colors.white,
-                              fontWeight: FontWeight.w700
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Text(
-                    'Hello,',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 38,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.green
-                        ),
-                        child: Center(
-                          child: Text(
-                            'NS',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 38
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 20),
-                      Text(
-                        'mr. Novikov \nSergey',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 38,
+class CustomDrawer extends StatefulWidget {
+  @override
+  _CustomDrawerState createState() => _CustomDrawerState();
+}
 
+class _CustomDrawerState extends State<CustomDrawer> {
+  String _language = 'English';
+  String _money = 'Kč';
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.7,
+      child: Drawer(
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: 300,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage('assets/images/demo_dawer_bg.jpg'),
+                  )
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+//                  Align(
+//                    alignment: Alignment.topRight,
+//                    child: Container(
+//                      height: 30,
+//                      width: 200,
+//                      color: Colors.green,
+//                      child: Row(
+//                        children: <Widget>[
+//                          Icon(Icons.notification_important, color: Colors.white,),
+//                          Text(
+//                            'You have: ',
+//                            style: TextStyle(
+//                              color: Colors.white
+//                            ),
+//                          ),
+//                          Text(
+//                            '0 notification',
+//                            style: TextStyle(
+//                                color: Colors.white,
+//                              fontWeight: FontWeight.w700
+//                            ),
+//                          )
+//                        ],
+//                      ),
+//                    ),
+//                  ),
+                    Text(
+                      'Hello,',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 38,
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Row(
+                      children: <Widget>[
+//                      Container(
+//                        width: 100,
+//                        height: 100,
+//                        decoration: BoxDecoration(
+//                          shape: BoxShape.circle,
+//                          color: Colors.green
+//                        ),
+//                        child: Center(
+//                          child: Text(
+//                            'NS',
+//                            style: TextStyle(
+//                              color: Colors.white,
+//                              fontSize: 38
+//                            ),
+//                          ),
+//                        ),
+//                      ),
+//                      SizedBox(width: 20),
+                        Text(
+                          'mr. Novikov \nSergey',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 38,
+
+                          ),
+                        )
+                      ],
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            padding: EdgeInsets.all(5),
+//                        width: ,
+//                        height: ,
+                            decoration: BoxDecoration(
+                              color: ColorPalette().mainGreen,
+                              borderRadius: BorderRadius.all(Radius.circular(5))
+                            ),
+                            child: Text(
+                              'My Orders',
+                              style: TextStyle(
+                                fontSize: 22,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700
+                              ),
+                            )
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    'Language',
+                    style: TextStyle(
+                        color: ColorPalette().textLightDark,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700
+                    ),
+                  ),
+                  Theme(
+                    data: Theme.of(context).copyWith(
+                      canvasColor: ColorPalette().mainGreen,
+                    ),
+                    child: DropdownButton<String>(
+                      items: <String>['English', 'Русский', 'Český', 'Deutch', '中國人'].map((String value) {
+                        return new DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          _language = value;
+                        });
+
+                      },
+                      hint: Text(
+                        _language,
+                        style: TextStyle(
+                          fontSize: 24,
+                            fontWeight: FontWeight.w700,
+                            color: ColorPalette().textDark
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    'Currency',
+                    style: TextStyle(
+                        color: ColorPalette().textLightDark,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700
+                    ),
+                  ),
+                  Theme(
+                    data: Theme.of(context).copyWith(
+                      canvasColor: ColorPalette().mainGreen,
+                    ),
+                    child: DropdownButton<String>(
+                      items: <String>['Kč', 'American Dollar', 'Euro €',].map((String value) {
+                        return new DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          _money = value;
+                        });
+
+                      },
+                      hint: Text(
+                        _money,
+                        style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w700,
+                            color: ColorPalette().textDark
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    'About',
+                    style: TextStyle(
+                        color: ColorPalette().textLightDark,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Container(
+                      padding: EdgeInsets.symmetric(horizontal: 35, vertical: 5),
+//                        width: ,
+//                        height: ,
+                      decoration: BoxDecoration(
+                          color: ColorPalette().mainGreen,
+                          borderRadius: BorderRadius.all(Radius.circular(7))
+                      ),
+                      child: Text(
+                        'Read',
+                        style: TextStyle(
+                            fontSize: 24,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700
                         ),
                       )
-                    ],
                   )
                 ],
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  'Language',
-                  style: TextStyle(
-                    color: ColorPalette().textLightDark,
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700
-                  ),
-                ),
-                Text(
-                  'English',
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700
-                  ),
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  'Currency',
-                  style: TextStyle(
-                      color: ColorPalette().textLightDark,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700
-                  ),
-                ),
-                Text(
-                  'Kč',
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700
-                  ),
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  'About',
-                  style: TextStyle(
-                      color: ColorPalette().textLightDark,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700
-                  ),
-                ),
-                SizedBox(width: 10)
-              ],
-            ),
-          ),
-          Expanded(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                width: 230,
-                height: 60,
-                child: FlatButton(
-                  onPressed: (){},
-                  color: ColorPalette().mainRed,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  child: Text(
-                    'Emergency Call',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700
+            Expanded(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                  width: 280,
+                  height: 60,
+                  child: FlatButton(
+                    onPressed: (){
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          // return object of type Dialog
+                          return AlertDialog(
+                            content: Container(
+                              width: 300,
+                              height: 260,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  CallButtons(color: ColorPalette().mainGreen, name: 'Reception'),
+                                  CallButtons(color: ColorPalette().mainGreen, name: 'Reception'),
+                                  CallButtons(color: ColorPalette().mainRed, name: 'Housekeeping'),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    color: ColorPalette().mainRed,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    child: Text(
+                      'Call to',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w700
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-          SizedBox(height: 25,)
-        ],
+            SizedBox(height: 25,)
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
+
 
 Widget carouselItem(BuildContext context, ItemTourData sliderData, double carouselHeight) {
   return GestureDetector(
