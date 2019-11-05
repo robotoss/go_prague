@@ -235,6 +235,7 @@ class _EventInfoScreenState extends State<EventInfoScreen> {
                                         Text(
                                           widget.event.place,
                                           style: TextStyle(
+                                            color: ColorPalette().darkAddress,
                                               fontSize: 19,
                                               fontWeight: FontWeight.w700
                                           ),
