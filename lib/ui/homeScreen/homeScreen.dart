@@ -358,7 +358,7 @@ class HomeScreen extends StatelessWidget {
                                                             fontWeight: FontWeight.w700
                                                           ),
                                                         ),
-                                                        MoreButton(),
+                                                        MoreButton(widget: EventInfoScreen(event: _events[index],),),
                                                       ],
                                                     )
                                                   ],
