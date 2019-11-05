@@ -3,6 +3,38 @@ import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/theme/mainTheme.dart';
 import 'package:provider/provider.dart';
 
+class AddTicketToCartButton extends StatelessWidget {
+  final Function addToCart;
+
+  AddTicketToCartButton({this.addToCart});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 55,
+      width: double.infinity,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 55),
+        child: FlatButton(
+            onPressed: () {
+              addToCart();
+            },
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            color: ColorPalette().mainGreen,
+            child: Text(
+              'Add Ticket to Cart',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 27,
+                  fontWeight: FontWeight.w700),
+            )),
+      ),
+    );
+  }
+}
+
 class AddToCartButton extends StatelessWidget {
   final Function addToCart;
 
@@ -36,6 +68,10 @@ class AddToCartButton extends StatelessWidget {
 }
 
 class MoreButton extends StatelessWidget {
+  final Widget widget;
+
+  MoreButton({this.widget});
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -43,6 +79,7 @@ class MoreButton extends StatelessWidget {
       width: 105,
       child: FlatButton(
           onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
           },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
@@ -60,9 +97,9 @@ class MoreButton extends StatelessWidget {
 }
 
 class MoreBlueButton extends StatelessWidget {
-  final Widget function;
+  final Widget widget;
 
-  MoreBlueButton({this.function});
+  MoreBlueButton({this.widget});
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +108,8 @@ class MoreBlueButton extends StatelessWidget {
       width: 82,
       child: FlatButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => function));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
+
           },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
