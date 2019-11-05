@@ -249,3 +249,37 @@ class MeatButton extends StatelessWidget {
     );
   }
 }
+
+class CallButtons extends StatelessWidget {
+  final Color color;
+  final String name;
+
+
+  CallButtons({this.color, this.name,});
+
+
+  @override
+  Widget build(BuildContext context) {
+
+
+    return SizedBox(
+      height: 70,
+      width: 270,
+      child: FlatButton(
+          onPressed: () {
+
+          },
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0),
+          ),
+          color: color,
+          child: Text(
+            name,
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 29,
+                fontWeight: FontWeight.w700),
+          )),
+    );
+  }
+}
