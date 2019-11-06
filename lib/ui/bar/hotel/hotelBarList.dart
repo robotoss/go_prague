@@ -10,13 +10,12 @@ import 'package:provider/provider.dart';
 import 'productCard/hotelBarProductCardScreen.dart';
 
 class HotelBarList extends StatelessWidget {
-
   static List<HotelBartItems> _hotelBarItems = List();
 
-  Future<List<HotelBartItems>> getBarData() async{
-    await Repository().hotelBarList().then((response){
+  Future<List<HotelBartItems>> getBarData() async {
+    await Repository().hotelBarList().then((response) {
       _hotelBarItems = response;
-    }).catchError((error){
+    }).catchError((error) {
       if (error is DioError) {
         print(error.message);
       } else {
@@ -29,7 +28,6 @@ class HotelBarList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     var bloc = Provider.of<CartBloc>(context);
     int _totalCount = 0;
     print(bloc.cartItems.length);
@@ -41,23 +39,38 @@ class HotelBarList extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.white,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: Colors.black, size: 30,),
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+              size: 30,
+            ),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
           title: Text(
             'Hotel Bar',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700, color: Colors.black,),
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w700,
+              color: Colors.black,
+            ),
           ),
           centerTitle: true,
           actions: <Widget>[
             Stack(
               children: <Widget>[
                 IconButton(
-                  icon: Icon(Icons.shopping_cart, color: Colors.black, size: 30,),
+                  icon: Icon(
+                    Icons.shopping_cart,
+                    color: Colors.black,
+                    size: 30,
+                  ),
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreenStep1()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CartScreenStep1()));
                   },
                 ),
                 Positioned(
@@ -74,53 +87,59 @@ class HotelBarList extends StatelessWidget {
                     )),
               ],
             )
-
           ],
         ),
         body: FutureBuilder(
           future: getBarData(),
           builder: (context, snapshot) {
-            return snapshot.data == null ? Center(child: CircularProgressIndicator(),) : DefaultTabController(
-                length: _hotelBarItems.length,
-                child: Column(
-                  children: <Widget>[
-                    TabBar(
-                        labelPadding: EdgeInsets.only(left: 10,right: 10),
-                        isScrollable: true,
-                        indicatorColor: ColorPalette().mainGreen,
-                        labelStyle: TextStyle(
-                          fontSize: 28,
-                        ),
-                        labelColor: ColorPalette().mainBlack,
-                        tabs: List<Widget>.generate(_hotelBarItems.length, (int index){
-                          return Tab(text: _hotelBarItems[index].categoryName);
-                        })
-                    ),
-                    Expanded(
-                      child: TabBarView(
-                        children: List<Widget>.generate(_hotelBarItems.length, (int index){
-                          return Container(
-                            child: listCards(_hotelBarItems[index].categoryItems),
-                          );
-                        }),
-                      ),
-                    )
-                  ],
-                ));
+            return snapshot.data == null
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : DefaultTabController(
+                    length: _hotelBarItems.length,
+                    child: Column(
+                      children: <Widget>[
+                        TabBar(
+                            labelPadding: EdgeInsets.only(left: 10, right: 10),
+                            isScrollable: true,
+                            indicatorColor: ColorPalette().mainGreen,
+                            labelStyle: TextStyle(
+                              fontSize: 28,
+                            ),
+                            labelColor: ColorPalette().mainBlack,
+                            tabs: List<Widget>.generate(_hotelBarItems.length,
+                                (int index) {
+                              return Tab(
+                                  text: _hotelBarItems[index].categoryName);
+                            })),
+                        Expanded(
+                          child: TabBarView(
+                            children: List<Widget>.generate(
+                                _hotelBarItems.length, (int index) {
+                              return Container(
+                                child: listCards(
+                                    _hotelBarItems[index].categoryItems),
+                              );
+                            }),
+                          ),
+                        )
+                      ],
+                    ));
           },
-        )
-    );
+        ));
   }
 
   Widget listCards(List<CategoryItem> itemsData) {
     print('Count ${itemsData.length}');
     return GridView.count(
       crossAxisCount: 2,
-      children: List.generate(itemsData.length, (index) {
-      return HotelBarProductCardScreen(
-            categoryItem: itemsData[index]);
-    },
-    ),
+      children: List.generate(
+        itemsData.length,
+        (index) {
+          return HotelBarProductCardScreen(categoryItem: itemsData[index]);
+        },
+      ),
     );
   }
 }
