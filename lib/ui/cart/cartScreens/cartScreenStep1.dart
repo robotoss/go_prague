@@ -3,7 +3,8 @@ import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/theme/mainTheme.dart';
 import 'package:provider/provider.dart';
 
-import 'categoryListWidget.dart';
+
+import '../cartWidget/categoryListWidget.dart';
 
 class CartScreenStep1 extends StatefulWidget {
   @override
@@ -29,6 +30,9 @@ class _CartScreenStep1State extends State<CartScreenStep1> {
    _eatItems = List();
    _drinkItems = List();
    _toGoItems = List();
+    _cartItems.forEach((f){
+      f.index = _cartItems.indexOf(f);
+    });
     _cartItems.forEach((f){
       if(f.type == 'eat'){
         _eatItems.add(f);
