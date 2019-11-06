@@ -313,3 +313,36 @@ class CallButtons extends StatelessWidget {
     );
   }
 }
+
+class NextStep extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 49,
+      width: double.infinity,
+      child: FlatButton(
+          onPressed: () {
+
+          },
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0),
+          ),
+          color: ColorPalette().mainBlue,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Next Step',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 27,
+                    fontWeight: FontWeight.w700),
+              ),
+              Icon(Icons.chevron_right, color: Colors.white, size: 40,)
+            ],
+          )
+      ),
+    );
+  }
+}
