@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/bloc/cart_bloc.dart';
+import 'package:go_prague/theme/mainTheme.dart';
 import 'package:provider/provider.dart';
+import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 
 class CategoryCartList extends StatefulWidget {
   final String type;
@@ -60,9 +62,12 @@ class _CategoryCartListState extends State<CategoryCartList> {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            Divider(
-              height: 5,
-              color: Colors.black,
+            SizedBox(width: 10,),
+            Expanded(
+              child: Container(
+                height: 3,
+                color: ColorPalette().mainBlack,
+              ),
             )
           ],
         ),
@@ -115,7 +120,7 @@ class _CategoryCartListState extends State<CategoryCartList> {
                   Expanded(
                     flex: 7,
                     child: Text(
-                      widget.cartItems[index].name,
+                      '${widget.cartItems[index].name} - ${widget.cartItems[index].quantity}',
                       style: TextStyle(
                           fontSize: 16, fontWeight: FontWeight.w700),
                     ),
@@ -137,7 +142,7 @@ class _CategoryCartListState extends State<CategoryCartList> {
                           setState(() {
                             _restaurantTotal = _restaurantTotal - widget.cartItems[index].price;
                             bloc.clear(
-                              index,
+                              widget.cartItems[index].index,
                             );
                           });
                         }),
@@ -146,6 +151,8 @@ class _CategoryCartListState extends State<CategoryCartList> {
               );
             })
             : Container(),
+        SizedBox(height: 20,),
+        NextStep(),
       ],
     );
   }
