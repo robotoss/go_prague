@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/theme/mainTheme.dart';
+import 'package:go_prague/ui/cart/cartScreens/cartScreenStep2.dart';
 import 'package:provider/provider.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 
@@ -152,7 +153,7 @@ class _CategoryCartListState extends State<CategoryCartList> {
             })
             : Container(),
         SizedBox(height: 20,),
-        NextStep(),
+        NextStep(widgetToGo: CartScreenStep2(),),
       ],
     );
   }
