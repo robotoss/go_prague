@@ -4,7 +4,6 @@ import 'package:go_prague/theme/mainTheme.dart';
 import 'package:provider/provider.dart';
 
 
-import '../cartWidget/categoryListWidget.dart';
 
 class CartScreenStep2 extends StatefulWidget {
   @override
@@ -13,46 +12,10 @@ class CartScreenStep2 extends StatefulWidget {
 
 class _CartScreenStep2State extends State<CartScreenStep2> {
 
-  bool _showEat = false;
-  bool _showDrink = false;
-  bool _showToGo = false;
-
-
-  List<CartItem> _cartItems = List();
-  List<CartItem> _eatItems = List();
-  List<CartItem> _drinkItems = List();
-  List<CartItem> _toGoItems = List();
 
   @override
   Widget build(BuildContext context) {
     var bloc = Provider.of<CartBloc>(context);
-    _cartItems = bloc.cartItems;
-    _eatItems = List();
-    _drinkItems = List();
-    _toGoItems = List();
-    _cartItems.forEach((f){
-      f.index = _cartItems.indexOf(f);
-    });
-    _cartItems.forEach((f){
-      if(f.type == 'eat'){
-        _eatItems.add(f);
-        _showEat = true;
-      } else if (f.type == 'drink'){
-        _showDrink = true;
-        _drinkItems.add(f);
-      } else if (f.type == 'ToGo'){
-        _showToGo = true;
-        _toGoItems.add(f);
-      }
-    });
-//    int _totalCount = 0;
-//    print(bloc.restaurantItems.length);
-//    if (bloc.restaurantItems.length > 0) {
-//
-//      _totalCount = bloc.restaurantItems.length;
-//    }
-
-
 
     return Scaffold(
       body: Stack(
