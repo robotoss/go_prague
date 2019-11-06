@@ -12,7 +12,26 @@ class CartBloc with ChangeNotifier {
 //  Map<int, int> get cart => _cart;
 
   void addToCart(CartItem item) {
-    _cartItems.add(item);
+    print('Этап 1');
+
+    bool isItemFound = false;
+
+    _cartItems.forEach((f){
+      print('Этап 2');
+      if(item.name == f.name) {
+        isItemFound = true;
+        f.quantity = f.quantity + item.quantity;
+        f.price = (f.price + item.price);
+      }
+    });
+    print('Этап 3');
+
+    if(!isItemFound){
+      item.price = item.price * item.quantity;
+      _cartItems.add(item);
+    }
+
+
 
 //    if (_cart.containsKey(index)) {
 //      _cart[index] += 1;
@@ -43,9 +62,9 @@ class CartItem implements CartItems {
   final String placeName;
   final String name;
   final List<String> parameters;
-  final int price;
-  final int quantity;
+  int price;
+  int quantity;
 
 
-  CartItem(this.index, this.type, this.name, this.placeName, this.parameters, this.price, this.quantity);
+  CartItem(this.index, this.type, this.placeName, this.name, this.parameters, this.price, this.quantity);
 }
