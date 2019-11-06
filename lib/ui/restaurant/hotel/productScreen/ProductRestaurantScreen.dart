@@ -30,6 +30,7 @@ class _ProductRestaurantScreenState extends State<ProductRestaurantScreen> {
     setState(() {
       _int = items;
     });
+    print('Кол-во - $_int');
   }
 
   void optionsChose(int numberItem, String activeOptions) {
