@@ -588,7 +588,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       canvasColor: ColorPalette().mainGreen,
                     ),
                     child: DropdownButton<String>(
-                      items: <String>['Kč', 'American Dollar', 'Euro €',].map((String value) {
+                      items: <String>['Kč', 'USD ', 'Euro',].map((String value) {
                         return new DropdownMenuItem<String>(
                           value: value,
                           child: Text(
@@ -674,8 +674,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   CallButtons(color: ColorPalette().mainGreen, name: 'Reception'),
-                                  CallButtons(color: ColorPalette().mainGreen, name: 'Reception'),
-                                  CallButtons(color: ColorPalette().mainRed, name: 'Housekeeping'),
+                                  CallButtons(color: ColorPalette().mainGreen, name: 'Housekeeping'),
+                                  CallButtons(color: ColorPalette().mainRed, name: 'Emergency Call'),
                                 ],
                               ),
                             ),
