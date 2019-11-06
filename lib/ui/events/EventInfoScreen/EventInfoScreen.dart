@@ -7,7 +7,6 @@ import 'package:go_prague/ui/cart/cartScreens/cartScreenStep1.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 import 'package:go_prague/ui/widgets/carousel/carousel.dart';
 import 'package:go_prague/ui/widgets/selectAmount/selectAmount.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 
@@ -26,6 +25,13 @@ class _EventInfoScreenState extends State<EventInfoScreen> {
 
   static List<Widget> elements = List();
 
+  int _int = 1;
+
+  void setItems(int items){
+    setState(() {
+      _int = items;
+    });
+  }
 
 
 
@@ -148,7 +154,7 @@ class _EventInfoScreenState extends State<EventInfoScreen> {
                                     ),
                                   ),
                                   SizedBox(width: 15,),
-                                  SelectAmount(),
+                                  SelectAmount(updateItems: setItems,),
                                 ],
                               ),
                             ],
@@ -243,7 +249,7 @@ class _EventInfoScreenState extends State<EventInfoScreen> {
                                       ],
                                     ),
                                     SizedBox(height: 25),
-                                    AddTicketToCartButton(addToCart: (){Provider.of<CartBloc>(context).addToCart(CartItem(0, 'ToGo', '', widget.event.name, [], widget.event.price,));},),
+                                    AddTicketToCartButton(addToCart: (){Provider.of<CartBloc>(context).addToCart(CartItem(0, 'ToGo', '', widget.event.name, [], widget.event.price, _int));},),
                                   ],
                                 ),
                               )

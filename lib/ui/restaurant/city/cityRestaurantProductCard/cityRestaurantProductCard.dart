@@ -24,6 +24,15 @@ class CityRestaurantProductCard extends StatefulWidget {
 }
 
 class _CityRestaurantProductCardState extends State<CityRestaurantProductCard> {
+
+  int _int = 1;
+
+  void setItems(int items){
+    setState(() {
+      _int = items;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -99,9 +108,9 @@ class _CityRestaurantProductCardState extends State<CityRestaurantProductCard> {
                       ),
                       Row(
                         children: <Widget>[
-                          SelectAmount(),
+                          SelectAmount(updateItems: setItems,),
                           SizedBox(width: 10,),
-                          AddToCartItemButton(addToCart:  (){Provider.of<CartBloc>(context).addToCart(CartItem(0, 'eat', widget.restaurantName, widget.categoryItem.itemName, [], widget.categoryItem.price,));},),
+                          AddToCartItemButton(addToCart:  (){Provider.of<CartBloc>(context).addToCart(CartItem(0, 'eat', widget.restaurantName, widget.categoryItem.itemName, [], widget.categoryItem.price, _int));},),
                           SizedBox(width: 10,),
                           MoreBlueButton(widget: CityProductInfoScreen(categoryItem: widget.categoryItem, restaurantName: widget.restaurantName),),
                         ],

@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_prague/theme/mainTheme.dart';
 
 class SelectAmount extends StatefulWidget {
+  final Function updateItems;
+
+  SelectAmount({
+    this.updateItems,
+  });
+
   @override
   _SelectAmountState createState() => _SelectAmountState();
 }
@@ -26,6 +32,7 @@ class _SelectAmountState extends State<SelectAmount> {
              setState(() {
               if(_int > 1){
                 _int = --_int;
+                widget.updateItems(_int);
               }
              });
             },
@@ -47,6 +54,7 @@ class _SelectAmountState extends State<SelectAmount> {
               if(_int < 60) {
                 setState(() {
                   _int = ++_int;
+                  widget.updateItems(_int);
                 });
               }
             },
@@ -67,6 +75,12 @@ class _SelectAmountState extends State<SelectAmount> {
 }
 
 class SelectAmountMini extends StatefulWidget {
+  final Function updateItems;
+
+  SelectAmountMini({
+    this.updateItems,
+});
+
   @override
   _SelectAmountMiniState createState() => _SelectAmountMiniState();
 }
@@ -91,6 +105,7 @@ class _SelectAmountMiniState extends State<SelectAmountMini> {
               setState(() {
                 if(_int > 1){
                   _int = --_int;
+                  widget.updateItems(_int);
                 }
               });
             },
@@ -112,6 +127,7 @@ class _SelectAmountMiniState extends State<SelectAmountMini> {
               if(_int < 60) {
                 setState(() {
                   _int = ++_int;
+                  widget.updateItems(_int);
                 });
               }
             },

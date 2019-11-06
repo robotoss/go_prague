@@ -26,6 +26,14 @@ class _CityProductInfoScreenState extends State<CityProductInfoScreen> {
 
   Map<int, String> activeOption = Map();
 
+  int _int = 1;
+
+  void setItems(int items){
+    setState(() {
+      _int = items;
+    });
+  }
+
   void optionsChose(int numberItem, String activeOptions) {
     print('Кнопка сработала');
     setState(() {
@@ -264,14 +272,14 @@ class _CityProductInfoScreenState extends State<CityProductInfoScreen> {
                                           ),
                                         ),
                                         SizedBox(width: 10,),
-                                        SelectAmount(),
+                                        SelectAmount(updateItems: setItems,),
                                       ],
                                     )
                                   ],
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 35),
-                                  child: AddToCartButton(addToCart:  (){Provider.of<CartBloc>(context).addToCart(CartItem(0, 'eat', widget.restaurantName, widget.categoryItem.itemName, [], widget.categoryItem.price,));},),
+                                  child: AddToCartButton(addToCart:  (){Provider.of<CartBloc>(context).addToCart(CartItem(0, 'eat', widget.restaurantName, widget.categoryItem.itemName, [], widget.categoryItem.price, _int));},),
                                 )
                               ],
                             ),

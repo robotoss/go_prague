@@ -19,6 +19,16 @@ class CityBarProductCard extends StatefulWidget {
 }
 
 class _CityBarProductCardState extends State<CityBarProductCard> {
+
+  int _int = 1;
+
+  void setItems(int items){
+    setState(() {
+      _int = items;
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -96,11 +106,11 @@ class _CityBarProductCardState extends State<CityBarProductCard> {
                   ),
                   Row(
                     children: <Widget>[
-                      SelectAmountMini(),
+                      SelectAmountMini(updateItems: setItems,),
                       SizedBox(
                         width: 5,
                       ),
-                      AddToCartItemButtonMini(item: CartItem(0, 'drink', widget.barName, widget.categoryItem.itemName, [], widget.categoryItem.price,), ),
+                      AddToCartItemButtonMini(item: CartItem(0, 'drink', widget.barName, widget.categoryItem.itemName, [], widget.categoryItem.price, _int), ),
                     ],
                   )
                 ],

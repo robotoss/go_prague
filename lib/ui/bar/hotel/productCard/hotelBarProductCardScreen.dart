@@ -18,6 +18,16 @@ class HotelBarProductCardScreen extends StatefulWidget {
 }
 
 class _HotelBarProductCardScreenState extends State<HotelBarProductCardScreen> {
+
+  int _int = 1;
+
+  void setItems(int items){
+    setState(() {
+      _int = items;
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -95,11 +105,11 @@ class _HotelBarProductCardScreenState extends State<HotelBarProductCardScreen> {
                   ),
                   Row(
                     children: <Widget>[
-                      SelectAmountMini(),
+                      SelectAmountMini(updateItems: setItems,),
                       SizedBox(
                         width: 5,
                       ),
-                      AddToCartItemButtonMini(item: CartItem(0, 'drink', 'Hotel Bar', '${widget.categoryItem.itemName}', [], widget.categoryItem.price,) ),
+                      AddToCartItemButtonMini(item: CartItem(0, 'drink', 'Hotel Bar', '${widget.categoryItem.itemName}', [], widget.categoryItem.price, _int) ),
                     ],
                   )
                 ],

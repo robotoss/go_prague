@@ -24,6 +24,14 @@ class TourInfoScreen extends StatefulWidget {
 
 class _TourInfoScreenState extends State<TourInfoScreen> {
 
+  int _int = 1;
+
+  void setItems(int items){
+    setState(() {
+      _int = items;
+    });
+  }
+
   static List<Widget> elements = List();
   String _date = 'Select day';
   String _time = 'Select time';
@@ -174,7 +182,7 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
                                     ),
                                   ),
                                   SizedBox(width: 15,),
-                                  SelectAmount(),
+                                  SelectAmount(updateItems: setItems,),
                                 ],
                               ),
                             ],
@@ -300,7 +308,7 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
                                       ],
                                     ),
                                     SizedBox(height: 40),
-                                    AddToCartButton(addToCart: (){Provider.of<CartBloc>(context).addToCart(CartItem(0, 'ToGo', '', widget.tourData.name, [], widget.tourData.price,));},),
+                                    AddToCartButton(addToCart: (){Provider.of<CartBloc>(context).addToCart(CartItem(0, 'ToGo', '', widget.tourData.name, [], widget.tourData.price, _int));},),
                                     SizedBox(height: 5,)
                                   ],
                                 ),
