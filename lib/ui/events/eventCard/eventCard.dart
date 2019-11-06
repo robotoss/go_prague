@@ -85,7 +85,7 @@ class EventCard extends StatelessWidget {
                       ),
                       Row(
                         children: <Widget>[
-                          MoreBlueButton(widget:  EventInfoScreen(event: event,),),
+                          MoreBlueButtonBig(widget:  EventInfoScreen(event: event,),),
                         ],
                       )
                     ],

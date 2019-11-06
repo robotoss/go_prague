@@ -105,6 +105,36 @@ class MoreBlueButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 35,
+      width: 85,
+      child: FlatButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
+
+          },
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          color: ColorPalette().mainBlue,
+          child: Text(
+            'More',
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w700),
+          )),
+    );
+  }
+}
+
+class MoreBlueButtonBig extends StatelessWidget {
+  final Widget widget;
+
+  MoreBlueButtonBig({this.widget});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 35,
       width: 170,
       child: FlatButton(
           onPressed: () {
