@@ -38,11 +38,12 @@ class CartBloc with ChangeNotifier {
 abstract class CartItems {}
 
 class CartItem implements CartItems {
+  final int index;
   final String type;
   final String placeName;
   final String name;
   final List<String> parameters;
   final int price;
 
-  CartItem(this.type, this.name, this.placeName, this.parameters, this.price,);
+  CartItem(this.index, this.type, this.name, this.placeName, this.parameters, this.price,);
 }

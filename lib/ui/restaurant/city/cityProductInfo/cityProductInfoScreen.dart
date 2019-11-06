@@ -271,7 +271,7 @@ class _CityProductInfoScreenState extends State<CityProductInfoScreen> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 35),
-                                  child: AddToCartButton(addToCart:  (){Provider.of<CartBloc>(context).addToCart(CartItem('eat', widget.restaurantName, widget.categoryItem.itemName, [], widget.categoryItem.price,));},),
+                                  child: AddToCartButton(addToCart:  (){Provider.of<CartBloc>(context).addToCart(CartItem(0, 'eat', widget.restaurantName, widget.categoryItem.itemName, [], widget.categoryItem.price,));},),
                                 )
                               ],
                             ),

@@ -243,7 +243,7 @@ class _EventInfoScreenState extends State<EventInfoScreen> {
                                       ],
                                     ),
                                     SizedBox(height: 25),
-                                    AddTicketToCartButton(addToCart: (){Provider.of<CartBloc>(context).addToCart(CartItem('ToGo', '', widget.event.name, [], widget.event.price,));},),
+                                    AddTicketToCartButton(addToCart: (){Provider.of<CartBloc>(context).addToCart(CartItem(0, 'ToGo', '', widget.event.name, [], widget.event.price,));},),
                                   ],
                                 ),
                               )

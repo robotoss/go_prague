@@ -100,7 +100,7 @@ class _CityBarProductCardState extends State<CityBarProductCard> {
                       SizedBox(
                         width: 5,
                       ),
-                      AddToCartItemButtonMini(item: CartItem('drink', widget.barName, widget.categoryItem.itemName, [], widget.categoryItem.price,), ),
+                      AddToCartItemButtonMini(item: CartItem(0, 'drink', widget.barName, widget.categoryItem.itemName, [], widget.categoryItem.price,), ),
                     ],
                   )
                 ],
