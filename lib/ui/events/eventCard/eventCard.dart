@@ -67,7 +67,7 @@ class EventCard extends StatelessWidget {
                       Row(
                         children: <Widget>[
                           Text(
-                            'Start Time - ${event.startTime}',
+                            '${event.startTime}',
                             style: TextStyle(
                                 fontSize: 20,
                                 color: ColorPalette().textLightDark
