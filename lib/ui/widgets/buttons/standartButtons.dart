@@ -264,7 +264,7 @@ class CallButtons extends StatelessWidget {
 
     return SizedBox(
       height: 70,
-      width: 270,
+      width: 275,
       child: FlatButton(
           onPressed: () {
 
