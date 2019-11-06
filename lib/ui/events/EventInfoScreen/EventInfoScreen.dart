@@ -203,7 +203,7 @@ class _EventInfoScreenState extends State<EventInfoScreen> {
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               ConstrainedBox(
                                 constraints: BoxConstraints(
