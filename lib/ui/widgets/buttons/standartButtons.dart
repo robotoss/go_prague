@@ -315,6 +315,12 @@ class CallButtons extends StatelessWidget {
 }
 
 class NextStep extends StatelessWidget {
+  final Widget widgetToGo;
+
+  NextStep({
+    this.widgetToGo,
+});
+
 
   @override
   Widget build(BuildContext context) {
@@ -323,7 +329,7 @@ class NextStep extends StatelessWidget {
       width: double.infinity,
       child: FlatButton(
           onPressed: () {
-
+            Navigator.push(context, MaterialPageRoute(builder: (context) => widgetToGo));
           },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5.0),
