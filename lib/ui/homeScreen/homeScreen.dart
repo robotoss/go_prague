@@ -14,6 +14,7 @@ import 'package:go_prague/ui/events/EventInfoScreen/EventInfoScreen.dart';
 import 'package:go_prague/ui/events/eventsList.dart';
 import 'package:go_prague/ui/restaurant/city/cityRestaurantList.dart';
 import 'package:go_prague/ui/restaurant/hotel/hotelRestaurantList.dart';
+import 'package:go_prague/ui/services/servicesHotel/servicesHotelList.dart';
 import 'package:go_prague/ui/tours/tourInfoScreen/tourInfoScreen.dart';
 import 'package:go_prague/ui/tours/toursList/toursListScreen.dart';
 import 'package:go_prague/ui/widgets/buttons/mainCategoryTile.dart';
@@ -194,7 +195,7 @@ class HomeScreen extends StatelessWidget {
                           MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'Eat', icon: 'assets/icons/icon_main_eat.svg', secondSide: true, navigateScreen: HotelRestaurantList(), secondNavigateScreen: CityRestaurantList(),),
                           MainCategoryTile(titleColor: ColorPalette().mainBlue, name: 'Drink', icon: 'assets/icons/icon_main_drink.svg', secondSide: true, navigateScreen: HotelBarList(), secondNavigateScreen: CityBarList(),),
                           MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'To Go', icon: 'assets/icons/icon_main_go.svg', secondSide: false, navigateScreen: ToursListScreen(),),
-                          MainCategoryTile(titleColor: ColorPalette().mainBlue, name: 'Hotel Service', icon: 'assets/icons/icon_main_hotel_service.svg', secondSide: false,),
+                          MainCategoryTile(titleColor: ColorPalette().mainBlue, name: 'Hotel Service', icon: 'assets/icons/icon_main_hotel_service.svg', secondSide: false, navigateScreen: ServicesHotelList()),
                           MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'City Service', icon: 'assets/icons/icon_main_city_service.svg', secondSide: false,),
                         ],
                       ),

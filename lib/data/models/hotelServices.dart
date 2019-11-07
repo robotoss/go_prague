@@ -11,7 +11,7 @@ String hotelServicesToJson(List<HotelServices> data) => json.encode(List<dynamic
 class HotelServices {
   int categoryId;
   String categoryName;
-  List<CategoryItem> categoryItems;
+  List<HotelServicesCategoryItem> categoryItems;
 
   HotelServices({
     this.categoryId,
@@ -22,7 +22,7 @@ class HotelServices {
   factory HotelServices.fromJson(Map<String, dynamic> json) => HotelServices(
     categoryId: json["category_id"],
     categoryName: json["category_name"],
-    categoryItems: List<CategoryItem>.from(json["category_items"].map((x) => CategoryItem.fromJson(x))),
+    categoryItems: List<HotelServicesCategoryItem>.from(json["category_items"].map((x) => HotelServicesCategoryItem.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -32,17 +32,17 @@ class HotelServices {
   };
 }
 
-class CategoryItem {
+class HotelServicesCategoryItem {
   int itemId;
   String itemName;
   String imageUrl;
   String description;
-  List<Parametr> parametrs;
+  List<HotelServicesParametr> parametrs;
   dynamic price;
   String duration;
   int freeSpace;
 
-  CategoryItem({
+  HotelServicesCategoryItem({
     this.itemId,
     this.itemName,
     this.imageUrl,
@@ -53,12 +53,12 @@ class CategoryItem {
     this.freeSpace,
   });
 
-  factory CategoryItem.fromJson(Map<String, dynamic> json) => CategoryItem(
+  factory HotelServicesCategoryItem.fromJson(Map<String, dynamic> json) => HotelServicesCategoryItem(
     itemId: json["item_id"],
     itemName: json["item_name"],
     imageUrl: json["image_url"],
     description: json["description"],
-    parametrs: List<Parametr>.from(json["parametrs"].map((x) => Parametr.fromJson(x))),
+    parametrs: List<HotelServicesParametr>.from(json["parametrs"].map((x) => HotelServicesParametr.fromJson(x))),
     price: json["price"],
     duration: json["duration"] == null ? null : json["duration"],
     freeSpace: json["FreeSpace"] == null ? null : json["FreeSpace"],
@@ -76,18 +76,18 @@ class CategoryItem {
   };
 }
 
-class Parametr {
+class HotelServicesParametr {
   int parametrId;
   String parametrName;
   List<String> parametrsItems;
 
-  Parametr({
+  HotelServicesParametr({
     this.parametrId,
     this.parametrName,
     this.parametrsItems,
   });
 
-  factory Parametr.fromJson(Map<String, dynamic> json) => Parametr(
+  factory HotelServicesParametr.fromJson(Map<String, dynamic> json) => HotelServicesParametr(
     parametrId: json["parametr_id"],
     parametrName: json["parametr_name"],
     parametrsItems: List<String>.from(json["parametrs_items"].map((x) => x)),
