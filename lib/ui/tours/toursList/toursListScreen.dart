@@ -40,7 +40,7 @@ class ToursListScreen extends StatelessWidget {
             },
           ),
           title: Text(
-            'Tours',
+            'To Go',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700, color: Colors.black,),
           ),
           centerTitle: true,
