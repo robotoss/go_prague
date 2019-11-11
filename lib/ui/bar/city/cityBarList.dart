@@ -41,7 +41,7 @@ class CityBarList extends StatelessWidget {
             },
           ),
           title: Text(
-            'City Restaurants',
+            'City Bars',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700, color: Colors.black,),
           ),
           centerTitle: true,
@@ -94,7 +94,7 @@ class CityBarList extends StatelessWidget {
                       child: TabBarView(
                         children: List<Widget>.generate(_hotelRestaurantItems.length, (int index){
                           return Container(
-                            child: listCards(_hotelRestaurantItems),
+                            child: listCards(_hotelRestaurantItems, _hotelRestaurantItems[index].barType),
                           );
                         }),
                       ),
@@ -106,15 +106,22 @@ class CityBarList extends StatelessWidget {
     );
   }
 
-  Widget listCards(List<CityBarItems> itemsData) {
+  Widget listCards(List<CityBarItems> itemsData, String categoryName) {
+    List<CityBarItems> filterList = List();
+    itemsData.forEach((f){
+      print('$categoryName - ${f.barType}');
+      if(categoryName == f.barType){
+        filterList.add(f);
+      }
+    });
     print('Count ${itemsData.length}');
     return ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
-        itemCount: itemsData.length,
+        itemCount: filterList.length,
         itemBuilder: (context, index){
           return CityBarCard(
-            categoryItem: itemsData[index],
+            categoryItem: filterList[index],
           );
         }
     );
