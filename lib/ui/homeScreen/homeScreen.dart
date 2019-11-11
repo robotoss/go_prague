@@ -35,10 +35,10 @@ class HomeScreen extends StatelessWidget {
     List<ToursData> _listData;
     await Repository().accountTypes().then((toursList) {
       _listData = toursList;
-      if(elements.isEmpty) {
+      if (elements.isEmpty) {
         toursList.forEach((slide) {
-          slide.items.forEach((response){
-            if(response.mainScreen) {
+          slide.items.forEach((response) {
+            if (response.mainScreen) {
               elements.add(carouselItem(context, response, carouselHeight));
             }
           });
@@ -55,16 +55,16 @@ class HomeScreen extends StatelessWidget {
   }
 
   Future<List<UpcomingEvents>> getEvents(
-      BuildContext context,
-      ) async {
+    BuildContext context,
+  ) async {
     List<UpcomingEvents> _listData;
     List<UpcomingEvents> _listMainData = List();
 
     await Repository().upcomingEventsList().then((toursList) {
       print(1);
       _listData = toursList;
-      _listData.forEach((f){
-        if(f.mainScreen) {
+      _listData.forEach((f) {
+        if (f.mainScreen) {
           _listMainData.add(f);
         }
       });
@@ -79,6 +79,7 @@ class HomeScreen extends StatelessWidget {
 
     return _listMainData;
   }
+
   int _totalCount = 0;
 
   @override
@@ -122,41 +123,69 @@ class HomeScreen extends StatelessWidget {
             children: <Widget>[
               Column(
                 children: <Widget>[
-                  SizedBox(height: 15,),
+                  SizedBox(
+                    height: 15,
+                  ),
                   Container(
                     height: 60,
                     width: double.infinity,
-                    child:  Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        IconButton(icon: new Icon(Icons.menu, color: Colors.white, size: 30,),
-                            onPressed: () => _scaffoldKey.currentState.openDrawer()),
-//SvgPicture.asset('assets/icons/logo_go_prague_main.svg', width: 230, color: Colors.white,),
-                        Text(
-                            'Welcome in Go.Prague',
-                            style: TextStyle(fontSize: 32, fontWeight: FontWeight.w700,color: Colors.white,)),
-                       Stack(
-                         children: <Widget>[
-                           IconButton(
-                             icon: Icon(Icons.shopping_cart, color: Colors.white, size: 30,),
-                             onPressed: () {
-                               Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreenStep1()));
-                             },
-                           ),
-                           Positioned(
-                               top: 3.0,
-                               right: 7,
-                               child: new Center(
-                                 child: new Text(
-                                   '$_totalCount',
-                                   style: new TextStyle(
-                                       color: Colors.red,
-                                       fontSize: 12.0,
-                                       fontWeight: FontWeight.w700),
-                                 ),
-                               )),
-                         ],
-                       )
+                        IconButton(
+                            icon: new Icon(
+                              Icons.menu,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                            onPressed: () =>
+                                _scaffoldKey.currentState.openDrawer()),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            SvgPicture.asset(
+                              'assets/icons/go_prague_logo.svg',
+//                          width: 230,
+                            ),
+//                            SvgPicture.asset(
+//                              'assets/icons/logo_prague.svg',
+////                          width: 230,
+//                            ),
+                          ],
+                        ),
+//                        Text(
+//                            'Welcome in Go.Prague',
+//                            style: TextStyle(fontSize: 32, fontWeight: FontWeight.w700,color: Colors.white,)),
+                        Stack(
+                          children: <Widget>[
+                            IconButton(
+                              icon: Icon(
+                                Icons.shopping_cart,
+                                color: Colors.white,
+                                size: 30,
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            CartScreenStep1()));
+                              },
+                            ),
+                            Positioned(
+                                top: 3.0,
+                                right: 7,
+                                child: new Center(
+                                  child: new Text(
+                                    '$_totalCount',
+                                    style: new TextStyle(
+                                        color: Colors.red,
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                )),
+                          ],
+                        )
                       ],
                     ),
                   ),
@@ -172,7 +201,6 @@ class HomeScreen extends StatelessWidget {
                           )
                         : loadData(context, carouselHeight);
                   }),
-
               Container(
                 width: double.infinity,
                 margin: EdgeInsets.only(left: 0),
@@ -184,21 +212,51 @@ class HomeScreen extends StatelessWidget {
                       child: Text(
                         'Services',
                         style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 27
-                        ),
+                            fontWeight: FontWeight.w700, fontSize: 27),
                       ),
                     ),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: <Widget>[
-                          SizedBox(width: 15,),
-                          MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'Eat', icon: 'assets/icons/icon_main_eat.svg', secondSide: true, navigateScreen: HotelRestaurantList(), secondNavigateScreen: CityRestaurantList(),),
-                          MainCategoryTile(titleColor: ColorPalette().mainBlue, name: 'Drink', icon: 'assets/icons/icon_main_drink.svg', secondSide: true, navigateScreen: HotelBarList(), secondNavigateScreen: CityBarList(),),
-                          MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'To Go', icon: 'assets/icons/icon_main_go.svg', secondSide: false, navigateScreen: ToursListScreen(),),
-                          MainCategoryTile(titleColor: ColorPalette().mainBlue, name: 'Hotel Service', icon: 'assets/icons/icon_main_hotel_service.svg', secondSide: false, navigateScreen: ServicesHotelList()),
-                          MainCategoryTile(titleColor: ColorPalette().mainGreen, name: 'City Service', icon: 'assets/icons/icon_main_city_service.svg', secondSide: false,),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          MainCategoryTile(
+                            titleColor: ColorPalette().mainGreen,
+                            name: 'Eat',
+                            icon: 'assets/icons/icon_main_eat.svg',
+                            secondSide: true,
+                            navigateScreen: HotelRestaurantList(),
+                            secondNavigateScreen: CityRestaurantList(),
+                          ),
+                          MainCategoryTile(
+                            titleColor: ColorPalette().mainBlue,
+                            name: 'Drink',
+                            icon: 'assets/icons/icon_main_drink.svg',
+                            secondSide: true,
+                            navigateScreen: HotelBarList(),
+                            secondNavigateScreen: CityBarList(),
+                          ),
+                          MainCategoryTile(
+                            titleColor: ColorPalette().mainGreen,
+                            name: 'To Go',
+                            icon: 'assets/icons/icon_main_go.svg',
+                            secondSide: false,
+                            navigateScreen: ToursListScreen(),
+                          ),
+                          MainCategoryTile(
+                              titleColor: ColorPalette().mainBlue,
+                              name: 'Hotel Service',
+                              icon: 'assets/icons/icon_main_hotel_service.svg',
+                              secondSide: false,
+                              navigateScreen: ServicesHotelList()),
+                          MainCategoryTile(
+                            titleColor: ColorPalette().mainGreen,
+                            name: 'City Service',
+                            icon: 'assets/icons/icon_main_city_service.svg',
+                            secondSide: false,
+                          ),
                         ],
                       ),
                     )
@@ -208,12 +266,11 @@ class HomeScreen extends StatelessWidget {
               Container(
                 height: 205,
                 width: double.infinity,
-               decoration: BoxDecoration(
-                 image: DecorationImage(
-                   image: AssetImage('assets/images/special_background.jpg'),
-                   fit: BoxFit.cover
-                 )
-               ),
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image:
+                            AssetImage('assets/images/special_background.jpg'),
+                        fit: BoxFit.cover)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -222,17 +279,14 @@ class HomeScreen extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.w700,
-                          color: Colors.white
-                      ),
+                          color: Colors.white),
                     ),
                     SizedBox(height: 45),
                     SizedBox(
                       height: 30,
                       width: 150,
                       child: FlatButton(
-                          onPressed: () {
-
-                          },
+                          onPressed: () {},
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0),
                           ),
@@ -251,135 +305,169 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 5),
                 child: Container(
-                  height: 170,
-                  width: double.infinity,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: Text(
-                              'Upcoming Events',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 24,
-
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 5),
-                            child: GestureDetector(
-                              onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => EventsList()));
-                              },
+                    height: 170,
+                    width: double.infinity,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20),
                               child: Text(
-                                'Show more...',
+                                'Upcoming Events',
                                 style: TextStyle(
-                                  color: ColorPalette().textLightDark,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 24,
                                 ),
                               ),
                             ),
-                          )
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: FutureBuilder(
-                          future: getEvents(context),
-                            builder: (context, snapshot) {
-                            _events = snapshot.data;
-                            return snapshot.data == null ? loadData(context, 115) :
-                            Container(
-                              height: 115,
-                              width: double.infinity,
-                              child: ListView.builder(
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: _events.length,
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: GestureDetector(
-                                        onTap: (){
-                                          Navigator.push(context, MaterialPageRoute(builder: (context) => EventInfoScreen(event: _events[index],)));
-                                        },
-                                        child: Container(
-                                          width: 345,
-                                          height: 120,
-                                          color: Colors.transparent,
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: <Widget>[
-                                              Container(
-                                                height: 115,
-                                                width: 115,
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.all(Radius.circular(6)),
-                                                  color: ColorPalette().mainBlack,
-                                                  image: DecorationImage(
-                                                    image: CachedNetworkImageProvider(_events[index].imgUrls[0]),
-                                                    fit: BoxFit.cover
-                                                  )
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 215,
-                                                child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: <Widget>[
-                                                    Text(
-                                                      _events[index].name,
-                                                      maxLines: 1,
-                                                      style: TextStyle(
-                                                        fontSize: 24
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                        _events[index].article,
-                                                      softWrap: true,
-                                                      maxLines: 2,
-                                                      style: TextStyle(
-                                                        fontSize: 18,
-                                                        color: ColorPalette().textLightDark
-                                                      ),
-                                                    ),
-                                                    Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                      children: <Widget>[
-                                                        Text(
-                                                            '${_events[index].price} Kč',
-                                                          style: TextStyle(
-                                                            fontSize: 18,
-                                                            fontWeight: FontWeight.w700
-                                                          ),
-                                                        ),
-                                                        MoreButton(widget: EventInfoScreen(event: _events[index],),),
-                                                      ],
-                                                    )
-                                                  ],
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }
+                            Padding(
+                              padding: const EdgeInsets.only(right: 5),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => EventsList()));
+                                },
+                                child: Text(
+                                  'Show more...',
+                                  style: TextStyle(
+                                      color: ColorPalette().textLightDark,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w700),
+                                ),
                               ),
-                            );
-                            }
+                            )
+                          ],
                         ),
-                      ),
-                    ],
-                  )
-                ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: FutureBuilder(
+                              future: getEvents(context),
+                              builder: (context, snapshot) {
+                                _events = snapshot.data;
+                                return snapshot.data == null
+                                    ? loadData(context, 115)
+                                    : Container(
+                                        height: 115,
+                                        width: double.infinity,
+                                        child: ListView.builder(
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: _events.length,
+                                            itemBuilder: (context, index) {
+                                              return Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10),
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                EventInfoScreen(
+                                                                  event: _events[
+                                                                      index],
+                                                                )));
+                                                  },
+                                                  child: Container(
+                                                    width: 345,
+                                                    height: 120,
+                                                    color: Colors.transparent,
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: <Widget>[
+                                                        Container(
+                                                          height: 115,
+                                                          width: 115,
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .all(Radius
+                                                                          .circular(
+                                                                              6)),
+                                                              color:
+                                                                  ColorPalette()
+                                                                      .mainBlack,
+                                                              image: DecorationImage(
+                                                                  image: CachedNetworkImageProvider(
+                                                                      _events[index]
+                                                                              .imgUrls[
+                                                                          0]),
+                                                                  fit: BoxFit
+                                                                      .cover)),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 215,
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            children: <Widget>[
+                                                              Text(
+                                                                _events[index]
+                                                                    .name,
+                                                                maxLines: 1,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        24),
+                                                              ),
+                                                              Text(
+                                                                _events[index]
+                                                                    .article,
+                                                                softWrap: true,
+                                                                maxLines: 2,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        18,
+                                                                    color: ColorPalette()
+                                                                        .textLightDark),
+                                                              ),
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: <
+                                                                    Widget>[
+                                                                  Text(
+                                                                    '${_events[index].price} Kč',
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            18,
+                                                                        fontWeight:
+                                                                            FontWeight.w700),
+                                                                  ),
+                                                                  MoreButton(
+                                                                    widget:
+                                                                        EventInfoScreen(
+                                                                      event: _events[
+                                                                          index],
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              )
+                                                            ],
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            }),
+                                      );
+                              }),
+                        ),
+                      ],
+                    )),
               ),
             ],
           )
@@ -389,7 +477,7 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-Widget loadData(BuildContext context,  double itemHeight){
+Widget loadData(BuildContext context, double itemHeight) {
   return Container(
     height: itemHeight,
     width: MediaQuery.of(context).size.width,
@@ -419,10 +507,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
               height: 300,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/images/demo_dawer_bg.jpg'),
-                  )
-              ),
+                fit: BoxFit.cover,
+                image: AssetImage('assets/images/demo_dawer_bg.jpg'),
+              )),
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Column(
@@ -489,7 +576,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
                             fontSize: 38,
-
                           ),
                         )
                       ],
@@ -500,22 +586,20 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Container(
-                            padding: EdgeInsets.all(5),
+                              padding: EdgeInsets.all(5),
 //                        width: ,
 //                        height: ,
-                            decoration: BoxDecoration(
-                              color: ColorPalette().mainGreen,
-                              borderRadius: BorderRadius.all(Radius.circular(5))
-                            ),
-                            child: Text(
-                              'My Orders',
-                              style: TextStyle(
-                                fontSize: 22,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700
-                              ),
-                            )
-                          ),
+                              decoration: BoxDecoration(
+                                  color: ColorPalette().mainGreen,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5))),
+                              child: Text(
+                                'My Orders',
+                                style: TextStyle(
+                                    fontSize: 22,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700),
+                              )),
                         ),
                       ),
                     )
@@ -533,15 +617,20 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     style: TextStyle(
                         color: ColorPalette().textLightDark,
                         fontSize: 24,
-                        fontWeight: FontWeight.w700
-                    ),
+                        fontWeight: FontWeight.w700),
                   ),
                   Theme(
                     data: Theme.of(context).copyWith(
                       canvasColor: ColorPalette().mainGreen,
                     ),
                     child: DropdownButton<String>(
-                      items: <String>['English', 'Русский', 'Český', 'Deutch', '中國人'].map((String value) {
+                      items: <String>[
+                        'English',
+                        'Русский',
+                        'Český',
+                        'Deutch',
+                        '中國人'
+                      ].map((String value) {
                         return new DropdownMenuItem<String>(
                           value: value,
                           child: Text(
@@ -549,8 +638,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                             style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.w700,
-                                color: Colors.white
-                            ),
+                                color: Colors.white),
                           ),
                         );
                       }).toList(),
@@ -558,15 +646,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         setState(() {
                           _language = value;
                         });
-
                       },
                       hint: Text(
                         _language,
                         style: TextStyle(
-                          fontSize: 24,
+                            fontSize: 24,
                             fontWeight: FontWeight.w700,
-                            color: ColorPalette().textDark
-                        ),
+                            color: ColorPalette().textDark),
                       ),
                     ),
                   ),
@@ -583,15 +669,18 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     style: TextStyle(
                         color: ColorPalette().textLightDark,
                         fontSize: 24,
-                        fontWeight: FontWeight.w700
-                    ),
+                        fontWeight: FontWeight.w700),
                   ),
                   Theme(
                     data: Theme.of(context).copyWith(
                       canvasColor: ColorPalette().mainGreen,
                     ),
                     child: DropdownButton<String>(
-                      items: <String>['Kč', 'USD ', 'Euro',].map((String value) {
+                      items: <String>[
+                        'Kč',
+                        'USD ',
+                        'Euro',
+                      ].map((String value) {
                         return new DropdownMenuItem<String>(
                           value: value,
                           child: Text(
@@ -599,8 +688,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                             style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.w700,
-                                color: Colors.white
-                            ),
+                                color: Colors.white),
                           ),
                         );
                       }).toList(),
@@ -608,15 +696,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         setState(() {
                           _money = value;
                         });
-
                       },
                       hint: Text(
                         _money,
                         style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.w700,
-                            color: ColorPalette().textDark
-                        ),
+                            color: ColorPalette().textDark),
                       ),
                     ),
                   ),
@@ -633,27 +719,24 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     style: TextStyle(
                         color: ColorPalette().textLightDark,
                         fontSize: 24,
-                        fontWeight: FontWeight.w700
-                    ),
+                        fontWeight: FontWeight.w700),
                   ),
                   SizedBox(width: 10),
                   Container(
-                      padding: EdgeInsets.symmetric(horizontal: 35, vertical: 5),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 35, vertical: 5),
 //                        width: ,
 //                        height: ,
                       decoration: BoxDecoration(
                           color: ColorPalette().mainGreen,
-                          borderRadius: BorderRadius.all(Radius.circular(7))
-                      ),
+                          borderRadius: BorderRadius.all(Radius.circular(7))),
                       child: Text(
                         'Read',
                         style: TextStyle(
                             fontSize: 24,
                             color: Colors.white,
-                            fontWeight: FontWeight.w700
-                        ),
-                      )
-                  )
+                            fontWeight: FontWeight.w700),
+                      ))
                 ],
               ),
             ),
@@ -664,7 +747,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   width: 280,
                   height: 60,
                   child: FlatButton(
-                    onPressed: (){
+                    onPressed: () {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
@@ -674,11 +757,18 @@ class _CustomDrawerState extends State<CustomDrawer> {
                               width: 300,
                               height: 260,
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
-                                  CallButtons(color: ColorPalette().mainGreen, name: 'Reception'),
-                                  CallButtons(color: ColorPalette().mainGreen, name: 'Housekeeping'),
-                                  CallButtons(color: ColorPalette().mainRed, name: 'Emergency Call'),
+                                  CallButtons(
+                                      color: ColorPalette().mainGreen,
+                                      name: 'Reception'),
+                                  CallButtons(
+                                      color: ColorPalette().mainGreen,
+                                      name: 'Housekeeping'),
+                                  CallButtons(
+                                      color: ColorPalette().mainRed,
+                                      name: 'Emergency Call'),
                                 ],
                               ),
                             ),
@@ -695,14 +785,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 24,
-                          fontWeight: FontWeight.w700
-                      ),
+                          fontWeight: FontWeight.w700),
                     ),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 25,)
+            SizedBox(
+              height: 25,
+            )
           ],
         ),
       ),
@@ -710,11 +801,16 @@ class _CustomDrawerState extends State<CustomDrawer> {
   }
 }
 
-
-Widget carouselItem(BuildContext context, ItemTourData sliderData, double carouselHeight) {
+Widget carouselItem(
+    BuildContext context, ItemTourData sliderData, double carouselHeight) {
   return GestureDetector(
-    onTap: (){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => TourInfoScreen(tourData: sliderData,)));
+    onTap: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => TourInfoScreen(
+                    tourData: sliderData,
+                  )));
     },
     child: Container(
       height: carouselHeight,
@@ -754,7 +850,12 @@ Widget carouselItem(BuildContext context, ItemTourData sliderData, double carous
                   width: 150,
                   child: FlatButton(
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => TourInfoScreen(tourData: sliderData,)));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => TourInfoScreen(
+                                      tourData: sliderData,
+                                    )));
                       },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
