@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/data/models/toursData.dart';
 import 'package:go_prague/data/models/upcomingEvents.dart';
@@ -130,6 +131,7 @@ class HomeScreen extends StatelessWidget {
                       children: <Widget>[
                         IconButton(icon: new Icon(Icons.menu, color: Colors.white, size: 30,),
                             onPressed: () => _scaffoldKey.currentState.openDrawer()),
+//SvgPicture.asset('assets/icons/logo_go_prague_main.svg', width: 230, color: Colors.white,),
                         Text(
                             'Welcome in Go.Prague',
                             style: TextStyle(fontSize: 32, fontWeight: FontWeight.w700,color: Colors.white,)),
