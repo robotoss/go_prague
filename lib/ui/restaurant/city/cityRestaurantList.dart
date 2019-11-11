@@ -94,7 +94,7 @@ class CityRestaurantList extends StatelessWidget {
                       child: TabBarView(
                         children: List<Widget>.generate(_hotelRestaurantItems.length, (int index){
                           return Container(
-                            child: listCards(_hotelRestaurantItems),
+                            child: listCards(_hotelRestaurantItems, _hotelRestaurantItems[index].restaurantType),
                           );
                         }),
                       ),
@@ -106,15 +106,23 @@ class CityRestaurantList extends StatelessWidget {
     );
   }
 
-  Widget listCards(List<CityRestaurantItems> itemsData) {
+  Widget listCards(List<CityRestaurantItems> itemsData, String categoryName) {
+
+    List<CityRestaurantItems> filterList = List();
+    itemsData.forEach((f){
+      print('$categoryName - ${f.restaurantType}');
+      if(categoryName == f.restaurantType){
+        filterList.add(f);
+      }
+    });
     print('Count ${itemsData.length}');
     return ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
-        itemCount: itemsData.length,
+        itemCount: filterList.length,
         itemBuilder: (context, index){
           return CityRestaurantCardScreen(
-            categoryItem: itemsData[index],
+            categoryItem: filterList[index],
           );
         }
     );
