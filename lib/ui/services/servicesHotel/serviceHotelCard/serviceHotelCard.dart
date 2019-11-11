@@ -25,6 +25,7 @@ class _ServiceHotelCardState extends State<ServiceHotelCard> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.catName);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
@@ -105,20 +106,20 @@ class _ServiceHotelCardState extends State<ServiceHotelCard> {
                       Row(
                         children: <Widget>[
                           Text(
-                            '~${ widget.serviceHotelItem.duration}',
+                            widget.catName != 'Room Services' ? '~${widget.serviceHotelItem.duration}': '',
                             style: TextStyle(
                                 fontSize: 16,
                                 color: ColorPalette().textLightDark
                             ),
                           ),
-//                          SizedBox(width: 15),
-//                          Text(
-//                            '${widget.tourItem.price} Kč',
-//                            style: TextStyle(
-//                                fontSize: 20,
-//                                color: ColorPalette().textLightDark
-//                            ),
-//                          ),
+                          SizedBox(width: 15),
+                          Text(
+                            '${widget.serviceHotelItem.price} Kč',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: ColorPalette().textLightDark
+                            ),
+                          ),
                         ],
                       ),
                       Row(
