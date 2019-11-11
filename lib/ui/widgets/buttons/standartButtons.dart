@@ -56,7 +56,7 @@ class AddToCartButton extends StatelessWidget {
             ),
             color: ColorPalette().mainGreen,
             child: Text(
-              'Add to cart',
+              'Add to Cart',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 27,
