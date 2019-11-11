@@ -104,20 +104,20 @@ class _TourCardScreenState extends State<TourCardScreen> {
                       Row(
                         children: <Widget>[
                           Text(
-                            '~${ widget.tourItem.duration}',
+                            '~${widget.tourItem.duration}',
                             style: TextStyle(
                                 fontSize: 16,
                                 color: ColorPalette().textLightDark
                             ),
                           ),
-//                          SizedBox(width: 15),
-//                          Text(
-//                            '${widget.tourItem.price} Kč',
-//                            style: TextStyle(
-//                                fontSize: 20,
-//                                color: ColorPalette().textLightDark
-//                            ),
-//                          ),
+                          SizedBox(width: 15),
+                          Text(
+                            '${widget.tourItem.price} Kč',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: ColorPalette().textLightDark
+                            ),
+                          ),
                         ],
                       ),
                       Row(
