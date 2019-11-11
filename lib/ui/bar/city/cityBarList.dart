@@ -11,11 +11,16 @@ import 'barCard/cityBarCard.dart';
 class CityBarList extends StatelessWidget {
 
   static List<CityBarItems> _hotelRestaurantItems = List();
+  static List<String> _tabList = List();
 
   Future<List<CityBarItems>> getCityBarData() async{
 
     await Repository().cityBarList().then((response){
       _hotelRestaurantItems = response;
+      _hotelRestaurantItems.forEach((f){
+        _tabList.add(f.barType);
+      });
+      _tabList = _tabList.toSet().toList();
     });
     print('Дата которая приходит - $_hotelRestaurantItems');
     return _hotelRestaurantItems;
@@ -74,7 +79,7 @@ class CityBarList extends StatelessWidget {
           future: getCityBarData(),
           builder: (context, snapshot) {
             return snapshot.data == null ? Center(child: CircularProgressIndicator(),) : DefaultTabController(
-                length: _hotelRestaurantItems.length,
+                length: _tabList.length,
                 child: Column(
                   children: <Widget>[
                     TabBar(
@@ -85,16 +90,16 @@ class CityBarList extends StatelessWidget {
                           fontSize: 28,
                         ),
                         labelColor: ColorPalette().mainBlack,
-                        tabs: List<Widget>.generate(_hotelRestaurantItems.length, (int index){
-                          return Tab(text: _hotelRestaurantItems[index].barType);
+                        tabs: List<Widget>.generate(_tabList.length, (int index){
+                          return Tab(text: _tabList[index]);
 
                         })
                     ),
                     Expanded(
                       child: TabBarView(
-                        children: List<Widget>.generate(_hotelRestaurantItems.length, (int index){
+                        children: List<Widget>.generate(_tabList.length, (int index){
                           return Container(
-                            child: listCards(_hotelRestaurantItems, _hotelRestaurantItems[index].barType),
+                            child: listCards(_hotelRestaurantItems,_tabList[index]),
                           );
                         }),
                       ),
