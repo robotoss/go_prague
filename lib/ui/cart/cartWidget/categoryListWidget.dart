@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/theme/mainTheme.dart';
 import 'package:go_prague/ui/cart/cartScreens/cartScreenStep2.dart';
@@ -32,7 +33,8 @@ class _CategoryCartListState extends State<CategoryCartList> {
   }
 
   void getSum() {
-    widget.cartItems.forEach((f){
+    _restaurantTotal = 0;
+    widget.cartItems.forEach((f) {
       _restaurantTotal = _restaurantTotal + f.price;
     });
   }
@@ -63,7 +65,9 @@ class _CategoryCartListState extends State<CategoryCartList> {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            SizedBox(width: 10,),
+            SizedBox(
+              width: 10,
+            ),
             Expanded(
               child: Container(
                 height: 3,
@@ -87,8 +91,7 @@ class _CategoryCartListState extends State<CategoryCartList> {
                 children: <Widget>[
                   Text(
                     'Total',
-                    style: TextStyle(
-                        fontSize: 24, fontWeight: FontWeight.w700),
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
                   ),
                   Row(
                     children: <Widget>[
@@ -112,48 +115,91 @@ class _CategoryCartListState extends State<CategoryCartList> {
         ),
         _showHotel
             ? ListView.builder(
-          shrinkWrap: true,
-            scrollDirection: Axis.vertical,
-            itemCount: widget.cartItems.length,
-            itemBuilder: (context, index) {
-              return Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 7,
-                    child: Text(
-                      '${widget.cartItems[index].name} - ${widget.cartItems[index].quantity}',
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.w700),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Text(
-                      '${ widget.cartItems[index].price} Kč',
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.w700),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: IconButton(
-                        icon: Icon(Icons.delete_outline),
-                        onPressed: () {
-                          setState(() {
-                            _restaurantTotal = _restaurantTotal - widget.cartItems[index].price;
-                            bloc.clear(
-                              widget.cartItems[index].index,
-                            );
-                          });
-                        }),
-                  )
-                ],
-              );
-            })
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                itemCount: widget.cartItems.length,
+                itemBuilder: (context, index) {
+                  return Row(
+                    children: <Widget>[
+                      Expanded(
+                          flex: 7,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                '${widget.cartItems[index].name}',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w700),
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  GestureDetector(
+                                      onTap: () {
+                                       setState(() {
+                                         bloc.changeQuantity(index, false);
+                                         getSum();
+                                       });
+                                      },
+                                      child: SvgPicture.asset(
+                                          'assets/icons/icon_minus.svg')),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    widget.cartItems[index].quantity.toString(),
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  GestureDetector(
+                                      onTap: () {
+                                       setState(() {
+                                         bloc.changeQuantity(index, true);
+                                         getSum();
+                                       });
+                                      },
+                                      child: SvgPicture.asset(
+                                          'assets/icons/icon_plus.svg')),
+                                ],
+                              )
+                            ],
+                          )),
+                      Expanded(
+                        flex: 2,
+                        child: Text(
+                          '${widget.cartItems[index].price} Kč',
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: IconButton(
+                            icon: Icon(Icons.delete_outline),
+                            onPressed: () {
+                              setState(() {
+                                _restaurantTotal = _restaurantTotal -
+                                    widget.cartItems[index].price;
+                                bloc.clear(
+                                  widget.cartItems[index].index,
+                                );
+                              });
+                            }),
+                      )
+                    ],
+                  );
+                })
             : Container(),
-        SizedBox(height: 20,),
-        NextStep(widgetToGo: CartScreenStep2(),),
+        SizedBox(
+          height: 20,
+        ),
+        NextStep(
+          widgetToGo: CartScreenStep2(),
+        ),
       ],
     );
   }

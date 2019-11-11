@@ -52,6 +52,31 @@ class CartBloc with ChangeNotifier {
 //      notifyListeners();
 //    }
   }
+
+  void changeQuantity (int index,  bool plus ) {
+    int _summ = _cartItems[index].price;
+    double _price = _cartItems[index].price / _cartItems[index].quantity;
+
+    if(plus){
+     if(_cartItems[index].quantity < 20){
+       _cartItems[index].quantity++;
+       _cartItems[index].price = _price.toInt() *  _cartItems[index].quantity;
+     }
+    } else {
+     if(_cartItems[index].quantity > 1){
+       _cartItems[index].quantity--;
+       _cartItems[index].price = _price.toInt() *  _cartItems[index].quantity;
+     }
+    }
+
+
+    notifyListeners();
+
+//    if (_cart.containsKey(index)) {
+//      _cart.remove(index);
+//      notifyListeners();
+//    }
+  }
 }
 
 abstract class CartItems {}
