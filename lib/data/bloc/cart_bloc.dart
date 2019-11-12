@@ -18,7 +18,7 @@ class CartBloc with ChangeNotifier {
 
     _cartItems.forEach((f){
       print('Этап 2');
-      if(item.name == f.name) {
+      if(item.name == f.name && item.placeName == f.placeName) {
         isItemFound = true;
         f.quantity = f.quantity + item.quantity;
         f.price = (f.price + item.price);
