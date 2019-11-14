@@ -38,12 +38,14 @@ class _CategoryCartListState extends State<CategoryCartList> {
 
 
   void setByCategory() {
-
+    placeNames.clear();
     widget.cartItems.forEach((f){
-      placeNames.add(f.placeName);
+     if(f.type == widget.type){
+       placeNames.add(f.placeName);
+     }
     });
     placeNames = placeNames.toSet().toList();
-    print(placeNames);
+    print('Placed_NAME - $placeNames');
   }
 
 

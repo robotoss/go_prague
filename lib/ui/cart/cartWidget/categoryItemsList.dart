@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_prague/data/bloc/cart_bloc.dart';
+import 'package:go_prague/theme/mainTheme.dart';
 import 'package:go_prague/ui/cart/cartScreens/cartScreenStep2.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 import 'package:provider/provider.dart';
@@ -50,13 +51,13 @@ class _ListItemsInCartState extends State<ListItemsInCart> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         SizedBox(height: 35,),
-        Text(
-          widget.placeName,
+        cartItems[0].placeName != '' ? Text(
+          cartItems[0].placeName,
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w700
           ),
-        ),
+        ) : Container(),
         Padding(
           padding: const EdgeInsets.only(top: 20),
           child: GestureDetector(
@@ -107,10 +108,14 @@ class _ListItemsInCartState extends State<ListItemsInCart> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Text(
-                                '${cartItems[index].name}',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w700),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.50,
+                                child: Text(
+                                  '${cartItems[index].name}',
+                                  softWrap: true,
+                                  style: TextStyle(
+                                      fontSize: 16, fontWeight: FontWeight.w700),
+                                ),
                               ),
                               Row(
                                 children: <Widget>[
@@ -121,8 +126,10 @@ class _ListItemsInCartState extends State<ListItemsInCart> {
                                           getSum();
                                         });
                                       },
-                                      child: SvgPicture.asset(
-                                          'assets/icons/icon_minus.svg')),
+                                    child: Icon(Icons.remove_circle, color: Colors.black12,),
+//                                      child: SvgPicture.asset(
+//                                          'assets/icons/icon_minus.svg')
+                                  ),
                                   SizedBox(
                                     width: 5,
                                   ),
@@ -142,8 +149,10 @@ class _ListItemsInCartState extends State<ListItemsInCart> {
                                           getSum();
                                         });
                                       },
-                                      child: SvgPicture.asset(
-                                          'assets/icons/icon_plus.svg')),
+                                    child: Icon(Icons.add_circle, color: ColorPalette().mainGreen.withOpacity(0.7),),
+//                                      child: SvgPicture.asset(
+//                                          'assets/icons/icon_plus.svg')
+                                          ),
                                 ],
                               )
                             ],
@@ -162,13 +171,13 @@ class _ListItemsInCartState extends State<ListItemsInCart> {
                         child: IconButton(
                             icon: Icon(Icons.delete_outline),
                             onPressed: () {
-//                          setState(() {
-//                            _restaurantTotal = _restaurantTotal -
-//                                widget.cartItems[index].price;
-//                            bloc.clear(
-//                              widget.cartItems[index].index,
-//                            );
-//                          });
+                          setState(() {
+                            _restaurantTotal = _restaurantTotal -
+                                widget.allCartItems[index].price;
+                            bloc.clear(
+                              widget.allCartItems[index].index,
+                            );
+                          });
                             }),
                       )
                     ],

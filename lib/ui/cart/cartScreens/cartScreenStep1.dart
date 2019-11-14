@@ -25,6 +25,9 @@ class _CartScreenStep1State extends State<CartScreenStep1> {
 
   @override
   Widget build(BuildContext context) {
+    _eatItems.clear();
+    _drinkItems.clear();
+    _toGoItems.clear();
     var bloc = Provider.of<CartBloc>(context);
     _cartItems = bloc.cartItems;
    _eatItems = List();
