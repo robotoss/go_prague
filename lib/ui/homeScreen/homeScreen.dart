@@ -124,7 +124,7 @@ class HomeScreen extends StatelessWidget {
               Column(
                 children: <Widget>[
                   SizedBox(
-                    height: 15,
+                    height: 25,
                   ),
                   Container(
                     height: 60,
@@ -140,18 +140,12 @@ class HomeScreen extends StatelessWidget {
                             ),
                             onPressed: () =>
                                 _scaffoldKey.currentState.openDrawer()),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            SvgPicture.asset(
-                              'assets/icons/go_prague_logo.svg',
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: SvgPicture.asset(
+                            'assets/icons/go_prague_logo.svg',
 //                          width: 230,
-                            ),
-//                            SvgPicture.asset(
-//                              'assets/icons/logo_prague.svg',
-////                          width: 230,
-//                            ),
-                          ],
+                          ),
                         ),
 //                        Text(
 //                            'Welcome in Go.Prague',
