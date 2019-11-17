@@ -5,6 +5,10 @@ class CartBloc with ChangeNotifier {
   List<CartItem> _cartItems = [];
   List<CartItem> get cartItems => _cartItems;
 
+  List<CartItem> eatItems = List();
+  List<CartItem> drinkItems = List();
+  List<CartItem> toGoItems = List();
+
 
   void addToCart(CartItem item) {
     bool isItemFound = false;
@@ -19,6 +23,21 @@ class CartBloc with ChangeNotifier {
       item.price = item.price * item.quantity;
       _cartItems.add(item);
     }
+    eatItems.clear();
+    drinkItems.clear();
+    toGoItems.clear();
+
+    _cartItems.forEach((f){
+      f.index = _cartItems.indexOf(f);
+      if (f.type == 'eat'){
+        eatItems.add(f);
+      } else if (f.type == 'drink') {
+        drinkItems.add(f);
+      } else if (f.type == 'ToGo') {
+        toGoItems.add(f);
+      }
+    });
+print('EAT_CAT - ${eatItems.length}, DRINK_CAT - ${drinkItems.length}, TOGO_CAT - ${toGoItems.length}');
     notifyListeners();
   }
 
@@ -52,6 +71,8 @@ class CartBloc with ChangeNotifier {
 //      notifyListeners();
 //    }
   }
+
+
 }
 
 abstract class CartItems {}

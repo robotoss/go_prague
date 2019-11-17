@@ -117,12 +117,10 @@ class CityRestaurantList extends StatelessWidget {
 
     List<CityRestaurantItems> filterList = List();
     itemsData.forEach((f){
-      print('$categoryName - ${f.restaurantType}');
       if(categoryName == f.restaurantType){
         filterList.add(f);
       }
     });
-    print('Count ${itemsData.length}');
     return ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,

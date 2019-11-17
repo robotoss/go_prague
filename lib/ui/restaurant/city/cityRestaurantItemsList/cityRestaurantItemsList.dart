@@ -96,7 +96,6 @@ class CityRestaurantListScreen extends StatelessWidget {
   }
 
   Widget listCards(List<CategoryItem> itemsData) {
-    print('Count ${itemsData.length}');
     return ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,

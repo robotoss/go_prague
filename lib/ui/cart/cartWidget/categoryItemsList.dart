@@ -25,6 +25,8 @@ class _ListItemsInCartState extends State<ListItemsInCart> {
   int _restaurantTotal = 0;
   List<CartItem> cartItems = List();
 
+  bool filterData = true;
+
   void getSum() {
     _restaurantTotal = 0;
    cartItems.forEach((f) {
@@ -36,11 +38,14 @@ class _ListItemsInCartState extends State<ListItemsInCart> {
   @override
   void initState() {
     super.initState();
-    widget.allCartItems.forEach((f){
-      if(f.placeName == widget.placeName){
-        cartItems.add(f);
-      }
-    });
+    if(filterData){
+      widget.allCartItems.forEach((f){
+        if(f.placeName == widget.placeName){
+          cartItems.add(f);
+        }
+      });
+      filterData = false;
+    }
     getSum();
   }
 
@@ -145,6 +150,7 @@ class _ListItemsInCartState extends State<ListItemsInCart> {
                                   GestureDetector(
                                       onTap: () {
                                         setState(() {
+                                          print('INDEX_FOR_DELETE - ${cartItems[index].index}');
                                           bloc.changeQuantity(cartItems[index].index, true);
                                           getSum();
                                         });

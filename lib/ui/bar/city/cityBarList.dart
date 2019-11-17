@@ -119,7 +119,7 @@ class CityBarList extends StatelessWidget {
         filterList.add(f);
       }
     });
-    print('Count ${itemsData.length}');
+//    print('Count ${itemsData.length}');
     return ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,

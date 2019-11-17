@@ -131,7 +131,6 @@ class HotelBarList extends StatelessWidget {
   }
 
   Widget listCards(List<CategoryItem> itemsData) {
-    print('Count ${itemsData.length}');
     return GridView.count(
       crossAxisCount: 2,
       children: List.generate(

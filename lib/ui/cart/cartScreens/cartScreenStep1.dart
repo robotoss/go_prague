@@ -18,36 +18,58 @@ class _CartScreenStep1State extends State<CartScreenStep1> {
   bool _showToGo = false;
 
 
-  List<CartItem> _cartItems = List();
-  List<CartItem> _eatItems = List();
-  List<CartItem> _drinkItems = List();
-  List<CartItem> _toGoItems = List();
-
   @override
-  Widget build(BuildContext context) {
-    _eatItems.clear();
-    _drinkItems.clear();
-    _toGoItems.clear();
-    var bloc = Provider.of<CartBloc>(context);
-    _cartItems = bloc.cartItems;
-   _eatItems = List();
-   _drinkItems = List();
-   _toGoItems = List();
-    _cartItems.forEach((f){
-      f.index = _cartItems.indexOf(f);
-    });
-    _cartItems.forEach((f){
+  void initState() {
+
+    Provider.of<CartBloc>(context, listen: false).cartItems.forEach((f){
       if(f.type == 'eat'){
-        _eatItems.add(f);
         _showEat = true;
       } else if (f.type == 'drink'){
         _showDrink = true;
-        _drinkItems.add(f);
       } else if (f.type == 'ToGo'){
         _showToGo = true;
-        _toGoItems.add(f);
       }
     });
+
+    super.initState();
+  }
+
+  //  List<CartItem> _cartItems = List();
+//  List<CartItem> _eatItems = List();
+//  List<CartItem> _drinkItems = List();
+//  List<CartItem> _toGoItems = List();
+
+  @override
+  Widget build(BuildContext context) {
+    print('EAT_CATEGORY-$_showEat, DRINK_VATEGORY-$_showDrink, TOGO_CATEGORY-$_showToGo');
+
+
+//    _eatItems.clear();
+//    _drinkItems.clear();
+//    _toGoItems.clear();
+    var bloc = Provider.of<CartBloc>(context);
+//    _cartItems = bloc.cartItems;
+//   _eatItems = List();
+//   _drinkItems = List();
+//   _toGoItems = List();
+
+
+//    _cartItems.forEach((f){
+//      f.index = _cartItems.indexOf(f);
+//    });
+
+
+//    bloc.cartItems.forEach((f){
+//      if(f.type == 'eat'){
+//        _showEat = true;
+//      } else if (f.type == 'drink'){
+//        _showDrink = true;
+//      } else if (f.type == 'ToGo'){
+//        _showToGo = true;
+//      }
+//    });
+
+
 //    int _totalCount = 0;
 //    print(bloc.restaurantItems.length);
 //    if (bloc.restaurantItems.length > 0) {
@@ -58,6 +80,7 @@ class _CartScreenStep1State extends State<CartScreenStep1> {
 
 
     return Scaffold(
+
       body: Stack(
         children: <Widget>[
           Container(
@@ -161,9 +184,9 @@ class _CartScreenStep1State extends State<CartScreenStep1> {
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: ListView(
                         children: <Widget>[
-                          _showEat ? CategoryCartList(type: 'eat', cartItems: _eatItems,) : Container(),
-                          _showDrink ? CategoryCartList(type: 'drink', cartItems: _drinkItems,) : Container(),
-                          _showToGo ? CategoryCartList(type: 'ToGo', cartItems: _toGoItems,) : Container(),
+                          _showEat ? CategoryCartList(type: 'eat', cartItems: bloc.eatItems,) : Container(),
+                          _showDrink ? CategoryCartList(type: 'drink', cartItems: bloc.drinkItems,) : Container(),
+                          _showToGo ? CategoryCartList(type: 'ToGo', cartItems: bloc.toGoItems,) : Container(),
 
 //                          Expanded(
 //                            child: Column(

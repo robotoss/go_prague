@@ -107,7 +107,6 @@ class ToursListScreen extends StatelessWidget {
 }
 
 Widget listCards(List<ItemTourData> itemsData, String catName) {
-  print('Count ${itemsData.length}');
   return ListView.builder(
       shrinkWrap: true,
       scrollDirection: Axis.vertical,
