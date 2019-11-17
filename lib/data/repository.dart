@@ -2,6 +2,7 @@
 
 import 'models/cityBarItems.dart';
 import 'models/cityRestaurantItems.dart';
+import 'models/cityServices.dart';
 import 'models/hotelBarItems.dart';
 import 'models/hotelRestaurantItems.dart';
 import 'models/hotelServices.dart';
@@ -46,5 +47,10 @@ class Repository {
   ///Список услуг Отеля
   Future<List<HotelServices>> hotelService() async {
     return api.hotelService();
+  }
+
+  ///Список услуг города
+  Future<List<CityServices>> cityService() async {
+    return api.cityService();
   }
 }

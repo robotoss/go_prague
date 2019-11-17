@@ -2,6 +2,7 @@
 import 'package:dio/dio.dart';
 import 'package:go_prague/data/models/cityBarItems.dart';
 import 'package:go_prague/data/models/cityRestaurantItems.dart';
+import 'package:go_prague/data/models/cityServices.dart';
 import 'package:go_prague/data/models/hotelBarItems.dart';
 import 'package:go_prague/data/models/hotelRestaurantItems.dart';
 import 'package:go_prague/data/models/hotelServices.dart';
@@ -53,6 +54,12 @@ class RestDataSource {
   Future<List<HotelServices>> hotelService() async {
     Response<String> response = await dio.get("$serverUrl/b7d31778a542e6ee6d0f");
     return hotelServicesFromJson(response.data);
+  }
+
+  ///Список услуг в Городе
+  Future<List<CityServices>> cityService() async {
+    Response<String> response = await dio.get("$serverUrl/915a6e70bed2c08cb15d");
+    return cityServicesFromJson(response.data);
   }
 
 }
