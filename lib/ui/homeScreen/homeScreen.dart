@@ -15,6 +15,7 @@ import 'package:go_prague/ui/events/EventInfoScreen/EventInfoScreen.dart';
 import 'package:go_prague/ui/events/eventsList.dart';
 import 'package:go_prague/ui/restaurant/city/cityRestaurantList.dart';
 import 'package:go_prague/ui/restaurant/hotel/hotelRestaurantList.dart';
+import 'package:go_prague/ui/services/servicesCity/servicesCityScreen.dart';
 import 'package:go_prague/ui/services/servicesHotel/servicesHotelList.dart';
 import 'package:go_prague/ui/tours/tourInfoScreen/tourInfoScreen.dart';
 import 'package:go_prague/ui/tours/toursList/toursListScreen.dart';
@@ -250,6 +251,7 @@ class HomeScreen extends StatelessWidget {
                             name: 'City Service',
                             icon: 'assets/icons/icon_main_city_service.svg',
                             secondSide: false,
+                            navigateScreen: ServicesCityScreen(),
                           ),
                         ],
                       ),
