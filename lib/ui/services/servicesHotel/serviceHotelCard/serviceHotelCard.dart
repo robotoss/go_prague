@@ -46,9 +46,9 @@ class _ServiceHotelCardState extends State<ServiceHotelCard> {
                     child: Stack(
                       children: <Widget>[
                         Container(
+                          height: 125,
+                          width: double.infinity,
                           child: CachedNetworkImage(
-                            height: 125,
-                            width: double.infinity,
                             fit: BoxFit.cover,
                             imageUrl: widget.serviceHotelItem.imageUrl,
                             placeholder: (context, url) => Image.asset('assets/images/special_background.png', fit: BoxFit.cover,),
