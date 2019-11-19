@@ -13,6 +13,22 @@ ThemeData _buildDefaultTheme() {
 //    scaffoldBackgroundColor: Colors.white,
     primaryColor: ColorPalette().mainBlack,
     scaffoldBackgroundColor: const Color(0xFFEFEFEF),
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+          borderSide: BorderSide(
+              color: ColorPalette().mainBlue, width: 2)),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+            color: ColorPalette().mainBlue, width: 1.0),
+      ),
+      disabledBorder: OutlineInputBorder(
+          borderRadius:
+          BorderRadius.all(Radius.circular(5)),
+          borderSide: BorderSide(
+              color: ColorPalette().mainBlue, width: 2)),
+
+    ),
 //    buttonColor: Color.fromRGBO(46, 38, 217, 1.0),
 //    brightness: Brightness.light,
   );
