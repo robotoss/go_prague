@@ -13,23 +13,24 @@ class CartScreenStep1 extends StatefulWidget {
 
 class _CartScreenStep1State extends State<CartScreenStep1> {
 
-  bool _showEat = false;
-  bool _showDrink = false;
-  bool _showToGo = false;
+//  bool _showEat = false;
+//  bool _showDrink = false;
+//  bool _showToGo = false;
 
 
   @override
   void initState() {
+    Provider.of<CartBloc>(context, listen: false).showCategory();
 
-    Provider.of<CartBloc>(context, listen: false).cartItems.forEach((f){
-      if(f.type == 'eat'){
-        _showEat = true;
-      } else if (f.type == 'drink'){
-        _showDrink = true;
-      } else if (f.type == 'ToGo'){
-        _showToGo = true;
-      }
-    });
+//    Provider.of<CartBloc>(context, listen: false).cartItems.forEach((f){
+//      if(f.type == 'eat'){
+//        _showEat = true;
+//      } else if (f.type == 'drink'){
+//        _showDrink = true;
+//      } else if (f.type == 'ToGo'){
+//        _showToGo = true;
+//      }
+//    });
 
     super.initState();
   }
@@ -41,7 +42,7 @@ class _CartScreenStep1State extends State<CartScreenStep1> {
 
   @override
   Widget build(BuildContext context) {
-    print('EAT_CATEGORY-$_showEat, DRINK_VATEGORY-$_showDrink, TOGO_CATEGORY-$_showToGo');
+//    print('EAT_CATEGORY-$_showEat, DRINK_VATEGORY-$_showDrink, TOGO_CATEGORY-$_showToGo');
 
 
 //    _eatItems.clear();
@@ -184,9 +185,9 @@ class _CartScreenStep1State extends State<CartScreenStep1> {
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: ListView(
                         children: <Widget>[
-                          _showEat ? CategoryCartList(type: 'eat', cartItems: bloc.eatItems,) : Container(),
-                          _showDrink ? CategoryCartList(type: 'drink', cartItems: bloc.drinkItems,) : Container(),
-                          _showToGo ? CategoryCartList(type: 'ToGo', cartItems: bloc.toGoItems,) : Container(),
+                          bloc.showEat ? CategoryCartList(type: 'eat', cartItems: bloc.eatItems,) : Container(),
+                          bloc.showDrink ? CategoryCartList(type: 'drink', cartItems: bloc.drinkItems,) : Container(),
+                          bloc.showToGo ? CategoryCartList(type: 'togo', cartItems: bloc.toGoItems,) : Container(),
 
 //                          Expanded(
 //                            child: Column(

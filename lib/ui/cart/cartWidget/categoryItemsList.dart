@@ -10,10 +10,12 @@ import 'package:provider/provider.dart';
 class ListItemsInCart extends StatefulWidget {
   final List<CartItem> allCartItems;
   final String placeName;
+  final String type;
 
   ListItemsInCart({
     this.allCartItems,
     this.placeName,
+    this.type,
   });
 
   @override
@@ -38,15 +40,32 @@ class _ListItemsInCartState extends State<ListItemsInCart> {
   @override
   void initState() {
     super.initState();
+
     if(filterData){
-      widget.allCartItems.forEach((f){
-        if(f.placeName == widget.placeName){
-          cartItems.add(f);
-        }
-      });
-      filterData = false;
+      if (widget.type == 'eat') {
+        Provider.of<CartBloc>(context, listen: false).eatItems.forEach((f){
+          if(f.placeName == widget.placeName){
+            cartItems.add(f);
+          }
+        });
+        filterData = false;
+      } else if (widget.type == 'drink') {
+        Provider.of<CartBloc>(context, listen: false).drinkItems.forEach((f){
+          if(f.placeName == widget.placeName){
+            cartItems.add(f);
+          }
+        });
+      } else if (widget.type == 'togo') {
+        Provider.of<CartBloc>(context, listen: false).toGoItems.forEach((f){
+          if(f.placeName == widget.placeName){
+            cartItems.add(f);
+          }
+        });
+      }
     }
     getSum();
+    print('HOW_MUCH_LENG_PARENT - ${Provider.of<CartBloc>(context, listen: false).eatItems.length}');
+    print('HOW_MUCH_LENG_PARENT - ${cartItems.length}');
   }
 
   @override
@@ -178,6 +197,7 @@ class _ListItemsInCartState extends State<ListItemsInCart> {
                             icon: Icon(Icons.delete_outline),
                             onPressed: () {
                           setState(() {
+                            cartItems.removeAt(index);
                             _restaurantTotal = _restaurantTotal -
                                 widget.allCartItems[index].price;
                             bloc.clear(
@@ -194,7 +214,7 @@ class _ListItemsInCartState extends State<ListItemsInCart> {
           height: 20,
         ),
         NextStep(
-          widgetToGo: CartScreenStep2(),
+          widgetToGo: CartScreenStep2(cartItems: cartItems, restaurantTotal: _restaurantTotal,),
         ),
       ],
     );

@@ -9,20 +9,7 @@ class CartBloc with ChangeNotifier {
   List<CartItem> drinkItems = List();
   List<CartItem> toGoItems = List();
 
-
-  void addToCart(CartItem item) {
-    bool isItemFound = false;
-    _cartItems.forEach((f){
-      if(item.name == f.name && item.placeName == f.placeName) {
-        isItemFound = true;
-        f.quantity = f.quantity + item.quantity;
-        f.price = (f.price + item.price);
-      }
-    });
-    if(!isItemFound){
-      item.price = item.price * item.quantity;
-      _cartItems.add(item);
-    }
+  void filterCategory() {
     eatItems.clear();
     drinkItems.clear();
     toGoItems.clear();
@@ -37,13 +24,32 @@ class CartBloc with ChangeNotifier {
         toGoItems.add(f);
       }
     });
+  }
+
+
+  void addToCart(CartItem item) {
+    bool isItemFound = false;
+    _cartItems.forEach((f){
+      if(item.name == f.name && item.placeName == f.placeName) {
+        isItemFound = true;
+        f.quantity = f.quantity + item.quantity;
+        f.price = (f.price + item.price);
+      }
+    });
+    if(!isItemFound){
+      item.price = item.price * item.quantity;
+      _cartItems.add(item);
+    }
+
+    filterCategory();
+
 print('EAT_CAT - ${eatItems.length}, DRINK_CAT - ${drinkItems.length}, TOGO_CAT - ${toGoItems.length}');
     notifyListeners();
   }
 
   void clear(int index) {
     _cartItems.removeAt(index);
-
+    filterCategory();
     notifyListeners();
   }
 
@@ -71,6 +77,26 @@ print('EAT_CAT - ${eatItems.length}, DRINK_CAT - ${drinkItems.length}, TOGO_CAT 
 //      notifyListeners();
 //    }
   }
+
+
+  bool showEat = false;
+  bool showDrink = false;
+  bool showToGo = false;
+
+  void showCategory() {
+    cartItems.forEach((f) {
+      if (f.type == 'eat') {
+        showEat = true;
+        notifyListeners();
+      } else if (f.type == 'drink') {
+        showDrink = true;
+        notifyListeners();
+      } else if (f.type == 'ToGo') {
+        showToGo = true;
+        notifyListeners();
+      }
+    }
+      );}
 
 
 }

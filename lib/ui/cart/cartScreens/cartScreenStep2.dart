@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/theme/mainTheme.dart';
@@ -6,12 +7,21 @@ import 'package:provider/provider.dart';
 
 
 class CartScreenStep2 extends StatefulWidget {
+  final List<CartItem> cartItems;
+  final int restaurantTotal;
+
+  CartScreenStep2({this.cartItems, this.restaurantTotal});
+
   @override
   _CartScreenStep2State createState() => _CartScreenStep2State();
 }
 
 class _CartScreenStep2State extends State<CartScreenStep2> {
 
+  String _type = 'Pick-Up';
+  String _time = 'Now';
+  String _paymentMetod = 'Cash';
+  String _partySize = '1';
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +131,363 @@ class _CartScreenStep2State extends State<CartScreenStep2> {
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: ListView(
                           children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  widget.cartItems[0].placeName,
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w700
+                                  ),
+                                ),
+                                IconButton(
+                                    icon: Icon(Icons.delete_outline),
+                                    onPressed: () {
+                                      setState(() {
+                                        widget.cartItems.forEach((f){
+                                          bloc.clear(
+                                            f.index,
+                                          );
+                                        });
+                                        Navigator.pop(context);
+                                      });
+                                    }),
+                              ],
+                            ),
+                            SizedBox(height: 30),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  'Total',
+                                  style: TextStyle(fontSize: 24),
+                                ),
+                                Text(
+                                  '${widget.restaurantTotal} Kč',
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Divider(),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              'Order Info',
+                              style: TextStyle(
+                                  fontSize: 24
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            TextField(
+                              autocorrect: false,
+                              style: TextStyle(
+                                fontFamily: 'SFProDisplay',
+                                fontWeight: FontWeight.w700,
+                                fontSize: 17,
+                              ),
+                              decoration: InputDecoration(
+                                labelText: 'Name:',
+                                contentPadding:
+                                const EdgeInsets
+                                    .symmetric(
+                                    vertical: 15.0,
+                                    horizontal: 14),
+                                errorStyle: TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 13,
+                                ),
 
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            TextField(
+                              autocorrect: false,
+                              style: TextStyle(
+                                fontFamily: 'SFProDisplay',
+                                fontWeight: FontWeight.w700,
+                                fontSize: 17,
+                              ),
+                              decoration: InputDecoration(
+                                labelText: 'Surname:',
+                                contentPadding:
+                                const EdgeInsets
+                                    .symmetric(
+                                    vertical: 15.0,
+                                    horizontal: 14),
+                                errorStyle: TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 13,
+                                ),
+
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  'Choose a type',
+                                  style: TextStyle(
+                                      color: ColorPalette().textLightDark,
+                                      fontSize: 24,
+                                     ),
+                                ),
+                                Theme(
+                                  data: Theme.of(context).copyWith(
+                                    canvasColor: ColorPalette().mainGreen,
+                                  ),
+                                  child: DropdownButton<String>(
+                                    items: <String>[
+                                      'Pick-Up',
+                                      'Delivery',
+                                      'In Place',
+                                    ].map((String value) {
+                                      return new DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(
+                                          value,
+                                          style: TextStyle(
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.white),
+                                        ),
+                                      );
+                                    }).toList(),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _type = value;
+                                      });
+                                    },
+                                    hint: Text(
+                                      _type,
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w700,
+                                          color: ColorPalette().textDark),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 5),
+                           Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                             children: <Widget>[
+                               Text(
+                                 'Choose a time',
+                                 style: TextStyle(
+                                   color: ColorPalette().textLightDark,
+                                   fontSize: 24,
+                                 ),
+                               ),
+                               Theme(
+                                 data: Theme.of(context).copyWith(
+                                   canvasColor: ColorPalette().mainGreen,
+                                 ),
+                                 child: DropdownButton<String>(
+                                   items: <String>[
+                                     'Now',
+                                   ].map((String value) {
+                                     return new DropdownMenuItem<String>(
+                                       value: value,
+                                       child: Text(
+                                         value,
+                                         style: TextStyle(
+                                             fontSize: 24,
+                                             fontWeight: FontWeight.w700,
+                                             color: Colors.white),
+                                       ),
+                                     );
+                                   }).toList(),
+                                   onChanged: (value) {
+                                     setState(() {
+                                       _time = value;
+                                     });
+                                   },
+                                   hint: Text(
+                                     _time,
+                                     style: TextStyle(
+                                         fontSize: 24,
+                                         fontWeight: FontWeight.w700,
+                                         color: ColorPalette().textDark),
+                                   ),
+                                 ),
+                               ),
+                             ],
+                           ),
+                            SizedBox(height: 5),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  'Payment method',
+                                  style: TextStyle(
+                                    color: ColorPalette().textLightDark,
+                                    fontSize: 24,
+                                  ),
+                                ),
+                                Theme(
+                                  data: Theme.of(context).copyWith(
+                                    canvasColor: ColorPalette().mainGreen,
+                                  ),
+                                  child: DropdownButton<String>(
+                                    items: <String>[
+                                      'Cash',
+                                    ].map((String value) {
+                                      return new DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(
+                                          value,
+                                          style: TextStyle(
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.white),
+                                        ),
+                                      );
+                                    }).toList(),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _paymentMetod = value;
+                                      });
+                                    },
+                                    hint: Text(
+                                      _paymentMetod,
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w700,
+                                          color: ColorPalette().textDark),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 5),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  'Party size',
+                                  style: TextStyle(
+                                    color: ColorPalette().textLightDark,
+                                    fontSize: 24,
+                                  ),
+                                ),
+                                Theme(
+                                  data: Theme.of(context).copyWith(
+                                    canvasColor: ColorPalette().mainGreen,
+                                  ),
+                                  child: DropdownButton<String>(
+                                    items: <String>[
+                                      '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25',
+                                    ].map((String value) {
+                                      return new DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(
+                                          value,
+                                          style: TextStyle(
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.white),
+                                        ),
+                                      );
+                                    }).toList(),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _partySize = value;
+                                      });
+                                    },
+                                    hint: Text(
+                                      _partySize,
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w700,
+                                          color: ColorPalette().textDark),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            TextField(
+                              autocorrect: false,
+                              style: TextStyle(
+                                fontFamily: 'SFProDisplay',
+                                fontWeight: FontWeight.w700,
+                                fontSize: 17,
+                              ),
+                              decoration: InputDecoration(
+                                labelText: 'Phone to Contact:',
+                                contentPadding:
+                                const EdgeInsets
+                                    .symmetric(
+                                    vertical: 15.0,
+                                    horizontal: 14),
+                                errorStyle: TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 13,
+                                ),
+
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            TextField(
+                              autocorrect: false,
+                              style: TextStyle(
+                                fontFamily: 'SFProDisplay',
+                                fontWeight: FontWeight.w700,
+                                fontSize: 17,
+                              ),
+                              decoration: InputDecoration(
+                                labelText: 'Any messenger to Contact:',
+                                contentPadding:
+                                const EdgeInsets
+                                    .symmetric(
+                                    vertical: 15.0,
+                                    horizontal: 14),
+                                errorStyle: TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 13,
+                                ),
+
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            TextField(
+                              autocorrect: false,
+                              style: TextStyle(
+                                fontFamily: 'SFProDisplay',
+                                fontWeight: FontWeight.w700,
+                                fontSize: 17,
+                              ),
+                              decoration: InputDecoration(
+                                labelText: 'Leave a comment:',
+                                contentPadding:
+                                const EdgeInsets
+                                    .symmetric(
+                                    vertical: 15.0,
+                                    horizontal: 14),
+                                errorStyle: TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 13,
+                                ),
+
+                              ),
+                            ),
                           ],
                         ),
                       )

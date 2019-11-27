@@ -119,7 +119,7 @@ class CategoryCartList extends StatelessWidget {
       _categoryName = 'Orders in Eat category';
     } else if (type == 'drink') {
       _categoryName = 'Orders in Drink category';
-    } else if (type == 'ToGo') {
+    } else if (type == 'togo') {
       _categoryName = 'Orders in To Go category';
     }
   }
@@ -173,7 +173,7 @@ class CategoryCartList extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index){
               print('PLACED_NAMES - ${placeNames[index]}');
-              return ListItemsInCart(allCartItems: cartItems, placeName: placeNames[index],);
+              return ListItemsInCart(allCartItems: cartItems, placeName: placeNames[index], type: type,);
             }
         )
 
