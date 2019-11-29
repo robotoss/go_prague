@@ -114,7 +114,7 @@ class _TourCardScreenState extends State<TourCardScreen> {
                           Text(
                             '${widget.tourItem.price} Kč',
                             style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 16,
                                 color: ColorPalette().textLightDark
                             ),
                           ),

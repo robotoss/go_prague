@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/bloc/cart_bloc.dart';
@@ -198,11 +199,13 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text(
+                                  AutoSizeText(
                                       '${widget.tourData.duration}',
+                                    maxFontSize: 22,
+                                    minFontSize: 18,
                                     style: TextStyle(
                                       color: ColorPalette().textLLDark,
-                                      fontSize: 22,
+//                                      fontSize: 22,
                                       fontWeight: FontWeight.w700
                                     ),
                                   ),
@@ -238,7 +241,7 @@ class _TourInfoScreenState extends State<TourInfoScreen> {
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               ConstrainedBox(
                                 constraints: BoxConstraints(
