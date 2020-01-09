@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/theme/mainTheme.dart';
-import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 import 'package:provider/provider.dart';
 
 import 'cartScreenStep3.dart';

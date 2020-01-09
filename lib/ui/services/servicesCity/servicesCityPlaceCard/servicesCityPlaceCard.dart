@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/models/cityServices.dart';
 import 'package:go_prague/theme/mainTheme.dart';
-import 'package:go_prague/ui/restaurant/city/cityRestaurantItemsList/cityRestaurantItemsList.dart';
+
 import 'package:go_prague/ui/services/servicesCity/servicesCityList/servicesCityList.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 

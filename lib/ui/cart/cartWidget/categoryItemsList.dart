@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_prague/data/bloc/cart_bloc.dart';
 import 'package:go_prague/theme/mainTheme.dart';
 import 'package:go_prague/ui/cart/cartScreens/cartScreenStep2.dart';

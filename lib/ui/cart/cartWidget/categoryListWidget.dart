@@ -139,7 +139,6 @@ class CategoryCartList extends StatelessWidget {
     changeCategoryName();
     setByCategory();
     var bloc = Provider.of<CartBloc>(context);
-    print('PLACED_NAMES - ${placeNames}');
     return Column(
 //      mainAxisSize: MainAxisSize.max,
       children: <Widget>[

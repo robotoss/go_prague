@@ -5,7 +5,6 @@ import 'package:go_prague/data/models/toursData.dart';
 import 'package:go_prague/theme/mainTheme.dart';
 import 'package:go_prague/ui/tours/tourInfoScreen/tourInfoScreen.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
-import 'dart:math' as math;
 
 class TourCardScreen extends StatefulWidget {
   final ItemTourData tourItem;
