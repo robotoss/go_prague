@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/bloc/cart_bloc.dart';
-import 'package:go_prague/theme/mainTheme.dart';
 import 'package:go_prague/data/models/cityServices.dart';
+import 'package:go_prague/theme/mainTheme.dart';
 import 'package:go_prague/ui/cart/cartScreens/cartScreenStep1.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 import 'package:go_prague/ui/widgets/carousel/carousel.dart';
@@ -10,20 +10,17 @@ import 'package:go_prague/ui/widgets/selectAmount/selectAmount.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-
 class ServiceCityInfoScreen extends StatefulWidget {
-  final CategoryItem serviceCityItem;
+    final CategoryItem serviceHotelItem;
 
   ServiceCityInfoScreen({
-    this.serviceCityItem,
+    this.serviceHotelItem,
   });
-
   @override
   _ServiceCityInfoScreenState createState() => _ServiceCityInfoScreenState();
 }
 
 class _ServiceCityInfoScreenState extends State<ServiceCityInfoScreen> {
-
   int _int = 1;
 
   void setItems(int items){
@@ -32,6 +29,21 @@ class _ServiceCityInfoScreenState extends State<ServiceCityInfoScreen> {
     });
   }
 
+    @override
+  void initState() {
+    super.initState();
+    elements.add(carouselItem(widget.serviceHotelItem.imageUrl));
+
+  }
+
+
+  @override
+  void dispose() {
+    elements.clear();
+    super.dispose();
+  }
+
+
   static List<Widget> elements = List();
   String _date = 'Select day';
   String _time = 'Select time';
@@ -39,7 +51,7 @@ class _ServiceCityInfoScreenState extends State<ServiceCityInfoScreen> {
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
 
-  Future<Null> _selectDate(BuildContext context) async {
+    Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
         initialDate: selectedDate,
@@ -52,7 +64,7 @@ class _ServiceCityInfoScreenState extends State<ServiceCityInfoScreen> {
       });
   }
 
-  Future<Null> _selectTime(BuildContext context) async {
+   Future<Null> _selectTime(BuildContext context) async {
     final TimeOfDay response = await showTimePicker(
       context: context,
       initialTime: selectedTime,
@@ -64,21 +76,7 @@ class _ServiceCityInfoScreenState extends State<ServiceCityInfoScreen> {
       });
     }
   }
-
-  @override
-  void initState() {
-    super.initState();
-    elements.add(carouselItem(widget.serviceCityItem.imageUrl));
-
-  }
-
-
-  @override
-  void dispose() {
-    elements.clear();
-    super.dispose();
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     var bloc = Provider.of<CartBloc>(context);
@@ -87,7 +85,6 @@ class _ServiceCityInfoScreenState extends State<ServiceCityInfoScreen> {
     if (bloc.cartItems.length > 0) {
       _totalCount = bloc.cartItems.length;
     }
-
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -162,7 +159,7 @@ class _ServiceCityInfoScreenState extends State<ServiceCityInfoScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                widget.serviceCityItem.itemName,
+                                widget.serviceHotelItem.itemName,
                                 softWrap: true,
                                 maxLines: 2,
                                 style: TextStyle(
@@ -197,7 +194,7 @@ class _ServiceCityInfoScreenState extends State<ServiceCityInfoScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    '${widget.serviceCityItem.time}',
+                                    '${widget.serviceHotelItem.duration}',
                                     style: TextStyle(
                                         color: ColorPalette().textLLDark,
                                         fontSize: 22,
@@ -205,7 +202,7 @@ class _ServiceCityInfoScreenState extends State<ServiceCityInfoScreen> {
                                     ),
                                   ),
                                   Text(
-                                    widget.serviceCityItem.price == 0 ? 'FREE' : '${widget.serviceCityItem.price} Kč',
+                                    widget.serviceHotelItem.price == 0 ? 'FREE' : '${widget.serviceHotelItem.price} Kč',
                                     style: TextStyle(
                                         color: ColorPalette().textLLDark,
                                         fontSize: 22,
@@ -243,7 +240,7 @@ class _ServiceCityInfoScreenState extends State<ServiceCityInfoScreen> {
                                     minHeight: 250
                                 ),
                                 child: Text(
-                                  widget.serviceCityItem.description,
+                                  widget.serviceHotelItem.description,
                                   style: TextStyle(
                                     fontSize: 18,
                                     color: ColorPalette().textLLDark,
@@ -306,7 +303,7 @@ class _ServiceCityInfoScreenState extends State<ServiceCityInfoScreen> {
                                       ],
                                     ),
                                     SizedBox(height: 40),
-                                    AddToCartButton(addToCart: (){Provider.of<CartBloc>(context).addToCart(CartItem(0, 'ToGo', '', widget.serviceCityItem.itemName, [], widget.serviceCityItem.price, _int));},),
+                                    AddToCartButton(addToCart: (){Provider.of<CartBloc>(context).addToCart(CartItem(0, 'ToGo', '', widget.serviceHotelItem.itemName, [], widget.serviceHotelItem.price.toInt(), _int));},),
                                     SizedBox(height: 5,)
                                   ],
                                 ),
@@ -338,4 +335,3 @@ Widget carouselItem(String image) {
     ),
   );
 }
-

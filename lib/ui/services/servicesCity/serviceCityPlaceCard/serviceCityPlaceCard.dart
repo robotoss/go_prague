@@ -1,36 +1,31 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_prague/data/models/cityServices.dart';
-
 import 'package:go_prague/theme/mainTheme.dart';
 import 'package:go_prague/ui/services/servicesCity/servicesCityInfoScreen/servicesCityInfoScreen.dart';
+import 'package:go_prague/ui/services/servicesHotel/serviceHotelInfoScreen/serviceHotelInfoScreen.dart';
 import 'package:go_prague/ui/widgets/buttons/standartButtons.dart';
 
 class ServiceCityPlaceCard extends StatefulWidget {
-  final CategoryItem serviceCityItem;
+  final CategoryItem serviceHotelItem;
   final String catName;
 
   ServiceCityPlaceCard({
-    this.serviceCityItem,
+    this.serviceHotelItem,
     this.catName,
   });
-
-
   @override
   _ServiceCityPlaceCardState createState() => _ServiceCityPlaceCardState();
 }
 
 class _ServiceCityPlaceCardState extends State<ServiceCityPlaceCard> {
-
   @override
   Widget build(BuildContext context) {
-    print(widget.catName);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
         onTap: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => ServiceCityInfoScreen(serviceCityItem: widget.serviceCityItem,)));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ServiceCityInfoScreen(serviceHotelItem: widget.serviceHotelItem,)));
         },
         child: Card(
           child: Container(
@@ -50,7 +45,7 @@ class _ServiceCityPlaceCardState extends State<ServiceCityPlaceCard> {
                           width: double.infinity,
                           child: CachedNetworkImage(
                             fit: BoxFit.cover,
-                            imageUrl: widget.serviceCityItem.imageUrl,
+                            imageUrl: widget.serviceHotelItem.imageUrl,
                             placeholder: (context, url) => Image.asset('assets/images/special_background.png', fit: BoxFit.cover,),
                           ),
                         ),
@@ -80,14 +75,14 @@ class _ServiceCityPlaceCardState extends State<ServiceCityPlaceCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        widget.serviceCityItem.itemName,
+                        widget.serviceHotelItem.itemName,
                         style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.w700
                         ),
                       ),
                       Text(
-                        widget.serviceCityItem.description,
+                        widget.serviceHotelItem.description,
                         softWrap: true,
                         maxLines: 2,
                         style: TextStyle(
@@ -106,7 +101,7 @@ class _ServiceCityPlaceCardState extends State<ServiceCityPlaceCard> {
                       Row(
                         children: <Widget>[
                           Text(
-                            widget.catName != 'Room Services' ? '~${widget.serviceCityItem.time}': '',
+                            widget.catName != 'Room Services' ? '~${widget.serviceHotelItem.duration}': '',
                             style: TextStyle(
                                 fontSize: 16,
                                 color: ColorPalette().textLightDark
@@ -114,7 +109,7 @@ class _ServiceCityPlaceCardState extends State<ServiceCityPlaceCard> {
                           ),
                           SizedBox(width: 15),
                           Text(
-                            '${widget.serviceCityItem.price} Kč',
+                            '${widget.serviceHotelItem.price} Kč',
                             style: TextStyle(
                                 fontSize: 20,
                                 color: ColorPalette().textLightDark
@@ -124,7 +119,7 @@ class _ServiceCityPlaceCardState extends State<ServiceCityPlaceCard> {
                       ),
                       Row(
                         children: <Widget>[
-                          MoreBlueButton(widget: ServiceCityInfoScreen(serviceCityItem: widget.serviceCityItem,),),
+                          MoreBlueButton(widget: ServiceCityInfoScreen(serviceHotelItem: widget.serviceHotelItem,),),
                         ],
                       )
                     ],
